@@ -26,9 +26,6 @@ site-footer {
   --gold-bright: #d7b47a;
   --gold-pale: #f3e2bd;
   --gold-dim: rgba(181, 138, 84, 0.26);
-  --teal: #165f69;
-  --teal-dim: rgba(22, 95, 105, 0.18);
-  --teal-solid: rgba(22, 95, 105, 0.94);
   --navy: #2f2418;
   --navy-mid: #5d4936;
   --ivory: #fbf5ea;
@@ -41,7 +38,7 @@ site-footer {
   --latte: #d9c3a2;
   --taupe: #8b7458;
   --ink: #37291d;
-  --font-accent-heading: "Jost", sans-serif;
+  --font-accent-heading: "Cormorant Garamond", serif;
   --content-max-width: 1440px;
   --content-shell-max-width: calc(var(--content-max-width) + 96px);
 }
@@ -394,7 +391,7 @@ nav.nav--solid {
 .nav-dropdown-link:hover,
 .nav-dropdown-link:focus-visible {
   background: rgba(239, 225, 198, 0.68);
-  color: var(--teal);
+  color: var(--gold);
   transform: translateX(2px);
 }
 
@@ -419,7 +416,7 @@ nav.nav--solid {
 .btn-nav-book:hover {
   background: var(--white);
   border-color: var(--white);
-  color: var(--teal);
+  color: var(--gold);
 }
 
 @keyframes fadeUp {
@@ -1271,7 +1268,7 @@ nav.nav--solid {
   position: relative;
   overflow: hidden;
   border-radius: 34px;
-  background: #ddded8;
+  background: var(--sand);
   margin-top: 56px;
   box-shadow:
     0 34px 80px rgba(72, 52, 24, 0.14),
@@ -1554,7 +1551,7 @@ nav.nav--solid {
 /* AMENITIES AND FACILITIES SECTION */
 .amenities-showcase {
   position: relative;
-  background: var(--teal);
+  background: var(--gold);
   padding: 110px 0 118px;
   overflow: hidden;
 }
@@ -1586,7 +1583,7 @@ nav.nav--solid {
   overflow: hidden;
   border-radius: 8px;
   background: #fffaf1;
-  box-shadow: 0 34px 86px rgba(4, 34, 38, 0.28);
+  box-shadow: 0 34px 86px rgba(47, 36, 24, 0.28);
 }
 
 .amenities-track {
@@ -1605,7 +1602,7 @@ nav.nav--solid {
 .amenity-media {
   min-height: 520px;
   overflow: hidden;
-  background: #d8ddd4;
+  background: var(--sand);
 }
 
 .amenity-media img {
@@ -1621,7 +1618,7 @@ nav.nav--solid {
   flex-direction: column;
   justify-content: center;
   padding: 64px 58px;
-  color: #0f4a52;
+  color: var(--ink);
 }
 
 .amenity-number {
@@ -1649,7 +1646,7 @@ nav.nav--solid {
   max-width: 44ch;
   font-size: 17px;
   line-height: 1.72;
-  color: #144d55;
+  color: rgba(55, 41, 29, 0.78);
 }
 
 .amenities-cta {
@@ -1697,13 +1694,13 @@ nav.nav--solid {
   border-radius: 50%;
   border: 1px solid rgba(255, 250, 241, 0.72);
   background: rgba(255, 250, 241, 0.9);
-  color: var(--teal);
+  color: var(--gold);
   cursor: pointer;
   pointer-events: auto;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 18px 36px rgba(4, 34, 38, 0.22);
+  box-shadow: 0 18px 36px rgba(47, 36, 24, 0.22);
   transition:
     transform 0.25s ease,
     background 0.25s ease;
@@ -1945,7 +1942,7 @@ nav.nav--solid {
   margin: 0;
   overflow: hidden;
   border-radius: 8px;
-  background: #d8ddd4;
+  background: var(--sand);
   box-shadow: 0 28px 70px rgba(55, 41, 29, 0.12);
 }
 
@@ -1974,7 +1971,7 @@ nav.nav--solid {
 
 .dining-title {
   margin: 0;
-  color: var(--teal);
+  color: var(--gold);
   font-size: 44px;
   line-height: 0.95;
   font-weight: 700;
@@ -1999,7 +1996,7 @@ nav.nav--solid {
 
 .dining-copy p {
   margin: 0;
-  color: rgba(20, 77, 85, 0.9);
+  color: rgba(55, 41, 29, 0.9);
   font-size: 16px;
   line-height: 1.78;
 }
@@ -2016,8 +2013,8 @@ nav.nav--solid {
   min-height: 54px;
   padding: 0 32px;
   border-radius: 999px;
-  border: 1px solid var(--teal);
-  color: var(--teal);
+  border: 1px solid var(--gold);
+  color: var(--gold);
   background: transparent;
   text-decoration: none;
   font-size: 12px;
@@ -2031,7 +2028,7 @@ nav.nav--solid {
 }
 
 .dining-cta:hover {
-  background: var(--teal);
+  background: var(--gold);
   color: #fffaf1;
   transform: translateY(-1px);
 }
@@ -2055,9 +2052,9 @@ nav.nav--solid {
   width: 44px;
   height: 44px;
   border-radius: 50%;
-  border: 1px solid rgba(21, 89, 99, 0.28);
+  border: 1px solid rgba(181, 138, 84, 0.28);
   background: transparent;
-  color: var(--teal);
+  color: var(--gold);
   cursor: pointer;
   display: inline-flex;
   align-items: center;
@@ -2070,8 +2067,8 @@ nav.nav--solid {
 }
 
 .dining-arrow:hover {
-  background: var(--teal);
-  border-color: var(--teal);
+  background: var(--gold);
+  border-color: var(--gold);
   color: #fffaf1;
   transform: translateY(-1px);
 }
@@ -2092,7 +2089,7 @@ nav.nav--solid {
   height: 3px;
   border: 0;
   border-radius: 999px;
-  background: rgba(21, 89, 99, 0.22);
+  background: rgba(181, 138, 84, 0.22);
   cursor: pointer;
   transition:
     width 0.25s ease,
@@ -2105,7 +2102,7 @@ nav.nav--solid {
 }
 
 .dining-index {
-  color: rgba(21, 89, 99, 0.72);
+  color: rgba(181, 138, 84, 0.72);
   font-family: "Cormorant Garamond", serif;
   font-size: 28px;
   line-height: 1;
@@ -2249,7 +2246,7 @@ nav.nav--solid {
 
 .dining-venue-tab:hover,
 .dining-venue-tab.is-active {
-  color: var(--teal);
+  color: var(--gold);
 }
 
 .dining-venue-tab.is-active {
@@ -2278,7 +2275,7 @@ nav.nav--solid {
   min-height: clamp(520px, 43vw, 660px);
   overflow: hidden;
   border-radius: 0;
-  background: #d8ddd4;
+  background: var(--sand);
 }
 
 .dining-venue-media img {
@@ -2365,7 +2362,7 @@ nav.nav--solid {
 }
 
 .dining-venue-cta:hover {
-  background: var(--teal);
+  background: var(--gold);
   color: #fffaf1;
   transform: translateY(-1px);
 }
@@ -2467,7 +2464,7 @@ nav.nav--solid {
 .daytour-section {
   position: relative;
   z-index: 4;
-  background: var(--teal);
+  background: var(--gold);
   padding: 118px 0 124px;
   overflow: hidden;
 }
@@ -2494,7 +2491,7 @@ nav.nav--solid {
   grid-template-columns: 1fr;
   grid-template-rows: minmax(0, 1fr) auto;
   gap: 14px;
-  box-shadow: 0 34px 86px rgba(4, 34, 38, 0.2);
+  box-shadow: 0 34px 86px rgba(47, 36, 24, 0.2);
 }
 
 .daytour-viewport {
@@ -2504,7 +2501,7 @@ nav.nav--solid {
   height: 100%;
   overflow: hidden;
   border-radius: 6px;
-  background: #d8ddd4;
+  background: var(--sand);
 }
 
 .daytour-viewport::after {
@@ -2550,7 +2547,7 @@ nav.nav--solid {
   padding: 14px 16px;
   border-radius: 999px;
   background: #fffaf1;
-  color: var(--teal);
+  color: var(--gold);
 }
 
 .daytour-caption strong {
@@ -2577,7 +2574,7 @@ nav.nav--solid {
   padding: 58px;
   border-radius: 8px;
   background: #fffaf1;
-  color: var(--teal);
+  color: var(--gold);
 }
 
 .daytour-kicker {
@@ -2596,7 +2593,7 @@ nav.nav--solid {
   font-size: clamp(46px, 4.7vw, 74px);
   line-height: 0.92;
   font-weight: 600;
-  color: var(--teal);
+  color: var(--gold);
 }
 
 .daytour-body {
@@ -2607,7 +2604,7 @@ nav.nav--solid {
 
 .daytour-body p {
   margin: 0;
-  color: rgba(21, 89, 99, 0.88);
+  color: rgba(181, 138, 84, 0.88);
   font-size: 16px;
   line-height: 1.72;
 }
@@ -2640,7 +2637,7 @@ nav.nav--solid {
 }
 
 .daytour-cta:hover {
-  background: var(--teal);
+  background: var(--gold);
   transform: translateY(-1px);
 }
 
@@ -2696,7 +2693,7 @@ nav.nav--solid {
   border: 0;
   border-radius: 12px;
   background: rgba(255, 250, 241, 0.92);
-  color: rgba(22, 95, 105, 0.66);
+  color: rgba(181, 138, 84, 0.66);
   cursor: pointer;
   display: flex;
   flex-direction: column;
@@ -2748,9 +2745,9 @@ nav.nav--solid {
 
 .daytour-stop.is-active {
   color: #fffaf1;
-  background: var(--teal);
+  background: var(--gold);
   transform: translateY(-1px);
-  box-shadow: 0 12px 20px rgba(8, 40, 45, 0.26);
+  box-shadow: 0 12px 20px rgba(47, 36, 24, 0.26);
 }
 
 .daytour-stop.is-active strong {
@@ -2764,7 +2761,7 @@ nav.nav--solid {
 }
 
 .daytour-stop:hover {
-  color: var(--teal);
+  color: var(--gold);
   background: #fffaf1;
   transform: translateY(-1px);
   box-shadow: 0 10px 18px rgba(54, 39, 21, 0.1);
@@ -3283,7 +3280,7 @@ nav.nav--solid {
   position: relative;
   z-index: 4;
   isolation: isolate;
-  background: var(--teal);
+  background: var(--gold);
   color: var(--ivory);
   padding: 116px 0 74px;
   border-top: 1px solid rgba(243, 226, 189, 0.14);
@@ -3821,7 +3818,7 @@ nav.nav--solid {
     transform 0.25s ease;
 }
 .location-directions:hover {
-  background: #155963;
+  background: #b58a54;
   transform: translateY(-1px);
 }
 .location-directions svg {
@@ -3971,7 +3968,7 @@ nav.nav--solid {
   height: 58px;
   border-radius: 50%;
   margin-bottom: 20px;
-  background: var(--teal);
+  background: var(--gold);
   flex: 0 0 auto;
 }
 .review-card__avatar::before {
@@ -4190,7 +4187,7 @@ nav.nav--solid {
   height: clamp(420px, 62vh, 640px);
   justify-content: flex-end;
   overflow: hidden;
-  background: var(--teal);
+  background: var(--gold);
 }
 
 .about-hero::before {
@@ -4366,10 +4363,10 @@ nav.nav--solid {
   width: 14px;
   height: 14px;
   border-radius: 50%;
-  background: var(--teal);
+  background: var(--gold);
   box-shadow:
     inset 0 0 0 4px var(--ivory),
-    0 0 0 1px var(--teal);
+    0 0 0 1px var(--gold);
   transform: translateY(-50%);
 }
 
@@ -4953,7 +4950,7 @@ nav.nav--solid {
 
 .rooms-search input:focus {
   box-shadow: none;
-  color: var(--teal);
+  color: var(--gold);
 }
 
 .rooms-search > button {
@@ -5091,8 +5088,8 @@ nav.nav--solid {
 }
 
 .rooms-more-link:hover {
-  color: var(--teal);
-  border-bottom-color: var(--teal);
+  color: var(--gold);
+  border-bottom-color: var(--gold);
 }
 
 .rooms-card-actions {
@@ -5493,18 +5490,18 @@ nav.nav--solid {
 
 .rooms-card-actions a,
 .rooms-card--featured .rooms-card-actions a {
-  border-color: rgba(22, 95, 105, 0.36);
-  color: var(--teal);
+  border-color: rgba(181, 138, 84, 0.36);
+  color: var(--gold);
 }
 
 .rooms-more-link {
-  color: var(--teal);
-  border-bottom-color: rgba(22, 95, 105, 0.34);
+  color: var(--gold);
+  border-bottom-color: rgba(181, 138, 84, 0.34);
 }
 
 .rooms-card-actions a:hover {
-  border-color: var(--teal);
-  background: var(--teal);
+  border-color: var(--gold);
+  background: var(--gold);
   color: var(--ivory);
 }
 
@@ -5593,7 +5590,7 @@ nav.nav--solid {
   position: relative;
   padding: 124px 0 132px;
   overflow: hidden;
-  background: var(--teal);
+  background: var(--gold);
   isolation: isolate;
 }
 
@@ -5603,7 +5600,7 @@ nav.nav--solid {
   inset: 0;
   z-index: -2;
   background:
-    linear-gradient(rgba(12, 47, 53, 0.82), rgba(12, 47, 53, 0.9)),
+    linear-gradient(rgba(47, 36, 24, 0.78), rgba(47, 36, 24, 0.86)),
     url("https://awesomehotel.com/wp-content/uploads/2023/08/pool-beach.jpg")
       center / cover no-repeat;
   filter: saturate(0.88) contrast(0.96);
@@ -5653,7 +5650,7 @@ nav.nav--solid {
   overflow: hidden;
   border: 1px solid rgba(243, 226, 189, 0.28);
   background: rgba(255, 250, 242, 0.93);
-  box-shadow: 0 34px 86px rgba(4, 34, 38, 0.28);
+  box-shadow: 0 34px 86px rgba(47, 36, 24, 0.28);
 }
 
 .rooms-amenity-card,
@@ -5778,7 +5775,7 @@ nav.nav--solid {
   height: clamp(540px, 78vh, 760px);
   justify-content: center;
   overflow: hidden;
-  background: var(--teal);
+  background: var(--gold);
 }
 
 .events-page-hero::before {
@@ -6150,8 +6147,8 @@ nav.nav--solid {
 }
 
 .events-gallery-arrow:hover {
-  background: var(--teal);
-  border-color: var(--teal);
+  background: var(--gold);
+  border-color: var(--gold);
   color: var(--ivory);
   transform: translateY(-1px);
 }
@@ -7268,7 +7265,7 @@ nav.nav--solid {
   height: clamp(540px, 78vh, 760px);
   justify-content: center;
   overflow: hidden;
-  background: var(--teal);
+  background: var(--gold);
 }
 
 .day-tour-hero::before {
@@ -7445,7 +7442,7 @@ nav.nav--solid {
   align-content: center;
   gap: 18px;
   padding: clamp(34px, 5vw, 62px);
-  background: var(--teal);
+  background: var(--gold);
 }
 
 .day-tour-editorial-copy p {
@@ -9021,7 +9018,7 @@ nav.nav--solid {
 
 .dining-venue-tab:hover,
 .dining-venue-tab.is-active {
-  color: var(--teal);
+  color: var(--gold);
 }
 
 .dining-venue-tab.is-active {
@@ -9488,7 +9485,7 @@ nav.nav--solid {
   .dining-venue-tab.is-active {
     padding-left: 18px;
     background: transparent;
-    color: var(--teal);
+    color: var(--gold);
   }
 
   .dining-venue-tab.is-active::before {
@@ -9730,7 +9727,7 @@ nav.nav--solid {
    MENU HIGHLIGHTS
    ════════════════════════════════════════════════════════════════ */
 .cafe-highlights {
-  background: var(--teal);
+  background: var(--gold);
   padding: 96px 0;
 }
 
@@ -10295,7 +10292,7 @@ nav.nav--solid {
 
 .cafe-highlights {
   padding: clamp(96px, 9vw, 138px) 0;
-  background: var(--teal);
+  background: var(--gold);
 }
 
 .cafe-highlights-header {
@@ -10381,7 +10378,7 @@ nav.nav--solid {
 .cafe-outline-btn:hover {
   background: var(--ivory);
   border-color: var(--ivory);
-  color: var(--teal);
+  color: var(--gold);
 }
 
 .cafe-info {
@@ -10422,7 +10419,7 @@ nav.nav--solid {
 }
 
 .cafe-info-hours-day {
-  color: var(--teal);
+  color: var(--gold);
 }
 
 .cafe-info-hours-note {
@@ -10470,8 +10467,8 @@ nav.nav--solid {
 }
 
 .cafe-more-body a {
-  color: var(--teal);
-  text-decoration-color: rgba(22, 95, 105, 0.38);
+  color: var(--gold);
+  text-decoration-color: rgba(181, 138, 84, 0.38);
 }
 
 .cafe-more-body a:hover {
@@ -10524,7 +10521,7 @@ nav.nav--solid {
 }
 
 .cafe-review-attribution {
-  color: var(--teal);
+  color: var(--gold);
 }
 
 .cafe-brew-cta {
@@ -11047,7 +11044,7 @@ nav.nav--solid {
 
 .restaurant-menu-highlight {
   padding: clamp(96px, 9vw, 138px) 0;
-  background: var(--teal);
+  background: var(--gold);
 }
 
 .restaurant-section-header,
@@ -11178,7 +11175,7 @@ nav.nav--solid {
 .restaurant-promo-card a:hover {
   background: var(--ivory);
   border-color: var(--ivory);
-  color: var(--teal);
+  color: var(--gold);
   transform: translateY(-1px);
 }
 
@@ -11231,7 +11228,7 @@ nav.nav--solid {
 }
 
 .restaurant-hours-list span:first-child {
-  color: var(--teal);
+  color: var(--gold);
   font-weight: 500;
 }
 
@@ -11303,13 +11300,13 @@ nav.nav--solid {
 .restaurant-promo-card a {
   width: max-content;
   margin-top: 28px;
-  border-color: rgba(22, 95, 105, 0.34);
-  color: var(--teal);
+  border-color: rgba(181, 138, 84, 0.34);
+  color: var(--gold);
 }
 
 .restaurant-promo-card a:hover {
-  background: var(--teal);
-  border-color: var(--teal);
+  background: var(--gold);
+  border-color: var(--gold);
   color: var(--ivory);
 }
 
@@ -11321,7 +11318,7 @@ nav.nav--solid {
   padding: 0;
   border: 0;
   border-radius: 0;
-  color: var(--teal);
+  color: var(--gold);
   font-size: inherit;
   font-weight: inherit;
   letter-spacing: 0;
@@ -11374,7 +11371,7 @@ nav.nav--solid {
 }
 
 .restaurant-review-grid cite {
-  color: var(--teal);
+  color: var(--gold);
   font-size: 11px;
   font-style: normal;
   font-weight: 600;
@@ -11873,7 +11870,7 @@ nav.nav--solid {
   margin-top: auto;
   padding-top: 22px;
   border-top: 1px solid rgba(181, 138, 84, 0.16);
-  color: var(--teal);
+  color: var(--gold);
   font-family: "Jost", sans-serif;
   font-size: 11px;
   font-style: normal;
@@ -11942,7 +11939,7 @@ nav.nav--solid {
 }
 
 .bar-page .restaurant-intro-copy {
-  border-left-color: var(--teal);
+  border-left-color: var(--gold);
 }
 
 .bar-page .restaurant-menu-card figure img {
@@ -11950,7 +11947,7 @@ nav.nav--solid {
 }
 
 .bar-page .restaurant-feature-copy {
-  border-top: 2px solid var(--teal);
+  border-top: 2px solid var(--gold);
 }
 
 .bar-page .restaurant-hours-list {
@@ -11968,7 +11965,7 @@ nav.nav--solid {
 }
 
 .bar-page .restaurant-directions-grid > div {
-  border-top: 2px solid var(--teal);
+  border-top: 2px solid var(--gold);
 }
 
 .bar-page .restaurant-closing::before {
@@ -12009,7 +12006,7 @@ nav.nav--solid {
 }
 
 .breakfast-page .restaurant-intro-copy {
-  border-left-color: var(--teal);
+  border-left-color: var(--gold);
 }
 
 .breakfast-overview {
@@ -12110,7 +12107,7 @@ nav.nav--solid {
 }
 
 .breakfast-seating .restaurant-feature-copy {
-  border-top: 2px solid var(--teal);
+  border-top: 2px solid var(--gold);
 }
 
 .breakfast-menu .restaurant-menu-card div {
@@ -12185,13 +12182,13 @@ nav.nav--solid {
 
 .breakfast-discover .restaurant-promo-card a {
   margin-top: auto;
-  border-color: rgba(22, 95, 105, 0.34);
-  color: var(--teal);
+  border-color: rgba(181, 138, 84, 0.34);
+  color: var(--gold);
 }
 
 .breakfast-discover .restaurant-promo-card a:hover {
-  background: var(--teal);
-  border-color: var(--teal);
+  background: var(--gold);
+  border-color: var(--gold);
   color: var(--ivory);
 }
 
@@ -12270,7 +12267,7 @@ nav.nav--solid {
 }
 
 .breakfast-transit summary {
-  color: var(--teal);
+  color: var(--gold);
   cursor: pointer;
   font-family: "Jost", sans-serif;
   font-size: 11px;
@@ -12482,7 +12479,7 @@ nav.nav--solid {
   max-width: 620px;
   padding: clamp(30px, 3.8vw, 52px);
   border: 1px solid rgba(181, 138, 84, 0.22);
-  border-left: 2px solid var(--teal);
+  border-left: 2px solid var(--gold);
   background: var(--white);
   box-shadow: 0 18px 46px rgba(47, 36, 24, 0.05);
 }
@@ -12526,10 +12523,10 @@ nav.nav--solid {
   width: max-content;
   min-height: 48px;
   padding: 0 30px;
-  border: 1px solid rgba(22, 95, 105, 0.34);
+  border: 1px solid rgba(181, 138, 84, 0.34);
   border-radius: 999px;
   background: transparent;
-  color: var(--teal);
+  color: var(--gold);
   cursor: pointer;
   font-family: "Jost", sans-serif;
   font-size: 11px;
@@ -12544,8 +12541,8 @@ nav.nav--solid {
 }
 
 .spa-button:hover {
-  background: var(--teal);
-  border-color: var(--teal);
+  background: var(--gold);
+  border-color: var(--gold);
   color: var(--ivory);
   transform: translateY(-1px);
 }
@@ -12872,7 +12869,7 @@ nav.nav--solid {
   width: 42px;
   height: 1px;
   margin-bottom: 4px;
-  background: var(--teal);
+  background: var(--gold);
 }
 
 .spa-page .spa-intro-copy::after {
@@ -12936,8 +12933,8 @@ nav.nav--solid {
 }
 
 .spa-page .spa-section-header a {
-  color: var(--teal);
-  text-decoration-color: rgba(22, 95, 105, 0.34);
+  color: var(--gold);
+  text-decoration-color: rgba(181, 138, 84, 0.34);
 }
 
 .spa-page .spa-treatment-grid {
@@ -13299,13 +13296,13 @@ nav.nav--solid {
 
 .spa-page .spa-intro-copy .spa-button {
   margin-top: 12px;
-  border-color: rgba(22, 95, 105, 0.78);
+  border-color: rgba(181, 138, 84, 0.78);
   color: var(--gold-pale);
 }
 
 .spa-page .spa-intro-copy .spa-button:hover {
-  background: var(--teal);
-  border-color: var(--teal);
+  background: var(--gold);
+  border-color: var(--gold);
   color: var(--ivory);
 }
 
@@ -13436,7 +13433,7 @@ nav.nav--solid {
   }
 }
 
-/* Spa page: teal brand accents */
+/* Spa page: gold brand accents */
 .spa-page .spa-treatments {
   border-top: 0;
 }
@@ -13446,7 +13443,7 @@ nav.nav--solid {
 }
 
 .spa-page .spa-treatments .spa-section-header h2 {
-  color: var(--teal);
+  color: var(--gold);
 }
 
 .spa-page .spa-treatment-card {
@@ -13454,12 +13451,12 @@ nav.nav--solid {
 }
 
 .spa-page .spa-treatment-card::before {
-  border-color: rgba(22, 95, 105, 0.42);
-  box-shadow: inset 0 0 0 8px rgba(22, 95, 105, 0.08);
+  border-color: rgba(181, 138, 84, 0.42);
+  box-shadow: inset 0 0 0 8px rgba(181, 138, 84, 0.08);
 }
 
 .spa-page .spa-treatment-card h3 {
-  color: var(--teal);
+  color: var(--gold);
 }
 
 .spa-page .spa-treatment-card--wide {
@@ -13473,8 +13470,8 @@ nav.nav--solid {
 
 .spa-page .spa-treatment-card:nth-child(3),
 .spa-page .spa-treatment-card:nth-child(6) {
-  border-color: rgba(22, 95, 105, 0.28);
-  background: var(--teal);
+  border-color: rgba(181, 138, 84, 0.28);
+  background: var(--gold);
 }
 
 .spa-page .spa-treatment-card:nth-child(3)::before,
@@ -13522,7 +13519,7 @@ nav.nav--solid {
 }
 
 .spa-page .spa-info-grid article:first-child {
-  background: var(--teal);
+  background: var(--gold);
   box-shadow: 0 18px 44px rgba(47, 36, 24, 0.06);
 }
 
@@ -13531,10 +13528,182 @@ nav.nav--solid {
 }
 
 .spa-page .spa-info-grid article + article h2 {
-  color: var(--teal);
+  color: var(--gold);
 }
 
 .spa-page .spa-faq.events-page-faq details[open] summary,
 .spa-page .spa-faq.events-page-faq summary:hover {
-  color: var(--teal);
+  color: var(--gold);
+}
+
+/* Client typography and color pass */
+body :is(h1, h2, h3, h4, h5, h6, [class*="heading"], [class*="title"]) {
+  font-family: "Cormorant Garamond", serif !important;
+  font-weight: 400 !important;
+  text-transform: none !important;
+  letter-spacing: 0 !important;
+}
+
+.amenities-showcase,
+.daytour-section,
+.cafe-highlights,
+.restaurant-menu-highlight,
+.rooms-amenities,
+.team-page-cta {
+  background: var(--sand);
+}
+
+.amenities-heading,
+.cafe-highlights-heading,
+.restaurant-menu-highlight .restaurant-section-header h2 {
+  color: var(--ink);
+}
+
+.cafe-highlights-desc,
+.restaurant-menu-highlight .restaurant-section-header p {
+  color: rgba(55, 41, 29, 0.76);
+}
+
+.amenities-viewport,
+.daytour-gallery {
+  background: var(--white);
+  box-shadow: 0 28px 72px rgba(47, 36, 24, 0.1);
+}
+
+.amenity-slide,
+.daytour-card,
+.cafe-menu-cat,
+.restaurant-menu-card {
+  border-color: rgba(181, 138, 84, 0.22);
+  background: var(--ivory);
+}
+
+.cafe-menu-cat:hover {
+  background: var(--white);
+}
+
+.amenity-content,
+.amenity-text,
+.daytour-card,
+.daytour-caption,
+.daytour-body p,
+.cafe-menu-cat-items li,
+.restaurant-menu-card li {
+  color: rgba(55, 41, 29, 0.78);
+}
+
+.amenity-title,
+.daytour-title,
+.cafe-menu-cat-label,
+.restaurant-menu-card h3 {
+  color: var(--gold);
+}
+
+.restaurant-menu-card ul {
+  border-top-color: rgba(181, 138, 84, 0.18);
+}
+
+.day-tour-editorial-copy,
+.team-page-cta-panel,
+.spa-page .spa-info-grid article:first-child {
+  background: var(--ivory);
+}
+
+.day-tour-editorial-copy p,
+.team-page-cta-copy p,
+.spa-page .spa-info-grid article:first-child p {
+  color: rgba(55, 41, 29, 0.78);
+}
+
+.team-page-cta .team-page-heading,
+.spa-page .spa-info-grid article:first-child h2 {
+  color: var(--ink);
+}
+
+.team-page-cta-panel {
+  border-color: rgba(181, 138, 84, 0.22);
+}
+
+.amenities-thumbs {
+  border-top-color: rgba(181, 138, 84, 0.28);
+}
+
+.amenities-thumb {
+  color: rgba(55, 41, 29, 0.64);
+}
+
+.amenities-thumb:hover,
+.amenities-thumb.is-active {
+  color: var(--ink);
+}
+
+.amenities-index {
+  color: rgba(55, 41, 29, 0.72);
+}
+
+.cafe-outline-btn,
+.restaurant-menu-action a {
+  border-color: rgba(181, 138, 84, 0.58);
+  color: var(--gold);
+}
+
+.cafe-outline-btn:hover,
+.restaurant-menu-action a:hover {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--ivory);
+}
+
+.site-footer {
+  background: var(--gold);
+  color: var(--white);
+  border-top: 0;
+}
+
+.footer-block {
+  border-top-color: rgba(55, 41, 29, 0.18);
+}
+
+.footer-logo,
+.footer-heading {
+  color: var(--white);
+}
+
+.footer-logo-rule {
+  background: rgba(55, 41, 29, 0.28);
+}
+
+.footer-logo-sub,
+.footer-links-list a,
+.footer-contact-list a {
+  color: rgba(255, 255, 255, 0.86);
+}
+
+.footer-links-list a:hover,
+.footer-contact-list a:hover {
+  color: var(--white);
+}
+
+.footer-icon,
+.footer-social-list a {
+  background: rgba(251, 245, 234, 0.18);
+  border-color: rgba(255, 255, 255, 0.32);
+  color: var(--white);
+}
+
+.footer-newsletter {
+  border-color: rgba(55, 41, 29, 0.24);
+  background: var(--ivory);
+}
+
+.footer-newsletter button {
+  background: var(--ink);
+  color: var(--ivory);
+}
+
+.footer-newsletter button:hover,
+.footer-social-list a:hover {
+  background: var(--ivory);
+  border-color: var(--ivory);
+  color: var(--gold);
 }
