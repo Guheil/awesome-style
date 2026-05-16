@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dining - Awesome Hotel</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@200;300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../assets/css/main.css" />
+    <script defer src="../components/site-components.js"></script>
+    <script defer src="../assets/js/main.js"></script>
+  </head>
+  <body class="dining-page">
+    <site-navbar data-page="dining"></site-navbar>
+
+    <!-- ── HERO ────────────────────────────────────────────── -->
+    <section class="hero dining-hero" aria-labelledby="diningHeroTitle">
+      <div class="dining-hero-media" aria-hidden="true">
+        <img
+          src="https://awesomehotel.com/wp-content/uploads/2025/09/restaurant-new.jpg"
+          alt=""
+        />
+      </div>
+      <div class="dining-hero-copy">
+        <h1 class="dining-hero-title" id="diningHeroTitle">Dining</h1>
+      </div>
+    </section>
+
+    <main class="dining-page-main">
+      <!-- ── INTRO ───────────────────────────────────────────── -->
+      <section class="dining-intro" aria-labelledby="diningIntroTitle">
+        <div class="dining-shell">
+          <div class="dining-intro-grid">
+            <h2 class="dining-intro-heading" id="diningIntroTitle">
+              An Awesome Culinary Adventure
+            </h2>
+            <div class="dining-intro-body">
+              <p>
+                Indulge your palate at Awesome Hotel with multiple dining
+                options to choose from. Enjoy freshly brewed coffee, pastries,
+                and other classic cafe fare at the Lobby Cafe. Savor sumptuous
+                global cuisine from breakfast to dinner with stunning poolside
+                and ocean views at the Restaurant.
+              </p>
+              <p>
+                Delight and unwind with our refreshing selection of classic and
+                signature drinks at our Sports Bar. No matter what your dining
+                preference, you're sure to find something to your taste at our
+                4-star hotel in San Juan, La Union.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── VENUES ──────────────────────────────────────────── -->
+      <section
+        class="dining-venues"
+        id="restaurant"
+        aria-labelledby="diningVenuesHeading"
+      >
+        <div class="dining-shell">
+          <h2 class="dining-venues-heading" id="diningVenuesHeading">
+            Our Venues
+          </h2>
+          <div class="dining-venues-body">
+            <div
+              class="dining-venues-tabs"
+              role="tablist"
+              aria-label="Dining venues"
+            >
+              <button
+                class="dining-venue-tab is-active"
+                data-venue="restaurant"
+                role="tab"
+                aria-selected="true"
+                onclick="setDiningVenue('restaurant')"
+              >
+                Restaurant
+              </button>
+              <button
+                class="dining-venue-tab"
+                data-venue="lobbyCafe"
+                role="tab"
+                aria-selected="false"
+                onclick="setDiningVenue('lobbyCafe')"
+              >
+                Lobby Cafe
+              </button>
+              <button
+                class="dining-venue-tab"
+                data-venue="sportsBar"
+                role="tab"
+                aria-selected="false"
+                onclick="setDiningVenue('sportsBar')"
+              >
+                Sports Bar
+              </button>
+              <button
+                class="dining-venue-tab"
+                data-venue="breakfastBuffet"
+                role="tab"
+                aria-selected="false"
+                onclick="setDiningVenue('breakfastBuffet')"
+              >
+                Breakfast Buffet
+              </button>
+            </div>
+
+            <div class="dining-venues-stage">
+              <figure class="dining-venue-figure">
+                <img
+                  id="diningVenueImage"
+                  src="https://awesomehotel.com/wp-content/uploads/2025/09/restaurant-new.jpg"
+                  alt="Restaurant"
+                />
+              </figure>
+              <div class="dining-venue-details">
+                <h3 class="dining-venue-title" id="diningVenueTitle">
+                  Restaurant
+                </h3>
+                <div
+                  class="dining-venue-description"
+                  id="diningVenueDescription"
+                >
+                  <p>
+                    Experience exquisite dining at Awesome Hotel's restaurant in
+                    San Juan, La Union. Indulge in breathtaking ocean views and
+                    savor delectable cuisine featuring fresh, local ingredients.
+                  </p>
+                </div>
+                <div class="dining-venue-hours-wrap">
+                  <span class="dining-venue-hours-label">Hours</span>
+                  <div class="dining-venue-hours" id="diningVenueHours">
+                    <p>Daily: Open 24/7 (Sunday – Saturday)</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── RESTAURANT MENU ──────────────────────────────────── -->
+      <section
+        class="dining-menu is-visible"
+        id="venueMenuSection"
+        aria-labelledby="diningMenuTitle"
+      >
+        <div class="dining-shell">
+          <div class="dining-menu-venue-switch" id="venueMenuSwitch"></div>
+          <div
+            class="dining-menu-tabs"
+            id="venueMenuTabs"
+            role="tablist"
+            aria-label="Menu categories"
+          ></div>
+          <h2 class="dining-menu-heading" id="diningMenuTitle">Menu</h2>
+          <div
+            class="dining-menu-grid"
+            id="diningMenuGrid"
+            role="tabpanel"
+          ></div>
+          <div class="dining-menu-footer">
+            <a
+              href="./restaurant.html"
+              class="dining-menu-viewall"
+              id="venueMenuViewAll"
+            >
+              View All
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── SPECIAL OFFERS ──────────────────────────────────── -->
+      <section class="dining-offers" aria-labelledby="diningOffersTitle">
+        <div class="dining-shell">
+          <h2 class="dining-offers-heading" id="diningOffersTitle">
+            Special Offers
+          </h2>
+          <div class="dining-offers-grid">
+            <article class="dining-offer-card">
+              <figure class="dining-offer-media">
+                <img
+                  src="https://awesomehotel.com/wp-content/uploads/2025/09/lobby-cafe.jpg"
+                  alt="Coffee Connectivity"
+                />
+              </figure>
+              <div class="dining-offer-body">
+                <h3>Coffee Connectivity</h3>
+                <p>Daily, Avail at Lobby Cafe</p>
+              </div>
+            </article>
+
+            <article class="dining-offer-card">
+              <figure class="dining-offer-media">
+                <img
+                  src="https://awesomehotel.com/wp-content/uploads/2025/09/breakfast-buffet.jpg"
+                  alt="Breakfast Buffet"
+                />
+              </figure>
+              <div class="dining-offer-body">
+                <h3>Breakfast Buffet</h3>
+                <p>Daily, 7-10 AM (walk-ins welcome)</p>
+              </div>
+            </article>
+
+            <article class="dining-offer-card">
+              <figure class="dining-offer-media">
+                <img
+                  src="https://awesomehotel.com/wp-content/uploads/2025/09/sports-bar.jpg"
+                  alt="Happy Hour"
+                />
+              </figure>
+              <div class="dining-offer-body">
+                <h3>Happy Hour</h3>
+                <p>Monday – Friday, 4-7 PM</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <site-stay-cta></site-stay-cta>
+    </main>
+
+    <site-footer></site-footer>
+  </body>
+</html>

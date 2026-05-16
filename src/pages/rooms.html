@@ -1,0 +1,500 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Our Rooms - Awesome Hotel</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@200;300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../assets/css/main.css" />
+    <script defer src="../components/site-components.js"></script>
+    <script defer src="../assets/js/main.js"></script>
+  </head>
+  <body class="rooms-page">
+    <site-navbar data-page="rooms"></site-navbar>
+
+    <section class="hero rooms-hero" aria-labelledby="roomsHeroTitle">
+      <div class="rooms-hero-media" aria-hidden="true">
+        <img
+          src="https://awesomehotel.com/wp-content/uploads/2023/09/PS-Bedroom.jpg"
+          alt=""
+        />
+      </div>
+
+      <div class="rooms-hero-copy">
+        <h1 class="rooms-hero-title" id="roomsHeroTitle">Our Rooms</h1>
+      </div>
+      <section class="rooms-search-section" aria-label="Room search">
+        <div class="rooms-shell">
+          <form
+            class="rooms-search"
+            id="roomsGuestForm"
+            onsubmit="event.preventDefault()"
+          >
+            <div class="rooms-search-field">
+              <label for="roomsGuestInput">Number Of Guests</label>
+              <div class="rooms-guest-control">
+                <button type="button" data-room-guests-dec>-</button>
+                <input
+                  id="roomsGuestInput"
+                  name="adult_number"
+                  type="number"
+                  min="0"
+                  max="12"
+                  placeholder="0"
+                />
+                <button type="button" data-room-guests-inc>+</button>
+              </div>
+            </div>
+            <button type="submit">SEARCH</button>
+          </form>
+        </div>
+      </section>
+    </section>
+
+    <main class="rooms-main">
+      <section class="rooms-intro" aria-labelledby="roomsIntroTitle">
+        <div class="rooms-shell">
+          <div class="rooms-intro-grid">
+            <h2 class="rooms-section-heading" id="roomsIntroTitle">
+              Relax and rejuvenate in our state-of-the art rooms designed for
+              your maximum comfort.
+            </h2>
+            <div class="rooms-intro-media" aria-hidden="true">
+              <img
+                src="https://awesomehotel.com/wp-content/uploads/2023/09/Living-Room.jpg"
+                alt=""
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="rooms-catalog" aria-label="Our Rooms">
+        <div class="rooms-shell">
+          <div class="rooms-grid">
+            <article
+              class="rooms-card rooms-card--featured"
+              data-room-card
+              data-guests="6"
+            >
+              <figure class="rooms-card-media">
+                <img
+                  src="https://awesomehotel.com/wp-content/uploads/2023/09/PS-Bedroom.jpg"
+                  alt="Premier Suite"
+                />
+              </figure>
+              <div class="rooms-card-body">
+                <h2>Premier Suite</h2>
+                <ul class="rooms-spec-list">
+                  <li>3 Bedroom/3 Queen Size Bed</li>
+                  <li>135</li>
+                  <li>6 Adults</li>
+                  <li>Pool View with Partial Beach View</li>
+                  <li>With Buffet Breakfast</li>
+                  <li>New Building</li>
+                </ul>
+                <a class="rooms-more-link" href="#roomFacilities">
+                  + See More Amenities
+                </a>
+                <div class="rooms-card-actions">
+                  <a
+                    href="https://awesomehotel.com/room_list/premier-suite/"
+                    target="_blank"
+                    rel="noopener"
+                    >LEARN MORE</a
+                  >
+                  <button type="button" onclick="handleBook()">BOOK NOW</button>
+                </div>
+              </div>
+            </article>
+
+            <article class="rooms-card" data-room-card data-guests="6">
+              <figure class="rooms-card-media">
+                <img
+                  src="https://awesomehotel.com/wp-content/uploads/2023/08/Premier-Family.jpg"
+                  alt="Premier Family"
+                />
+              </figure>
+              <div class="rooms-card-body">
+                <h2>Premier Family</h2>
+                <ul class="rooms-spec-list">
+                  <li>1 Bedroom/2 Queen Size Bed and 2 Single Bed</li>
+                  <li>49</li>
+                  <li>6 Adults</li>
+                  <li>Pool View with Partial Beach View</li>
+                  <li>With Buffet Breakfast</li>
+                  <li>New Building</li>
+                </ul>
+                <a class="rooms-more-link" href="#roomFacilities">
+                  + See More Amenities
+                </a>
+                <div class="rooms-card-actions">
+                  <a
+                    href="https://awesomehotel.com/room_list/premier-family/"
+                    target="_blank"
+                    rel="noopener"
+                    >LEARN MORE</a
+                  >
+                  <button type="button" onclick="handleBook()">BOOK NOW</button>
+                </div>
+              </div>
+            </article>
+
+            <article class="rooms-card" data-room-card data-guests="2">
+              <figure class="rooms-card-media">
+                <img
+                  src="https://awesomehotel.com/wp-content/uploads/2023/08/DSCF7313.jpg"
+                  alt="Premier King"
+                />
+              </figure>
+              <div class="rooms-card-body">
+                <h2>Premier King</h2>
+                <ul class="rooms-spec-list">
+                  <li>1 Bedroom/1 King Size Bed or 1 Queen Size Bed</li>
+                  <li>41</li>
+                  <li>2 Adults</li>
+                  <li>Pool View with Partial Beach View</li>
+                  <li>With Buffet Breakfast</li>
+                  <li>New Building</li>
+                </ul>
+                <a class="rooms-more-link" href="#roomFacilities">
+                  + See More Amenities
+                </a>
+                <div class="rooms-card-actions">
+                  <a
+                    href="https://awesomehotel.com/room_list/premier-king/"
+                    target="_blank"
+                    rel="noopener"
+                    >LEARN MORE</a
+                  >
+                  <button type="button" onclick="handleBook()">BOOK NOW</button>
+                </div>
+              </div>
+            </article>
+
+            <article class="rooms-card" data-room-card data-guests="4">
+              <figure class="rooms-card-media">
+                <img
+                  src="https://awesomehotel.com/wp-content/uploads/2023/08/Awesome-Hotel-Premier-Queen-Phase-2.jpg"
+                  alt="Premier Queen"
+                />
+              </figure>
+              <div class="rooms-card-body">
+                <h2>Premier Queen</h2>
+                <ul class="rooms-spec-list">
+                  <li>1 Bedroom/2 Queen Size Bed</li>
+                  <li>41</li>
+                  <li>4 Adults</li>
+                  <li>Pool View with Beach View or Partial Beach View</li>
+                  <li>With Buffet Breakfast</li>
+                  <li>New Building</li>
+                </ul>
+                <a class="rooms-more-link" href="#roomFacilities">
+                  + See More Amenities
+                </a>
+                <div class="rooms-card-actions">
+                  <a
+                    href="https://awesomehotel.com/room_list/premier-queen/"
+                    target="_blank"
+                    rel="noopener"
+                    >LEARN MORE</a
+                  >
+                  <button type="button" onclick="handleBook()">BOOK NOW</button>
+                </div>
+              </div>
+            </article>
+
+            <article class="rooms-card" data-room-card data-guests="4">
+              <figure class="rooms-card-media">
+                <img
+                  src="https://awesomehotel.com/wp-content/uploads/2023/08/Standard-Poolside-view.jpg"
+                  alt="Standard Poolside"
+                />
+              </figure>
+              <div class="rooms-card-body">
+                <h2>Standard Poolside</h2>
+                <ul class="rooms-spec-list">
+                  <li>1 Bedroom/2 Queen Size Bed</li>
+                  <li>24</li>
+                  <li>4 Adults</li>
+                  <li>Regular Pool View</li>
+                  <li>With Buffet Breakfast</li>
+                  <li>Original Building</li>
+                </ul>
+                <a class="rooms-more-link" href="#roomFacilities">
+                  + See More Amenities
+                </a>
+                <div class="rooms-card-actions">
+                  <a
+                    href="https://awesomehotel.com/room_list/standard-poolside/"
+                    target="_blank"
+                    rel="noopener"
+                    >LEARN MORE</a
+                  >
+                  <button type="button" onclick="handleBook()">BOOK NOW</button>
+                </div>
+              </div>
+            </article>
+
+            <article class="rooms-card" data-room-card data-guests="3">
+              <figure class="rooms-card-media">
+                <img
+                  src="https://awesomehotel.com/wp-content/uploads/2023/08/STANDARD-GF.jpg"
+                  alt="Standard Ground Floor"
+                />
+              </figure>
+              <div class="rooms-card-body">
+                <h2>Standard Ground Floor</h2>
+                <ul class="rooms-spec-list">
+                  <li>1 Bedroom/3 Single Bed</li>
+                  <li>21</li>
+                  <li>3 Adults</li>
+                  <li>Regular Poolside with Parking View</li>
+                  <li>With Buffet Breakfast</li>
+                  <li>Original Building</li>
+                </ul>
+                <a class="rooms-more-link" href="#roomFacilities">
+                  + See More Amenities
+                </a>
+                <div class="rooms-card-actions">
+                  <a
+                    href="https://awesomehotel.com/room_list/standard-ground-floor/"
+                    target="_blank"
+                    rel="noopener"
+                    >LEARN MORE</a
+                  >
+                  <button type="button" onclick="handleBook()">BOOK NOW</button>
+                </div>
+              </div>
+            </article>
+
+            <article class="rooms-card" data-room-card data-guests="2">
+              <figure class="rooms-card-media">
+                <img
+                  src="https://awesomehotel.com/wp-content/uploads/2023/08/Superior-Seaview-Room-4-scaled.jpg"
+                  alt="Superior Deluxe Room"
+                />
+              </figure>
+              <div class="rooms-card-body">
+                <h2>Superior Deluxe Room</h2>
+                <ul class="rooms-spec-list">
+                  <li>1 Bedroom/2 Queen Size Bed</li>
+                  <li>33</li>
+                  <li>2 Adults</li>
+                  <li>Sea View</li>
+                  <li>With Buffet Breakfast</li>
+                  <li>Original Building</li>
+                </ul>
+                <a class="rooms-more-link" href="#roomFacilities">
+                  + See More Amenities
+                </a>
+                <div class="rooms-card-actions">
+                  <a
+                    href="https://awesomehotel.com/room_list/superior-deluxe-room/"
+                    target="_blank"
+                    rel="noopener"
+                    >LEARN MORE</a
+                  >
+                  <button type="button" onclick="handleBook()">BOOK NOW</button>
+                </div>
+              </div>
+            </article>
+
+            <article class="rooms-card" data-room-card data-guests="2">
+              <figure class="rooms-card-media">
+                <img
+                  src="https://awesomehotel.com/wp-content/uploads/2023/08/SUPERIOR.jpg"
+                  alt="Superior Room"
+                />
+              </figure>
+              <div class="rooms-card-body">
+                <h2>Superior Room</h2>
+                <ul class="rooms-spec-list">
+                  <li>1 Bedroom/2 Queen Size Bed</li>
+                  <li>33</li>
+                  <li>2 Adults</li>
+                  <li>Partial Sea View</li>
+                  <li>With Buffet Breakfast</li>
+                  <li>Original Building</li>
+                </ul>
+                <a class="rooms-more-link" href="#roomFacilities">
+                  + See More Amenities
+                </a>
+                <div class="rooms-card-actions">
+                  <a
+                    href="https://awesomehotel.com/room_list/superior-room/"
+                    target="_blank"
+                    rel="noopener"
+                    >LEARN MORE</a
+                  >
+                  <button type="button" onclick="handleBook()">BOOK NOW</button>
+                </div>
+              </div>
+            </article>
+
+            <article class="rooms-card" data-room-card data-guests="6">
+              <figure class="rooms-card-media">
+                <img
+                  src="https://awesomehotel.com/wp-content/uploads/2023/08/Deluxe-Family-Room.jpg"
+                  alt="Deluxe Family Pool View"
+                />
+              </figure>
+              <div class="rooms-card-body">
+                <h2>Deluxe Family Pool View</h2>
+                <ul class="rooms-spec-list">
+                  <li>1 Bedroom/3 Queen Size Bed</li>
+                  <li>33</li>
+                  <li>6 Adults</li>
+                  <li>Partial Sea View</li>
+                  <li>With Buffet Breakfast</li>
+                  <li>Original Building</li>
+                </ul>
+                <a class="rooms-more-link" href="#roomFacilities">
+                  + See More Amenities
+                </a>
+                <div class="rooms-card-actions">
+                  <a
+                    href="https://awesomehotel.com/room_list/deluxe-family-pool-view/"
+                    target="_blank"
+                    rel="noopener"
+                    >LEARN MORE</a
+                  >
+                  <button type="button" onclick="handleBook()">BOOK NOW</button>
+                </div>
+              </div>
+            </article>
+
+            <article class="rooms-card" data-room-card data-guests="3">
+              <figure class="rooms-card-media">
+                <img
+                  src="https://awesomehotel.com/wp-content/uploads/2023/08/Awesome-Hotel-Deluxe-with-Sofa-Phase-1.jpg"
+                  alt="Deluxe Room with Sofa"
+                />
+              </figure>
+              <div class="rooms-card-body">
+                <h2>Deluxe Room with Sofa</h2>
+                <ul class="rooms-spec-list">
+                  <li>1 Bedroom/1 Queen Size Bed and 1 Single Bed</li>
+                  <li>21</li>
+                  <li>3 Adults</li>
+                  <li>Parking View</li>
+                  <li>With Buffet Breakfast</li>
+                  <li>Original Building</li>
+                </ul>
+                <a class="rooms-more-link" href="#roomFacilities">
+                  + See More Amenities
+                </a>
+                <div class="rooms-card-actions">
+                  <a
+                    href="https://awesomehotel.com/room_list/deluxe-room-with-sofa/"
+                    target="_blank"
+                    rel="noopener"
+                    >LEARN MORE</a
+                  >
+                  <button type="button" onclick="handleBook()">BOOK NOW</button>
+                </div>
+              </div>
+            </article>
+          </div>
+          <div class="rooms-pagination" aria-label="Room pagination">
+            <button type="button" data-room-page-prev>prev</button>
+            <button type="button" data-room-page="0">1</button>
+            <button type="button" data-room-page="1">2</button>
+            <button type="button" data-room-page="2">3</button>
+            <button type="button" data-room-page-next>next</button>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="rooms-amenities"
+        id="roomFacilities"
+        aria-labelledby="roomsAmenitiesTitle"
+      >
+        <div class="rooms-shell">
+          <h2 class="rooms-section-heading" id="roomsAmenitiesTitle">
+            Facilities and Amenities
+          </h2>
+
+          <div class="rooms-amenity-grid">
+            <article class="rooms-amenity-card">
+              <img
+                src="https://awesomehotel.com/wp-content/uploads/2023/08/breakfast.png"
+                alt=""
+                aria-hidden="true"
+              />
+              <h3>Complimentary Breakfast</h3>
+              <p>
+                Indulge in Awesome Hotel&rsquo;s sumptuous breakfast buffet
+                available daily from 7 AM to 10:30 AM
+              </p>
+            </article>
+
+            <article class="rooms-amenity-card">
+              <img
+                src="https://awesomehotel.com/wp-content/uploads/2023/08/massage.png"
+                alt=""
+                aria-hidden="true"
+              />
+              <h3>Spa and Massage Services</h3>
+              <p>
+                Indulge in a moment of pure bliss at our spa in La Union. Book
+                your appointment today and discover the rejuvenating effects of
+                our expert treatments and serene ambiance.
+              </p>
+            </article>
+
+            <article class="rooms-amenity-card">
+              <img
+                src="https://awesomehotel.com/wp-content/uploads/2023/08/wifi.png"
+                alt=""
+                aria-hidden="true"
+              />
+              <h3>Free Wifi Access</h3>
+              <p>
+                Surf and browse at ease with our 500 MBPS speed WiFi available
+                in-room and in our common areas
+              </p>
+            </article>
+
+            <article class="rooms-amenity-card">
+              <img
+                src="https://awesomehotel.com/wp-content/uploads/2023/08/service.png"
+                alt=""
+                aria-hidden="true"
+              />
+              <h3>Room Service</h3>
+              <p>
+                Delight in our delectable treats in the comfort of your room with
+                our In-Room Dining Service available from 11:00AM to 10:30PM
+              </p>
+            </article>
+
+            <article class="rooms-amenity-card rooms-amenity-card--wide">
+              <img
+                src="https://awesomehotel.com/wp-content/uploads/2023/08/swimming.png"
+                alt=""
+                aria-hidden="true"
+              />
+              <h3>Pool Access</h3>
+              <p>
+                Claim your pool towel at our Lifeguard Station and enjoy a dip
+                in our Infinity Pool, Kiddie Pool, Outdoor Pool, and Jacuzzi
+                from 8 AM to 10 PM
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <site-stay-cta></site-stay-cta>
+    </main>
+
+    <site-footer></site-footer>
+  </body>
+</html>
