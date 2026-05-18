@@ -69,8 +69,8 @@
             </button>
             <div class="nav-dropdown" role="menu" aria-label="Amenities submenu">
               <a class="nav-dropdown-link" href="./spa.html">Massage and Spa</a>
-              <a class="nav-dropdown-link" href="./index.html#amenities">Services</a>
-              <a class="nav-dropdown-link" href="#">Gallery</a>
+              <a class="nav-dropdown-link" href="./services.html">Services</a>
+              <a class="nav-dropdown-link" href="./gallery.html">Gallery</a>
             </div>
           </li>
           <li class="nav-item">
@@ -137,8 +137,8 @@
               <span class="mobile-menu-group-title${page === "amenities" ? " is-current" : ""}">Amenities</span>
               <div class="mobile-menu-submenu">
                 <a href="./spa.html" onclick="closeMobileMenu()">Massage and Spa</a>
-                <a href="./index.html#amenities" onclick="closeMobileMenu()">Services</a>
-                <a href="#" onclick="closeMobileMenu()">Gallery</a>
+                <a href="./services.html" onclick="closeMobileMenu()">Services</a>
+                <a href="./gallery.html" onclick="closeMobileMenu()">Gallery</a>
               </div>
             </li>
             <li>
@@ -448,7 +448,7 @@
                       seminars, or other special events just meters away from the
                       beach.
                     </p>
-                    <a href="#" class="amenities-cta">Explore Services</a>
+                    <a href="./services.html" class="amenities-cta">Explore Services</a>
                   </div>
                 </article>
 
@@ -463,7 +463,7 @@
                       Paddle and explore the coastline of San Juan, La Union with
                       kayak rental either solo or with a tandem.
                     </p>
-                    <a href="#" class="amenities-cta">Explore Services</a>
+                    <a href="./services.html" class="amenities-cta">Explore Services</a>
                   </div>
                 </article>
 
@@ -478,7 +478,7 @@
                       Experience the thrill of beach volleyball with soft sand and
                       stunning ocean views.
                     </p>
-                    <a href="#" class="amenities-cta">Explore Services</a>
+                    <a href="./services.html" class="amenities-cta">Explore Services</a>
                   </div>
                 </article>
 
@@ -493,7 +493,7 @@
                       Relax and rejuvenate with in-room massage services from our
                       experienced massage therapists.
                     </p>
-                    <a href="#" class="amenities-cta">Explore Services</a>
+                    <a href="./services.html" class="amenities-cta">Explore Services</a>
                   </div>
                 </article>
               </div>
@@ -1000,7 +1000,7 @@
         <div class="stay-cta-inner">
           <div class="stay-cta-stage">
             <div class="stay-cta-media">
-              <img src="https://awesomehotel.com/wp-content/uploads/2023/10/Bigger-Photo.jpg" alt="Luxury hotel courtyard with pool and balconies" />
+              <img src="../assets/images/cta-bigger-photo.jpg" alt="Luxury hotel courtyard with pool and balconies" />
             </div>
 
             <div class="stay-cta-copy">
@@ -1039,8 +1039,8 @@
               <li><a href="./rooms.html">Our Rooms</a></li>
               <li><a href="./events.html">Events</a></li>
               <li><a href="./index.html#dining">Dining</a></li>
-              <li><a href="./index.html#amenities">Services</a></li>
-              <li><a href="./index.html#reviews">Reviews</a></li>
+              <li><a href="./services.html">Services</a></li>
+              <li><a href="./gallery.html">Gallery</a></li>
             </ul>
           </div>
 
