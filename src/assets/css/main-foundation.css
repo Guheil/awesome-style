@@ -52,6 +52,20 @@ body {
   overflow-x: clip;
 }
 
+.is-draggable-horizontal {
+  cursor: grab;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.is-draggable-horizontal.is-dragging {
+  cursor: grabbing;
+}
+
+.is-draggable-horizontal img {
+  -webkit-user-drag: none;
+}
+
 button,
 input,
 select,
