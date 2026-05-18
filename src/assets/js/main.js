@@ -1691,15 +1691,15 @@ function supportsGalleryLightboxFullscreen() {
 
   return Boolean(
     galleryLightboxDialog.requestFullscreen ||
-      galleryLightboxDialog.webkitRequestFullscreen ||
-      galleryLightboxDialog.msRequestFullscreen,
+    galleryLightboxDialog.webkitRequestFullscreen ||
+    galleryLightboxDialog.msRequestFullscreen,
   );
 }
 
 function isGalleryLightboxNativeFullscreen() {
   return Boolean(
     galleryLightboxDialog &&
-      getGalleryLightboxFullscreenElement() === galleryLightboxDialog,
+    getGalleryLightboxFullscreenElement() === galleryLightboxDialog,
   );
 }
 
@@ -2051,7 +2051,10 @@ function initGalleryLightbox() {
     }
   });
 
-  document.addEventListener("fullscreenchange", syncGalleryLightboxFullscreenState);
+  document.addEventListener(
+    "fullscreenchange",
+    syncGalleryLightboxFullscreenState,
+  );
   document.addEventListener(
     "webkitfullscreenchange",
     syncGalleryLightboxFullscreenState,
