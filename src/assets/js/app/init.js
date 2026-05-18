@@ -120,10 +120,6 @@
 
     initialized = true;
 
-    if (app.routes && typeof app.routes.initPrettyRoutes === "function") {
-      app.routes.initPrettyRoutes();
-    }
-
     exposeGlobals();
 
     initFeature("navigation");

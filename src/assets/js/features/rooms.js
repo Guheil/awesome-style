@@ -2,7 +2,117 @@
   const app = (window.AwesomeHotel = window.AwesomeHotel || {});
   const features = (app.features = app.features || {});
 
+  function initRoomGalleries() {
+    const galleries = Array.from(document.querySelectorAll("[data-room-gallery]"));
+
+    galleries.forEach(function (gallery) {
+      const track = gallery.querySelector("[data-room-gallery-track]");
+      let slides = Array.from(gallery.querySelectorAll("[data-room-gallery-slide]"));
+      const prevButton = gallery.querySelector("[data-room-gallery-prev]");
+      const nextButton = gallery.querySelector("[data-room-gallery-next]");
+      let dots = Array.from(gallery.querySelectorAll("[data-room-gallery-dot]"));
+      const count = gallery.querySelector("[data-room-gallery-count]");
+      let activeIndex = 0;
+
+      if (!track || slides.length === 0) {
+        return;
+      }
+
+      function renderGallery() {
+        if (slides.length === 0) {
+          gallery.classList.add("is-empty");
+          return;
+        }
+
+        gallery.classList.toggle("is-static", slides.length <= 1);
+        activeIndex = Math.min(activeIndex, slides.length - 1);
+        track.style.transform = `translateX(-${activeIndex * 100}%)`;
+
+        slides.forEach(function (slide, index) {
+          slide.classList.toggle("is-active", index === activeIndex);
+        });
+
+        dots.forEach(function (dot, index) {
+          const isCurrent = index === activeIndex;
+          dot.classList.toggle("is-current", isCurrent);
+          dot.setAttribute("aria-pressed", String(isCurrent));
+        });
+
+        if (count) {
+          count.textContent = `${String(activeIndex + 1).padStart(2, "0")} / ${String(slides.length).padStart(2, "0")}`;
+        }
+      }
+
+      function moveGallery(delta) {
+        activeIndex = (activeIndex + delta + slides.length) % slides.length;
+        renderGallery();
+      }
+
+      function removeBrokenSlide(slide) {
+        const index = slides.indexOf(slide);
+
+        if (index === -1) {
+          return;
+        }
+
+        const dot = dots[index];
+
+        slide.remove();
+
+        if (dot) {
+          dot.remove();
+        }
+
+        slides = slides.filter(function (currentSlide) {
+          return currentSlide !== slide;
+        });
+        dots = Array.from(gallery.querySelectorAll("[data-room-gallery-dot]"));
+        activeIndex = Math.max(0, Math.min(activeIndex, slides.length - 1));
+        renderGallery();
+      }
+
+      slides.forEach(function (slide) {
+        const image = slide.querySelector("img");
+
+        if (!image) {
+          return;
+        }
+
+        image.addEventListener("error", function () {
+          removeBrokenSlide(slide);
+        });
+
+        if (image.complete && image.naturalWidth === 0) {
+          removeBrokenSlide(slide);
+        }
+      });
+
+      if (prevButton) {
+        prevButton.addEventListener("click", function () {
+          moveGallery(-1);
+        });
+      }
+
+      if (nextButton) {
+        nextButton.addEventListener("click", function () {
+          moveGallery(1);
+        });
+      }
+
+      dots.forEach(function (dot, index) {
+        dot.addEventListener("click", function () {
+          activeIndex = index;
+          renderGallery();
+        });
+      });
+
+      renderGallery();
+    });
+  }
+
   function init() {
+    initRoomGalleries();
+
     const form = document.getElementById("roomsGuestForm");
     const input = document.getElementById("roomsGuestInput");
     const roomCards = Array.from(document.querySelectorAll("[data-room-card]"));
@@ -14,7 +124,7 @@
     const prevButton = document.querySelector("[data-room-page-prev]");
     const nextButton = document.querySelector("[data-room-page-next]");
     const featuredPageRoomCount = 4;
-    const followingPageRoomCount = 6;
+    const followingPageRoomCount = 4;
     let activePage = 0;
     let requestedGuests = null;
 

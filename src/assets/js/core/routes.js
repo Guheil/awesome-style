@@ -2,27 +2,27 @@
   const app = (window.AwesomeHotel = window.AwesomeHotel || {});
 
   const prettyRouteEntries = Object.freeze([
-    { actualPath: "/src/pages/index.html", prettyPath: "/home" },
-    { actualPath: "/src/pages/about.html", prettyPath: "/about" },
-    { actualPath: "/src/pages/events.html", prettyPath: "/events" },
+    { actualPath: "/src/pages/home", prettyPath: "/home" },
+    { actualPath: "/src/pages/about", prettyPath: "/about" },
+    { actualPath: "/src/pages/events", prettyPath: "/events" },
     {
-      actualPath: "/src/pages/team-building.html",
+      actualPath: "/src/pages/team-building",
       prettyPath: "/team-building",
     },
     {
-      actualPath: "/src/pages/day-tour-packages.html",
+      actualPath: "/src/pages/day-tour-packages",
       prettyPath: "/day-tour-packages",
     },
-    { actualPath: "/src/pages/rooms.html", prettyPath: "/rooms" },
-    { actualPath: "/src/pages/dining.html", prettyPath: "/dining" },
-    { actualPath: "/src/pages/restaurant.html", prettyPath: "/restaurant" },
-    { actualPath: "/src/pages/cafe.html", prettyPath: "/cafe" },
-    { actualPath: "/src/pages/bar.html", prettyPath: "/bar" },
-    { actualPath: "/src/pages/breakfast.html", prettyPath: "/breakfast" },
-    { actualPath: "/src/pages/spa.html", prettyPath: "/spa" },
-    { actualPath: "/src/pages/services.html", prettyPath: "/services" },
-    { actualPath: "/src/pages/gallery.html", prettyPath: "/gallery" },
-    { actualPath: "/src/pages/contact.html", prettyPath: "/contact" },
+    { actualPath: "/src/pages/rooms", prettyPath: "/rooms" },
+    { actualPath: "/src/pages/dining", prettyPath: "/dining" },
+    { actualPath: "/src/pages/restaurant", prettyPath: "/restaurant" },
+    { actualPath: "/src/pages/cafe", prettyPath: "/cafe" },
+    { actualPath: "/src/pages/bar", prettyPath: "/bar" },
+    { actualPath: "/src/pages/breakfast", prettyPath: "/breakfast" },
+    { actualPath: "/src/pages/spa", prettyPath: "/spa" },
+    { actualPath: "/src/pages/services", prettyPath: "/services" },
+    { actualPath: "/src/pages/gallery", prettyPath: "/gallery" },
+    { actualPath: "/src/pages/contact", prettyPath: "/contact" },
   ]);
 
   const prettyRoutesByActualPath = new Map(
@@ -78,28 +78,7 @@
   }
 
   function initPrettyRoutes() {
-    if (
-      window.location.protocol === "file:" ||
-      !window.history ||
-      typeof window.history.replaceState !== "function"
-    ) {
-      return;
-    }
-
-    const route = getPrettyRoute(window.location.pathname);
-
-    if (!route) {
-      return;
-    }
-
-    ensurePrettyRouteBase(route);
-
-    const currentUrl = `${normalizePathname(window.location.pathname)}${window.location.search}${window.location.hash}`;
-    const prettyUrl = `${route.prettyPath}${window.location.search}${window.location.hash}`;
-
-    if (currentUrl !== prettyUrl) {
-      window.history.replaceState(null, "", prettyUrl);
-    }
+    return;
   }
 
   app.routes = {

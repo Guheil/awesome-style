@@ -14,7 +14,6 @@
       : new URL("./", window.location.href);
 
   const scriptPaths = [
-    "./core/routes.js",
     "./core/gestures.js",
     "./data/catalogs.js",
     "./features/booking.js",

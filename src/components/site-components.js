@@ -21,45 +21,93 @@
     return page === target ? ' aria-current="page"' : "";
   }
 
+  const pageSlugs = {
+    home: "home",
+    about: "about",
+    events: "events",
+    teamBuilding: "team-building",
+    dayTourPackages: "day-tour-packages",
+    rooms: "rooms",
+    dining: "dining",
+    restaurant: "restaurant",
+    cafe: "cafe",
+    bar: "bar",
+    breakfast: "breakfast",
+    spa: "spa",
+    services: "services",
+    gallery: "gallery",
+    contact: "contact",
+  };
+
+  function getPagesRootPrefix() {
+    const pathname = window.location.pathname.replace(/\\/g, "/");
+    const pagesMarker = "/src/pages/";
+    const markerIndex = pathname.indexOf(pagesMarker);
+    const pagePath =
+      markerIndex >= 0
+        ? pathname.slice(markerIndex + pagesMarker.length)
+        : pathname.replace(/^\/+/, "");
+    const parts = pagePath.split("/").filter(Boolean);
+
+    if (parts.length > 0 && parts[parts.length - 1].includes(".")) {
+      parts.pop();
+    }
+
+    return parts.length > 0 ? "../".repeat(parts.length) : "./";
+  }
+
+  function pageHref(page, hash = "") {
+    const prefix = getPagesRootPrefix();
+    const slug = pageSlugs[page] || page;
+
+    return `${prefix}${slug}/${hash}`;
+  }
+
+  function assetHref(path) {
+    const prefix = `${getPagesRootPrefix()}../assets/`;
+
+    return `${prefix}${path}`;
+  }
+
   function renderNavbar(page = "home") {
     return `
       <nav aria-label="Primary navigation">
         <div class="logo-wrap">
-          <a href="./index.html" aria-label="Awesome Hotel home">
-            <img src="../assets/images/logo.png" alt="Awesome Hotel" class="logo-img" />
+          <a href="${pageHref("home")}" aria-label="Awesome Hotel home">
+            <img src="${assetHref("images/logo.png")}" alt="Awesome Hotel" class="logo-img" />
           </a>
         </div>
 
         <ul class="nav-links">
           <li class="nav-item">
-            <a class="nav-link${getCurrentClass(page, "home")}" href="./index.html"${getAriaCurrent(page, "home")}>Home</a>
+            <a class="nav-link${getCurrentClass(page, "home")}" href="${pageHref("home")}"${getAriaCurrent(page, "home")}>Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link${getCurrentClass(page, "about")}" href="./about.html"${getAriaCurrent(page, "about")}>About Us</a>
+            <a class="nav-link${getCurrentClass(page, "about")}" href="${pageHref("about")}"${getAriaCurrent(page, "about")}>About Us</a>
           </li>
           <li class="nav-item nav-item--has-menu">
-            <a class="nav-link nav-link--button${getCurrentClass(page, "events")}" href="./events.html" aria-haspopup="true" aria-expanded="false"${getAriaCurrent(page, "events")}>
+            <a class="nav-link nav-link--button${getCurrentClass(page, "events")}" href="${pageHref("events")}" aria-haspopup="true" aria-expanded="false"${getAriaCurrent(page, "events")}>
               Events
               <span class="nav-caret" aria-hidden="true"></span>
             </a>
             <div class="nav-dropdown" role="menu" aria-label="Events submenu">
-              <a class="nav-dropdown-link" href="./team-building.html">Team Building</a>
-              <a class="nav-dropdown-link" href="./day-tour-packages.html">Day Tour Packages</a>
+              <a class="nav-dropdown-link" href="${pageHref("teamBuilding")}">Team Building</a>
+              <a class="nav-dropdown-link" href="${pageHref("dayTourPackages")}">Day Tour Packages</a>
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link${getCurrentClass(page, "rooms")}" href="./rooms.html"${getAriaCurrent(page, "rooms")}>Rooms</a>
+            <a class="nav-link${getCurrentClass(page, "rooms")}" href="${pageHref("rooms")}"${getAriaCurrent(page, "rooms")}>Rooms</a>
           </li>
           <li class="nav-item nav-item--has-menu">
-            <a class="nav-link nav-link--button${getCurrentClass(page, "dining")}" href="./dining.html" aria-haspopup="true" aria-expanded="false"${getAriaCurrent(page, "dining")}>
+            <a class="nav-link nav-link--button${getCurrentClass(page, "dining")}" href="${pageHref("dining")}" aria-haspopup="true" aria-expanded="false"${getAriaCurrent(page, "dining")}>
               Dining
               <span class="nav-caret" aria-hidden="true"></span>
             </a>
             <div class="nav-dropdown" role="menu" aria-label="Dining submenu">
-              <a class="nav-dropdown-link" href="./restaurant.html">Restaurant</a>
-              <a class="nav-dropdown-link" href="./cafe.html">Lobby Cafe</a>
-              <a class="nav-dropdown-link" href="./bar.html">Sports Bar</a>
-              <a class="nav-dropdown-link" href="./breakfast.html">Breakfast Buffet</a>
+              <a class="nav-dropdown-link" href="${pageHref("restaurant")}">Restaurant</a>
+              <a class="nav-dropdown-link" href="${pageHref("cafe")}">Lobby Cafe</a>
+              <a class="nav-dropdown-link" href="${pageHref("bar")}">Sports Bar</a>
+              <a class="nav-dropdown-link" href="${pageHref("breakfast")}">Breakfast Buffet</a>
             </div>
           </li>
           <li class="nav-item nav-item--has-menu">
@@ -68,16 +116,16 @@
               <span class="nav-caret" aria-hidden="true"></span>
             </button>
             <div class="nav-dropdown" role="menu" aria-label="Amenities submenu">
-              <a class="nav-dropdown-link" href="./spa.html">Massage and Spa</a>
-              <a class="nav-dropdown-link" href="./services.html">Services</a>
-              <a class="nav-dropdown-link" href="./gallery.html">Gallery</a>
+              <a class="nav-dropdown-link" href="${pageHref("spa")}">Massage and Spa</a>
+              <a class="nav-dropdown-link" href="${pageHref("services")}">Services</a>
+              <a class="nav-dropdown-link" href="${pageHref("gallery")}">Gallery</a>
             </div>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Blogs</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link${getCurrentClass(page, "contact")}" href="./contact.html"${getAriaCurrent(page, "contact")}>Contact Us</a>
+            <a class="nav-link${getCurrentClass(page, "contact")}" href="${pageHref("contact")}"${getAriaCurrent(page, "contact")}>Contact Us</a>
           </li>
         </ul>
 
@@ -96,8 +144,8 @@
 
       <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
         <div class="mobile-menu-header">
-          <a href="./index.html" aria-label="Awesome Hotel home">
-            <img src="../assets/images/logo.png" alt="Awesome Hotel" class="logo-img" />
+          <a href="${pageHref("home")}" aria-label="Awesome Hotel home">
+            <img src="${assetHref("images/logo.png")}" alt="Awesome Hotel" class="logo-img" />
           </a>
           <button
             class="mobile-menu-close"
@@ -108,44 +156,44 @@
         <div class="mobile-menu-body">
           <ul class="mobile-menu-links">
             <li>
-              <a href="./index.html" class="${page === "home" ? "is-current" : ""}"${getAriaCurrent(page, "home")} onclick="closeMobileMenu()">Home</a>
+              <a href="${pageHref("home")}" class="${page === "home" ? "is-current" : ""}"${getAriaCurrent(page, "home")} onclick="closeMobileMenu()">Home</a>
             </li>
             <li>
-              <a href="./about.html" class="${page === "about" ? "is-current" : ""}"${getAriaCurrent(page, "about")} onclick="closeMobileMenu()">About Us</a>
+              <a href="${pageHref("about")}" class="${page === "about" ? "is-current" : ""}"${getAriaCurrent(page, "about")} onclick="closeMobileMenu()">About Us</a>
             </li>
             <li class="mobile-menu-group">
-              <a href="./events.html" class="mobile-menu-group-title${page === "events" ? " is-current" : ""}"${getAriaCurrent(page, "events")} onclick="closeMobileMenu()">Events</a>
+              <a href="${pageHref("events")}" class="mobile-menu-group-title${page === "events" ? " is-current" : ""}"${getAriaCurrent(page, "events")} onclick="closeMobileMenu()">Events</a>
               <div class="mobile-menu-submenu">
-                <a href="./team-building.html" onclick="closeMobileMenu()">Team Building</a>
-                <a href="./day-tour-packages.html" onclick="closeMobileMenu()">Day Tour Packages</a>
+                <a href="${pageHref("teamBuilding")}" onclick="closeMobileMenu()">Team Building</a>
+                <a href="${pageHref("dayTourPackages")}" onclick="closeMobileMenu()">Day Tour Packages</a>
               </div>
             </li>
             <li>
-              <a href="./rooms.html" class="${page === "rooms" ? "is-current" : ""}"${getAriaCurrent(page, "rooms")} onclick="closeMobileMenu()">Rooms</a>
+              <a href="${pageHref("rooms")}" class="${page === "rooms" ? "is-current" : ""}"${getAriaCurrent(page, "rooms")} onclick="closeMobileMenu()">Rooms</a>
             </li>
             <li class="mobile-menu-group">
               <span class="mobile-menu-group-title">Dining</span>
               <div class="mobile-menu-submenu">
-                <a href="./dining.html" onclick="closeMobileMenu()">Dining Overview</a>
-                <a href="./restaurant.html" onclick="closeMobileMenu()">Restaurant</a>
-                <a href="./cafe.html" onclick="closeMobileMenu()">Lobby Cafe</a>
-                <a href="./bar.html" onclick="closeMobileMenu()">Sports Bar</a>
-                <a href="./breakfast.html" onclick="closeMobileMenu()">Breakfast Buffet</a>
+                <a href="${pageHref("dining")}" onclick="closeMobileMenu()">Dining Overview</a>
+                <a href="${pageHref("restaurant")}" onclick="closeMobileMenu()">Restaurant</a>
+                <a href="${pageHref("cafe")}" onclick="closeMobileMenu()">Lobby Cafe</a>
+                <a href="${pageHref("bar")}" onclick="closeMobileMenu()">Sports Bar</a>
+                <a href="${pageHref("breakfast")}" onclick="closeMobileMenu()">Breakfast Buffet</a>
               </div>
             </li>
             <li class="mobile-menu-group">
               <span class="mobile-menu-group-title${page === "amenities" ? " is-current" : ""}">Amenities</span>
               <div class="mobile-menu-submenu">
-                <a href="./spa.html" onclick="closeMobileMenu()">Massage and Spa</a>
-                <a href="./services.html" onclick="closeMobileMenu()">Services</a>
-                <a href="./gallery.html" onclick="closeMobileMenu()">Gallery</a>
+                <a href="${pageHref("spa")}" onclick="closeMobileMenu()">Massage and Spa</a>
+                <a href="${pageHref("services")}" onclick="closeMobileMenu()">Services</a>
+                <a href="${pageHref("gallery")}" onclick="closeMobileMenu()">Gallery</a>
               </div>
             </li>
             <li>
               <a href="#" onclick="closeMobileMenu()">Blogs</a>
             </li>
             <li>
-              <a href="./contact.html" class="${page === "contact" ? "is-current" : ""}"${getAriaCurrent(page, "contact")} onclick="closeMobileMenu()">Contact Us</a>
+              <a href="${pageHref("contact")}" class="${page === "contact" ? "is-current" : ""}"${getAriaCurrent(page, "contact")} onclick="closeMobileMenu()">Contact Us</a>
             </li>
           </ul>
           <button class="mobile-menu-book" onclick="handleBook(); closeMobileMenu();">
@@ -352,7 +400,7 @@
                 of elegance and natural beauty.
               </p>
 
-              <a href="./rooms.html" class="resort-carousel-cta">Explore Rooms</a>
+              <a href="${pageHref("rooms")}" class="resort-carousel-cta">Explore Rooms</a>
             </div>
           </div>
 
@@ -448,7 +496,7 @@
                       seminars, or other special events just meters away from the
                       beach.
                     </p>
-                    <a href="./services.html" class="amenities-cta">Explore Services</a>
+                    <a href="${pageHref("services")}" class="amenities-cta">Explore Services</a>
                   </div>
                 </article>
 
@@ -463,7 +511,7 @@
                       Paddle and explore the coastline of San Juan, La Union with
                       kayak rental either solo or with a tandem.
                     </p>
-                    <a href="./services.html" class="amenities-cta">Explore Services</a>
+                    <a href="${pageHref("services")}" class="amenities-cta">Explore Services</a>
                   </div>
                 </article>
 
@@ -478,7 +526,7 @@
                       Experience the thrill of beach volleyball with soft sand and
                       stunning ocean views.
                     </p>
-                    <a href="./services.html" class="amenities-cta">Explore Services</a>
+                    <a href="${pageHref("services")}" class="amenities-cta">Explore Services</a>
                   </div>
                 </article>
 
@@ -493,7 +541,7 @@
                       Relax and rejuvenate with in-room massage services from our
                       experienced massage therapists.
                     </p>
-                    <a href="./services.html" class="amenities-cta">Explore Services</a>
+                    <a href="${pageHref("services")}" class="amenities-cta">Explore Services</a>
                   </div>
                 </article>
               </div>
@@ -765,7 +813,7 @@
             </div>
 
             <div class="daytour-actions">
-              <a href="./day-tour-packages.html" class="daytour-cta">Explore Day Tour Package</a>
+              <a href="${pageHref("dayTourPackages")}" class="daytour-cta">Explore Day Tour Package</a>
 
               <div class="daytour-controls">
                 <button class="daytour-arrow" type="button" aria-label="Previous day tour slide" onclick="moveDaytourCarousel(-1)">
@@ -1000,7 +1048,7 @@
         <div class="stay-cta-inner">
           <div class="stay-cta-stage">
             <div class="stay-cta-media">
-              <img src="../assets/images/cta-bigger-photo.jpg" alt="Luxury hotel courtyard with pool and balconies" />
+              <img src="${assetHref("images/cta-bigger-photo.jpg")}" alt="Luxury hotel courtyard with pool and balconies" />
             </div>
 
             <div class="stay-cta-copy">
@@ -1014,7 +1062,7 @@
               <button type="button" class="stay-cta-book" onclick="handleBook()">
                 Book Your Stay
               </button>
-              <a href="./rooms.html" class="stay-cta-explore">Explore Rooms</a>
+              <a href="${pageHref("rooms")}" class="stay-cta-explore">Explore Rooms</a>
             </div>
           </div>
         </div>
@@ -1028,19 +1076,19 @@
       <footer class="site-footer" aria-label="Awesome Hotel footer">
         <div class="site-footer__inner">
           <div class="footer-brand">
-            <a href="./index.html" class="footer-logo" aria-label="Awesome Hotel home">
-              <img src="../assets/images/logo.png" alt="Awesome Hotel" class="footer-logo-image" />
+            <a href="${pageHref("home")}" class="footer-logo" aria-label="Awesome Hotel home">
+              <img src="${assetHref("images/logo.png")}" alt="Awesome Hotel" class="footer-logo-image" />
             </a>
           </div>
 
           <div class="footer-block footer-nav" role="navigation" aria-label="Quick links">
             <h2 class="footer-heading">Quick Links</h2>
             <ul class="footer-links-list">
-              <li><a href="./rooms.html">Our Rooms</a></li>
-              <li><a href="./events.html">Events</a></li>
-              <li><a href="./index.html#dining">Dining</a></li>
-              <li><a href="./services.html">Services</a></li>
-              <li><a href="./gallery.html">Gallery</a></li>
+              <li><a href="${pageHref("rooms")}">Our Rooms</a></li>
+              <li><a href="${pageHref("events")}">Events</a></li>
+              <li><a href="${pageHref("home", "#dining")}">Dining</a></li>
+              <li><a href="${pageHref("services")}">Services</a></li>
+              <li><a href="${pageHref("gallery")}">Gallery</a></li>
             </ul>
           </div>
 
