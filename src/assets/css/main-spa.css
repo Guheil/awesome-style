@@ -1,0 +1,1335 @@
+﻿/* Spa and massage page */
+.spa-page {
+  background: var(--ivory);
+  color: var(--ink);
+  font-family: "Jost", sans-serif;
+}
+
+.spa-shell,
+.spa-hero-copy {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 48px;
+}
+
+.spa-hero {
+  position: relative;
+  min-height: clamp(560px, 76vh, 760px);
+  height: clamp(560px, 76vh, 760px);
+  justify-content: flex-end;
+  overflow: hidden;
+  background: var(--navy);
+}
+
+.spa-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: rgba(20, 13, 8, 0.56);
+}
+
+.spa-hero-media {
+  position: absolute;
+  inset: 0;
+}
+
+.spa-hero-media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 52%;
+  filter: saturate(0.9) contrast(0.98) brightness(0.84);
+}
+
+.spa-hero-copy {
+  position: relative;
+  z-index: 2;
+  padding-bottom: clamp(76px, 9vw, 128px);
+}
+
+.spa-hero h1 {
+  max-width: 22ch;
+  margin: 0;
+  color: var(--ivory);
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(56px, 7vw, 104px);
+  font-weight: 500;
+  line-height: 0.92;
+  letter-spacing: 0.01em;
+}
+
+.spa-main {
+  position: relative;
+  z-index: 4;
+  background: var(--ivory);
+}
+
+.spa-intro,
+.spa-treatments,
+.spa-gallery,
+.spa-info,
+.spa-closing,
+.spa-faq {
+  padding: clamp(84px, 8vw, 122px) 0;
+}
+
+.spa-intro-grid {
+  display: grid;
+  grid-template-columns: minmax(360px, 0.54fr) minmax(420px, 0.68fr);
+  gap: clamp(34px, 5vw, 76px);
+  align-items: center;
+}
+
+.spa-intro-copy {
+  display: grid;
+  gap: 18px;
+  max-width: 620px;
+  padding: clamp(30px, 3.8vw, 52px);
+  border: 1px solid rgba(181, 138, 84, 0.22);
+  border-left: 2px solid var(--gold);
+  background: var(--white);
+  box-shadow: 0 18px 46px rgba(47, 36, 24, 0.05);
+}
+
+.spa-intro-copy p,
+.spa-section-header p,
+.spa-info p,
+.spa-closing p {
+  margin: 0;
+  color: rgba(55, 41, 29, 0.76);
+  font-size: 17px;
+  line-height: 1.9;
+}
+
+.spa-intro-media,
+.spa-gallery-item {
+  margin: 0;
+  overflow: hidden;
+  background: var(--champagne);
+  box-shadow: 0 26px 70px rgba(47, 36, 24, 0.12);
+}
+
+.spa-intro-media {
+  aspect-ratio: 16 / 12;
+  min-height: 420px;
+}
+
+.spa-intro-media img,
+.spa-gallery-item img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(0.92) contrast(0.98);
+}
+
+.spa-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: max-content;
+  min-height: 48px;
+  padding: 0 30px;
+  border: 1px solid rgba(181, 138, 84, 0.34);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--gold);
+  cursor: pointer;
+  font-family: "Jost", sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  transition:
+    background 0.24s ease,
+    border-color 0.24s ease,
+    color 0.24s ease,
+    transform 0.24s ease;
+}
+
+.spa-button:hover {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--ivory);
+  transform: translateY(-1px);
+}
+
+.spa-treatments {
+  background: var(--navy);
+}
+
+.spa-section-header {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.5fr) minmax(0, 0.7fr);
+  gap: clamp(28px, 5vw, 76px);
+  align-items: end;
+  margin-bottom: clamp(42px, 5vw, 72px);
+}
+
+.spa-section-header h2,
+.spa-info h2,
+.spa-closing h2,
+.spa-faq h2 {
+  margin: 0;
+  color: var(--ink);
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(42px, 5vw, 76px);
+  font-weight: 600;
+  line-height: 0.96;
+}
+
+.spa-treatments .spa-section-header h2 {
+  color: var(--gold-pale);
+}
+
+.spa-treatments .spa-section-header p {
+  color: rgba(251, 245, 234, 0.82);
+}
+
+.spa-section-header a,
+.spa-faq a {
+  color: var(--gold-bright);
+  text-underline-offset: 0.16em;
+}
+
+.spa-treatment-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.spa-treatment-card {
+  display: grid;
+  align-content: start;
+  gap: 22px;
+  min-height: 100%;
+  padding: clamp(28px, 3.4vw, 46px);
+  border: 1px solid rgba(215, 180, 122, 0.28);
+  background: rgba(251, 245, 234, 0.06);
+}
+
+.spa-treatment-card--wide {
+  grid-column: span 2;
+}
+
+.spa-treatment-card h3 {
+  margin: 0;
+  color: var(--gold-pale);
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(28px, 2.6vw, 42px);
+  font-weight: 600;
+  line-height: 1;
+}
+
+.spa-treatment-card ul {
+  display: grid;
+  gap: 11px;
+  margin: 0;
+  padding: 22px 0 0;
+  border-top: 1px solid rgba(215, 180, 122, 0.18);
+  list-style: none;
+}
+
+.spa-treatment-card li {
+  color: rgba(251, 245, 234, 0.82);
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+.spa-gallery {
+  background: var(--sand);
+}
+
+.spa-gallery-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr 0.9fr;
+  gap: 16px;
+}
+
+.spa-gallery-item {
+  min-height: 260px;
+  box-shadow: 0 22px 58px rgba(47, 36, 24, 0.1);
+}
+
+.spa-gallery-item--large {
+  grid-row: span 2;
+  min-height: 536px;
+}
+
+.spa-info {
+  background: var(--ivory);
+}
+
+.spa-info-grid {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.52fr) minmax(0, 0.78fr);
+  gap: 0;
+  overflow: hidden;
+  border: 1px solid rgba(181, 138, 84, 0.22);
+  background: var(--white);
+  box-shadow: 0 30px 82px rgba(47, 36, 24, 0.1);
+}
+
+.spa-info-grid article {
+  display: grid;
+  align-content: center;
+  gap: 24px;
+  padding: clamp(40px, 5vw, 70px);
+}
+
+.spa-info-grid article:first-child {
+  background: var(--navy);
+}
+
+.spa-info-grid article:first-child h2 {
+  color: var(--gold-pale);
+}
+
+.spa-info-grid article:first-child p {
+  color: rgba(251, 245, 234, 0.84);
+}
+
+.spa-info-grid article + article {
+  border-left: 1px solid rgba(181, 138, 84, 0.18);
+}
+
+.spa-closing {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: var(--navy);
+}
+
+.spa-closing::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background: url("https://awesomehotel.com/wp-content/uploads/2025/04/awesome_hotel_spa_4-1024x576.jpg")
+    center / cover no-repeat;
+  filter: saturate(0.86) brightness(0.62);
+}
+
+.spa-closing::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: rgba(47, 36, 24, 0.76);
+}
+
+.spa-closing-panel {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: clamp(44px, 6vw, 78px);
+  border-top: 1px solid rgba(215, 180, 122, 0.5);
+  border-bottom: 1px solid rgba(215, 180, 122, 0.5);
+  background: rgba(47, 36, 24, 0.66);
+  text-align: center;
+}
+
+.spa-closing h2 {
+  color: var(--gold-pale);
+}
+
+.spa-closing p {
+  max-width: 62ch;
+  margin: 28px auto 0;
+  color: rgba(251, 245, 234, 0.86);
+}
+
+.spa-closing .spa-button {
+  margin-top: 32px;
+  border-color: rgba(215, 180, 122, 0.56);
+  color: var(--gold-pale);
+}
+
+.spa-closing .spa-button:hover {
+  background: var(--gold-pale);
+  border-color: var(--gold-pale);
+  color: var(--navy);
+}
+
+.spa-faq.events-page-faq {
+  background: var(--ivory);
+}
+
+.spa-faq.events-page-faq h2 {
+  max-width: 820px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+@media (max-width: 1120px) {
+  .spa-treatment-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .spa-treatment-card--wide {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 920px) {
+  .spa-intro-grid,
+  .spa-section-header,
+  .spa-info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .spa-intro-media {
+    aspect-ratio: 16 / 10;
+    min-height: 0;
+  }
+
+  .spa-info-grid article + article {
+    border-left: 0;
+    border-top: 1px solid rgba(181, 138, 84, 0.18);
+  }
+
+  .spa-gallery-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .spa-gallery-item--large {
+    grid-column: 1 / -1;
+    min-height: 360px;
+  }
+}
+
+@media (max-width: 760px) {
+  .spa-shell,
+  .spa-hero-copy {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  .spa-hero {
+    min-height: 520px;
+    height: 520px;
+  }
+
+  .spa-hero h1 {
+    font-size: clamp(44px, 13vw, 66px);
+  }
+
+  .spa-intro,
+  .spa-treatments,
+  .spa-gallery,
+  .spa-info,
+  .spa-closing,
+  .spa-faq {
+    padding: 72px 0;
+  }
+
+  .spa-intro-copy,
+  .spa-treatment-card,
+  .spa-info-grid article {
+    padding: 28px;
+  }
+
+  .spa-treatment-grid,
+  .spa-gallery-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .spa-treatment-card--wide {
+    grid-column: auto;
+  }
+
+  .spa-gallery-item,
+  .spa-gallery-item--large {
+    min-height: 260px;
+  }
+
+  .spa-closing-panel {
+    padding: 34px 24px;
+  }
+}
+
+/* Spa page: event-inspired body treatment */
+.spa-page .spa-intro {
+  background: var(--ivory);
+}
+
+.spa-page .spa-intro-grid {
+  grid-template-columns: minmax(300px, 0.62fr) minmax(0, 1.38fr);
+  gap: 34px;
+  align-items: stretch;
+}
+
+.spa-page .spa-intro-copy {
+  position: relative;
+  align-content: start;
+  max-width: none;
+  min-height: 100%;
+  padding: clamp(30px, 4vw, 54px);
+  border: 1px solid rgba(181, 138, 84, 0.2);
+  border-radius: 10px;
+  background: var(--white);
+  box-shadow: 0 18px 44px rgba(47, 36, 24, 0.06);
+}
+
+.spa-page .spa-intro-copy::before {
+  content: "";
+  display: block;
+  width: 42px;
+  height: 1px;
+  margin-bottom: 4px;
+  background: var(--gold);
+}
+
+.spa-page .spa-intro-copy::after {
+  content: "";
+  display: block;
+  min-height: clamp(112px, 12vw, 156px);
+  margin-top: 12px;
+  border: 1px solid rgba(181, 138, 84, 0.16);
+  border-radius: 8px;
+  background: var(--ivory);
+}
+
+.spa-page .spa-intro-copy p {
+  max-width: 58ch;
+}
+
+.spa-page .spa-intro-media {
+  min-height: 100%;
+  padding: 12px;
+  border: 1px solid rgba(181, 138, 84, 0.18);
+  border-radius: 10px;
+  background: var(--white);
+  box-shadow: 0 28px 74px rgba(47, 36, 24, 0.13);
+}
+
+.spa-page .spa-intro-media img {
+  min-height: 440px;
+  border-radius: 8px;
+}
+
+.spa-page .spa-treatments {
+  background: var(--white);
+}
+
+.spa-page .spa-treatments .spa-shell {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.56fr) minmax(0, 1.44fr);
+  gap: clamp(26px, 4vw, 46px);
+  align-items: start;
+}
+
+.spa-page .spa-section-header {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 22px;
+  margin: 0;
+  padding: clamp(30px, 4vw, 48px);
+  border: 1px solid rgba(181, 138, 84, 0.2);
+  border-radius: 10px;
+  background: var(--ivory);
+  box-shadow: 0 18px 44px rgba(47, 36, 24, 0.06);
+}
+
+.spa-page .spa-treatments .spa-section-header h2 {
+  color: var(--gold);
+  font-size: clamp(40px, 5vw, 68px);
+}
+
+.spa-page .spa-treatments .spa-section-header p {
+  color: rgba(55, 41, 29, 0.76);
+}
+
+.spa-page .spa-section-header a {
+  color: var(--gold);
+  text-decoration-color: rgba(181, 138, 84, 0.34);
+}
+
+.spa-page .spa-treatment-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.spa-page .spa-treatment-card {
+  position: relative;
+  gap: 18px;
+  min-height: 0;
+  overflow: hidden;
+  padding: clamp(26px, 3vw, 38px);
+  border: 1px solid rgba(181, 138, 84, 0.18);
+  border-radius: 8px;
+  background: var(--ivory);
+  box-shadow: none;
+}
+
+.spa-page .spa-treatment-card::before {
+  content: "";
+  width: 34px;
+  height: 34px;
+  border: 1px solid rgba(181, 138, 84, 0.34);
+  border-radius: 50%;
+  background: var(--white);
+}
+
+.spa-page .spa-treatment-card--wide {
+  grid-column: 1 / -1;
+  grid-template-columns: minmax(0, 0.46fr) minmax(0, 0.54fr);
+  column-gap: 28px;
+  align-items: start;
+  background: var(--navy);
+}
+
+.spa-page .spa-treatment-card--wide::before {
+  grid-column: 1;
+  grid-row: 1;
+  border-color: rgba(215, 180, 122, 0.42);
+  background: transparent;
+}
+
+.spa-page .spa-treatment-card h3 {
+  color: var(--ink);
+  font-size: clamp(26px, 2vw, 34px);
+  line-height: 1.05;
+}
+
+.spa-page .spa-treatment-card--wide h3 {
+  grid-column: 1;
+  grid-row: 2;
+  color: var(--gold-pale);
+}
+
+.spa-page .spa-treatment-card ul {
+  gap: 10px;
+  padding: 18px 0 0;
+  border-top: 1px solid rgba(181, 138, 84, 0.16);
+}
+
+.spa-page .spa-treatment-card--wide ul {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  padding: 0 0 0 28px;
+  border-top: 0;
+  border-left: 1px solid rgba(215, 180, 122, 0.24);
+}
+
+.spa-page .spa-treatment-card li {
+  color: rgba(55, 41, 29, 0.78);
+  font-size: 14px;
+  line-height: 1.68;
+}
+
+.spa-page .spa-treatment-card--wide li {
+  color: rgba(251, 245, 234, 0.84);
+}
+
+.spa-page .spa-gallery {
+  background: var(--ivory);
+  padding-top: 0;
+}
+
+.spa-page .spa-gallery-grid {
+  grid-template-columns: minmax(260px, 0.74fr) minmax(0, 1fr) minmax(0, 1fr);
+  gap: 10px;
+  padding: 12px;
+  border: 1px solid rgba(181, 138, 84, 0.18);
+  border-radius: 10px;
+  background: var(--white);
+  box-shadow: 0 28px 74px rgba(47, 36, 24, 0.11);
+}
+
+.spa-page .spa-gallery-item {
+  min-height: 230px;
+  border: 1px solid rgba(181, 138, 84, 0.12);
+  border-radius: 8px;
+  box-shadow: none;
+}
+
+.spa-page .spa-gallery-item--large {
+  min-height: 500px;
+}
+
+.spa-page .spa-gallery-item img {
+  border-radius: 8px;
+}
+
+.spa-page .spa-info {
+  background: var(--sand);
+}
+
+.spa-page .spa-info-grid {
+  grid-template-columns: minmax(280px, 0.78fr) minmax(280px, 1fr);
+  gap: 18px;
+  overflow: visible;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.spa-page .spa-info-grid article {
+  border: 1px solid rgba(181, 138, 84, 0.2);
+  border-radius: 10px;
+  background: var(--white);
+  box-shadow: 0 18px 44px rgba(47, 36, 24, 0.06);
+}
+
+.spa-page .spa-info-grid article:first-child {
+  background: var(--navy);
+}
+
+.spa-page .spa-info-grid article + article {
+  border-left: 1px solid rgba(181, 138, 84, 0.2);
+}
+
+.spa-page .spa-closing {
+  display: grid;
+  min-height: 520px;
+  padding: 0;
+  background: var(--navy);
+}
+
+.spa-page .spa-closing::before {
+  inset: 0 auto 0 0;
+  width: 50%;
+  filter: saturate(0.9) contrast(0.98) brightness(0.86);
+}
+
+.spa-page .spa-closing::after {
+  inset: 0 0 0 50%;
+  background: var(--navy);
+}
+
+.spa-page .spa-closing .spa-shell {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: stretch;
+  max-width: 1440px;
+  min-height: 520px;
+  padding: 0;
+}
+
+.spa-page .spa-closing-panel {
+  grid-column: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: none;
+  margin: 0;
+  padding: clamp(52px, 7vw, 96px);
+  border: 0;
+  background: var(--navy);
+  text-align: left;
+}
+
+.spa-page .spa-closing p {
+  margin-right: 0;
+  margin-left: 0;
+}
+
+.spa-page .spa-closing .spa-button {
+  align-self: flex-start;
+}
+
+@media (max-width: 1120px) {
+  .spa-page .spa-treatments .spa-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .spa-page .spa-section-header {
+    max-width: 920px;
+  }
+}
+
+@media (max-width: 920px) {
+  .spa-page .spa-intro-grid,
+  .spa-page .spa-info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .spa-page .spa-intro-media img {
+    min-height: 360px;
+  }
+
+  .spa-page .spa-treatment-card--wide {
+    grid-template-columns: 1fr;
+  }
+
+  .spa-page .spa-treatment-card--wide::before,
+  .spa-page .spa-treatment-card--wide h3,
+  .spa-page .spa-treatment-card--wide ul {
+    grid-column: auto;
+    grid-row: auto;
+  }
+
+  .spa-page .spa-treatment-card--wide ul {
+    padding: 18px 0 0;
+    border-top: 1px solid rgba(215, 180, 122, 0.24);
+    border-left: 0;
+  }
+
+  .spa-page .spa-gallery-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .spa-page .spa-gallery-item--large {
+    grid-column: 1 / -1;
+    min-height: 380px;
+  }
+
+  .spa-page .spa-closing::before {
+    inset: 0 0 auto;
+    width: 100%;
+    height: 320px;
+  }
+
+  .spa-page .spa-closing::after {
+    inset: 320px 0 0;
+  }
+
+  .spa-page .spa-closing .spa-shell {
+    grid-template-columns: 1fr;
+    min-height: auto;
+    padding-top: 320px;
+  }
+
+  .spa-page .spa-closing-panel {
+    grid-column: auto;
+  }
+}
+
+@media (max-width: 760px) {
+  .spa-page .spa-intro-copy::after {
+    min-height: 92px;
+  }
+
+  .spa-page .spa-intro-media img {
+    min-height: 280px;
+  }
+
+  .spa-page .spa-gallery-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .spa-page .spa-gallery-item,
+  .spa-page .spa-gallery-item--large {
+    min-height: 250px;
+  }
+
+  .spa-page .spa-closing::before {
+    height: 260px;
+  }
+
+  .spa-page .spa-closing::after {
+    inset: 260px 0 0;
+  }
+
+  .spa-page .spa-closing .spa-shell {
+    padding-top: 260px;
+  }
+}
+
+/* Spa page: revised distinct layouts */
+.spa-page .spa-intro {
+  padding: clamp(72px, 7vw, 112px) 0;
+  background: var(--sand);
+}
+
+.spa-page .spa-intro .spa-shell {
+  max-width: none;
+  padding: 0;
+}
+
+.spa-page .spa-intro-grid {
+  grid-template-columns: minmax(0, 1.08fr) minmax(360px, 0.72fr);
+  gap: 0;
+  max-width: var(--content-max-width);
+  min-height: clamp(520px, 58vw, 690px);
+  margin: 0 auto;
+  border-top: 0;
+  border-bottom: 0;
+  background: var(--navy);
+}
+
+.spa-page .spa-intro-media {
+  grid-column: 1;
+  grid-row: 1;
+  min-height: 100%;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: var(--navy);
+  box-shadow: none;
+}
+
+.spa-page .spa-intro-media img {
+  min-height: 100%;
+  border-radius: 0;
+  object-position: center;
+  filter: saturate(0.88) contrast(1.02) brightness(0.9);
+}
+
+.spa-page .spa-intro-copy {
+  grid-column: 2;
+  grid-row: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: none;
+  min-height: 100%;
+  padding: clamp(46px, 6vw, 92px);
+  border: 0;
+  border-left: 0;
+  border-radius: 0;
+  background: var(--navy);
+  box-shadow: none;
+}
+
+.spa-page .spa-intro-copy::before {
+  display: none;
+}
+
+.spa-page .spa-intro-copy::after {
+  display: none;
+}
+
+.spa-page .spa-intro-copy p {
+  max-width: 42ch;
+  color: rgba(251, 245, 234, 0.82);
+  font-size: 16px;
+  line-height: 1.95;
+}
+
+.spa-page .spa-intro-copy p + p {
+  margin-top: 6px;
+}
+
+.spa-page .spa-intro-copy .spa-button {
+  margin-top: 12px;
+  border-color: rgba(181, 138, 84, 0.78);
+  color: var(--gold-pale);
+}
+
+.spa-page .spa-intro-copy .spa-button:hover {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--ivory);
+}
+
+.spa-page .spa-gallery {
+  padding: clamp(78px, 8vw, 122px) 0;
+  background: var(--ivory);
+}
+
+.spa-page .spa-gallery .spa-shell {
+  max-width: var(--content-shell-max-width);
+}
+
+.spa-page .spa-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  grid-template-rows: clamp(280px, 32vw, 460px) clamp(210px, 20vw, 290px);
+  gap: clamp(12px, 1.4vw, 18px);
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.spa-page .spa-gallery-item {
+  min-height: 0;
+  border: 0;
+  border-radius: 0;
+  background: var(--champagne);
+  box-shadow: none;
+}
+
+.spa-page .spa-gallery-item--large {
+  grid-column: 1 / 8;
+  grid-row: 1 / 3;
+  min-height: 0;
+}
+
+.spa-page .spa-gallery-item:nth-child(2) {
+  grid-column: 8 / 13;
+  grid-row: 1;
+}
+
+.spa-page .spa-gallery-item:nth-child(3) {
+  grid-column: 8 / 11;
+  grid-row: 2;
+}
+
+.spa-page .spa-gallery-item:nth-child(4) {
+  grid-column: 11 / 13;
+  grid-row: 2;
+}
+
+.spa-page .spa-gallery-item img {
+  border-radius: 0;
+  filter: saturate(0.9) contrast(1.02);
+}
+
+@media (max-width: 980px) {
+  .spa-page .spa-intro-grid {
+    grid-template-columns: 1fr;
+    min-height: 0;
+  }
+
+  .spa-page .spa-intro-media,
+  .spa-page .spa-intro-copy {
+    grid-column: auto;
+    grid-row: auto;
+  }
+
+  .spa-page .spa-intro-media {
+    min-height: 420px;
+  }
+
+  .spa-page .spa-intro-copy {
+    min-height: auto;
+    border-left: 0;
+    border-top: 0;
+  }
+
+  .spa-page .spa-gallery-grid {
+    grid-template-rows: 420px 240px 240px;
+  }
+
+  .spa-page .spa-gallery-item--large {
+    grid-column: 1 / -1;
+    grid-row: 1;
+  }
+
+  .spa-page .spa-gallery-item:nth-child(2) {
+    grid-column: 1 / 7;
+    grid-row: 2;
+  }
+
+  .spa-page .spa-gallery-item:nth-child(3) {
+    grid-column: 7 / 13;
+    grid-row: 2;
+  }
+
+  .spa-page .spa-gallery-item:nth-child(4) {
+    grid-column: 1 / -1;
+    grid-row: 3;
+  }
+}
+
+@media (max-width: 640px) {
+  .spa-page .spa-intro-media {
+    min-height: 310px;
+  }
+
+  .spa-page .spa-intro-copy {
+    padding: 34px 24px 40px;
+  }
+
+  .spa-page .spa-gallery-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: none;
+  }
+
+  .spa-page .spa-gallery-item,
+  .spa-page .spa-gallery-item--large,
+  .spa-page .spa-gallery-item:nth-child(2),
+  .spa-page .spa-gallery-item:nth-child(3),
+  .spa-page .spa-gallery-item:nth-child(4) {
+    grid-column: auto;
+    grid-row: auto;
+    min-height: 250px;
+  }
+}
+
+/* Spa page: gold brand accents */
+.spa-page .spa-treatments {
+  border-top: 0;
+}
+
+.spa-page .spa-section-header {
+  border-left: 0;
+}
+
+.spa-page .spa-treatments .spa-section-header h2 {
+  color: var(--gold);
+}
+
+.spa-page .spa-treatment-card {
+  border-color: rgba(181, 138, 84, 0.18);
+}
+
+.spa-page .spa-treatment-card::before {
+  border-color: rgba(181, 138, 84, 0.42);
+  box-shadow: inset 0 0 0 8px rgba(181, 138, 84, 0.08);
+}
+
+.spa-page .spa-treatment-card h3 {
+  color: var(--gold);
+}
+
+.spa-page .spa-treatment-card--wide {
+  border-top-color: rgba(181, 138, 84, 0.18);
+  box-shadow: none;
+}
+
+.spa-page .spa-treatment-card--wide h3 {
+  color: var(--gold-pale);
+}
+
+.spa-page .spa-treatment-card:nth-child(3),
+.spa-page .spa-treatment-card:nth-child(6) {
+  border-color: rgba(181, 138, 84, 0.28);
+  background: var(--gold);
+}
+
+.spa-page .spa-treatment-card:nth-child(3)::before,
+.spa-page .spa-treatment-card:nth-child(6)::before {
+  border-color: rgba(251, 245, 234, 0.48);
+  background: rgba(251, 245, 234, 0.08);
+  box-shadow: none;
+}
+
+.spa-page .spa-treatment-card:nth-child(3) h3,
+.spa-page .spa-treatment-card:nth-child(6) h3 {
+  color: var(--gold-pale);
+}
+
+.spa-page .spa-treatment-card:nth-child(3) ul,
+.spa-page .spa-treatment-card:nth-child(6) ul {
+  border-top-color: rgba(251, 245, 234, 0.18);
+}
+
+.spa-page .spa-treatment-card:nth-child(3) li,
+.spa-page .spa-treatment-card:nth-child(6) li {
+  color: rgba(251, 245, 234, 0.86);
+}
+
+.spa-page .spa-gallery {
+  border-top: 0;
+  border-bottom: 0;
+}
+
+.spa-page .spa-gallery-grid {
+  position: relative;
+}
+
+.spa-page .spa-gallery-grid::before {
+  display: none;
+}
+
+.spa-page .spa-gallery-item:nth-child(2),
+.spa-page .spa-gallery-item:nth-child(4) {
+  outline: 0;
+}
+
+.spa-page .spa-info {
+  border-top: 0;
+}
+
+.spa-page .spa-info-grid article:first-child {
+  background: var(--gold);
+  box-shadow: 0 18px 44px rgba(47, 36, 24, 0.06);
+}
+
+.spa-page .spa-info-grid article + article {
+  border-top: 1px solid rgba(181, 138, 84, 0.2);
+}
+
+.spa-page .spa-info-grid article + article h2 {
+  color: var(--gold);
+}
+
+.spa-page .spa-faq.events-page-faq details[open] summary,
+.spa-page .spa-faq.events-page-faq summary:hover {
+  color: var(--gold);
+}
+
+/* Client typography and color pass */
+body :is(h1, h2, h3, h4, h5, h6, [class*="heading"], [class*="title"]) {
+  font-family: "Cormorant Garamond", serif !important;
+  font-weight: 400 !important;
+  text-transform: none !important;
+  letter-spacing: 0 !important;
+}
+
+.amenities-showcase,
+.daytour-section,
+.cafe-highlights,
+.restaurant-menu-highlight,
+.rooms-amenities,
+.team-page-cta {
+  background: var(--sand);
+}
+
+.amenities-heading,
+.cafe-highlights-heading,
+.restaurant-menu-highlight .restaurant-section-header h2 {
+  color: var(--ink);
+}
+
+.cafe-highlights-desc,
+.restaurant-menu-highlight .restaurant-section-header p {
+  color: rgba(55, 41, 29, 0.76);
+}
+
+.amenities-viewport,
+.daytour-gallery {
+  background: var(--white);
+  box-shadow: 0 28px 72px rgba(47, 36, 24, 0.1);
+}
+
+.amenity-slide,
+.daytour-card,
+.cafe-menu-cat,
+.restaurant-menu-card {
+  border-color: rgba(181, 138, 84, 0.22);
+  background: var(--ivory);
+}
+
+.cafe-menu-cat:hover {
+  background: var(--white);
+}
+
+.amenity-content,
+.amenity-text,
+.daytour-card,
+.daytour-caption,
+.daytour-body p,
+.cafe-menu-cat-items li,
+.restaurant-menu-card li {
+  color: rgba(55, 41, 29, 0.78);
+}
+
+.amenity-title,
+.daytour-title,
+.cafe-menu-cat-label,
+.restaurant-menu-card h3 {
+  color: var(--gold);
+}
+
+.restaurant-menu-card ul {
+  border-top-color: rgba(181, 138, 84, 0.18);
+}
+
+.day-tour-editorial-copy,
+.team-page-cta-panel,
+.spa-page .spa-info-grid article:first-child {
+  background: var(--ivory);
+}
+
+.day-tour-editorial-copy p,
+.team-page-cta-copy p,
+.spa-page .spa-info-grid article:first-child p {
+  color: rgba(55, 41, 29, 0.78);
+}
+
+.team-page-cta .team-page-heading,
+.spa-page .spa-info-grid article:first-child h2 {
+  color: var(--ink);
+}
+
+.team-page-cta-panel {
+  border-color: rgba(181, 138, 84, 0.22);
+}
+
+.amenities-thumbs {
+  border-top-color: rgba(181, 138, 84, 0.28);
+}
+
+.amenities-thumb {
+  color: rgba(55, 41, 29, 0.64);
+}
+
+.amenities-thumb:hover,
+.amenities-thumb.is-active {
+  color: var(--ink);
+}
+
+.amenities-index {
+  color: rgba(55, 41, 29, 0.72);
+}
+
+.cafe-outline-btn,
+.restaurant-menu-action a {
+  border-color: rgba(181, 138, 84, 0.58);
+  color: var(--gold);
+}
+
+.cafe-outline-btn:hover,
+.restaurant-menu-action a:hover {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--ivory);
+}
+
+.site-footer {
+  background: var(--gold);
+  color: var(--white);
+  border-top: 0;
+}
+
+.footer-block {
+  border-top-color: rgba(55, 41, 29, 0.18);
+}
+
+.footer-logo,
+.footer-heading {
+  color: var(--white);
+}
+
+.footer-logo-rule {
+  background: rgba(55, 41, 29, 0.28);
+}
+
+.footer-logo-sub,
+.footer-links-list a,
+.footer-contact-list a {
+  color: rgba(255, 255, 255, 0.86);
+}
+
+.footer-links-list a:hover,
+.footer-contact-list a:hover {
+  color: var(--white);
+}
+
+.footer-icon,
+.footer-social-list a {
+  background: rgba(251, 245, 234, 0.18);
+  border-color: rgba(255, 255, 255, 0.32);
+  color: var(--white);
+}
+
+.footer-newsletter {
+  border-color: rgba(55, 41, 29, 0.24);
+  background: var(--ivory);
+}
+
+.footer-newsletter button {
+  background: var(--ink);
+  color: var(--ivory);
+}
+
+.footer-newsletter button:hover,
+.footer-social-list a:hover {
+  background: var(--ivory);
+  border-color: var(--ivory);
+  color: var(--gold);
+}
+
+.services-page {
+  background: var(--ivory);
+  color: var(--ink);
+}
+
+.services-main {
+  background: var(--ivory);
+  overflow: hidden;
+}
+
+.services-shell {
+  width: min(var(--content-max-width), calc(100% - 64px));
+  margin: 0 auto;
+}
+

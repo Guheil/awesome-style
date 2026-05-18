@@ -90,16 +90,19 @@ let reviewsPerPage = 3;
 let reviewsPage = 0;
 
 let galleryLightbox;
+let galleryLightboxDialog;
 let galleryLightboxLabel;
 let galleryLightboxCount;
 let galleryLightboxImage;
 let galleryLightboxPrev;
 let galleryLightboxNext;
 let galleryLightboxClose;
+let galleryLightboxFullscreenToggle;
 let galleryCollections = [];
 let activeGalleryCollectionIndex = -1;
 let activeGalleryImageIndex = 0;
 let lastGalleryTrigger = null;
+let galleryLightboxPseudoFullscreen = false;
 
 const diningVenueData = {
   restaurant: {
@@ -1215,6 +1218,12 @@ function handleDocumentClick(event) {
 function handleDocumentKeydown(event) {
   if (isGalleryLightboxOpen()) {
     if (event.key === "Escape") {
+      if (isGalleryLightboxFullscreen()) {
+        event.preventDefault();
+        exitGalleryLightboxFullscreen();
+        return;
+      }
+
       closeGalleryLightbox();
       return;
     }
@@ -1666,6 +1675,152 @@ function isGalleryLightboxOpen() {
   );
 }
 
+function getGalleryLightboxFullscreenElement() {
+  return (
+    document.fullscreenElement ||
+    document.webkitFullscreenElement ||
+    document.msFullscreenElement ||
+    null
+  );
+}
+
+function supportsGalleryLightboxFullscreen() {
+  if (!galleryLightboxDialog) {
+    return false;
+  }
+
+  return Boolean(
+    galleryLightboxDialog.requestFullscreen ||
+      galleryLightboxDialog.webkitRequestFullscreen ||
+      galleryLightboxDialog.msRequestFullscreen,
+  );
+}
+
+function isGalleryLightboxNativeFullscreen() {
+  return Boolean(
+    galleryLightboxDialog &&
+      getGalleryLightboxFullscreenElement() === galleryLightboxDialog,
+  );
+}
+
+function isGalleryLightboxFullscreen() {
+  return galleryLightboxPseudoFullscreen || isGalleryLightboxNativeFullscreen();
+}
+
+function syncGalleryLightboxFullscreenState() {
+  if (isGalleryLightboxNativeFullscreen() && galleryLightboxPseudoFullscreen) {
+    galleryLightboxPseudoFullscreen = false;
+  }
+
+  const fullscreenActive = isGalleryLightboxFullscreen();
+
+  if (galleryLightbox) {
+    galleryLightbox.classList.toggle("is-fullscreen", fullscreenActive);
+  }
+
+  if (galleryLightboxDialog) {
+    galleryLightboxDialog.classList.toggle("is-fullscreen", fullscreenActive);
+  }
+
+  if (galleryLightboxFullscreenToggle) {
+    galleryLightboxFullscreenToggle.setAttribute(
+      "aria-pressed",
+      String(fullscreenActive),
+    );
+  }
+
+  if (galleryLightboxClose) {
+    galleryLightboxClose.setAttribute(
+      "aria-label",
+      fullscreenActive
+        ? "Exit fullscreen gallery image viewer"
+        : "Close gallery image viewer",
+    );
+  }
+}
+
+function setGalleryLightboxPseudoFullscreen(nextState) {
+  galleryLightboxPseudoFullscreen = Boolean(nextState);
+  syncGalleryLightboxFullscreenState();
+
+  if (galleryLightboxClose && galleryLightboxPseudoFullscreen) {
+    galleryLightboxClose.focus();
+  }
+}
+
+function requestGalleryLightboxFullscreen() {
+  setGalleryLightboxPseudoFullscreen(true);
+
+  if (!supportsGalleryLightboxFullscreen()) {
+    return null;
+  }
+
+  const requestFullscreen =
+    galleryLightboxDialog.requestFullscreen ||
+    galleryLightboxDialog.webkitRequestFullscreen ||
+    galleryLightboxDialog.msRequestFullscreen;
+
+  const requestResult = requestFullscreen.call(galleryLightboxDialog);
+
+  if (requestResult && typeof requestResult.then === "function") {
+    return requestResult
+      .then(function () {
+        if (galleryLightboxClose) {
+          galleryLightboxClose.focus();
+        }
+      })
+      .catch(function () {
+        return null;
+      });
+  }
+
+  if (galleryLightboxClose) {
+    galleryLightboxClose.focus();
+  }
+
+  return requestResult;
+}
+
+function exitGalleryLightboxFullscreen() {
+  const nativeFullscreenActive = isGalleryLightboxNativeFullscreen();
+
+  if (galleryLightboxPseudoFullscreen) {
+    setGalleryLightboxPseudoFullscreen(false);
+  }
+
+  if (!nativeFullscreenActive) {
+    return null;
+  }
+
+  const exitFullscreen =
+    document.exitFullscreen ||
+    document.webkitExitFullscreen ||
+    document.msExitFullscreen;
+
+  if (typeof exitFullscreen !== "function") {
+    return null;
+  }
+
+  const exitResult = exitFullscreen.call(document);
+
+  if (exitResult && typeof exitResult.then === "function") {
+    return exitResult.catch(function () {
+      return null;
+    });
+  }
+
+  return exitResult;
+}
+
+function handleGalleryLightboxCloseButtonClick() {
+  if (isGalleryLightboxFullscreen()) {
+    exitGalleryLightboxFullscreen();
+    return;
+  }
+
+  closeGalleryLightbox();
+}
+
 function preloadGalleryLightboxImage(src) {
   if (!src) {
     return;
@@ -1745,20 +1900,28 @@ function openGalleryLightbox(collectionIndex, imageIndex, triggerElement) {
   galleryLightbox.hidden = false;
   galleryLightbox.setAttribute("aria-hidden", "false");
   galleryLightbox.classList.add("is-open");
+  galleryLightboxPseudoFullscreen = false;
+  syncGalleryLightboxFullscreenState();
 
   if (galleryLightboxClose) {
     galleryLightboxClose.focus();
   }
 }
 
-function closeGalleryLightbox() {
-  if (!galleryLightbox || !isGalleryLightboxOpen()) {
+function finishClosingGalleryLightbox() {
+  if (!galleryLightbox) {
     return;
   }
 
-  galleryLightbox.classList.remove("is-open");
+  galleryLightbox.classList.remove("is-open", "is-fullscreen");
   galleryLightbox.hidden = true;
   galleryLightbox.setAttribute("aria-hidden", "true");
+
+  if (galleryLightboxDialog) {
+    galleryLightboxDialog.classList.remove("is-fullscreen");
+  }
+
+  galleryLightboxPseudoFullscreen = false;
 
   if (galleryLightboxImage) {
     galleryLightboxImage.removeAttribute("src");
@@ -1775,17 +1938,42 @@ function closeGalleryLightbox() {
   lastGalleryTrigger = null;
 }
 
+function closeGalleryLightbox() {
+  if (!galleryLightbox || !isGalleryLightboxOpen()) {
+    return;
+  }
+
+  const exitResult = isGalleryLightboxFullscreen()
+    ? exitGalleryLightboxFullscreen()
+    : null;
+
+  if (exitResult && typeof exitResult.then === "function") {
+    exitResult.finally(finishClosingGalleryLightbox);
+    return;
+  }
+
+  finishClosingGalleryLightbox();
+}
+
 function initGalleryLightbox() {
   galleryLightbox = document.getElementById("galleryLightbox");
+  galleryLightboxDialog = document.getElementById("galleryLightboxDialog");
   galleryLightboxLabel = document.getElementById("galleryLightboxLabel");
   galleryLightboxCount = document.getElementById("galleryLightboxCount");
   galleryLightboxImage = document.getElementById("galleryLightboxImage");
   galleryLightboxPrev = document.getElementById("galleryLightboxPrev");
   galleryLightboxNext = document.getElementById("galleryLightboxNext");
   galleryLightboxClose = document.getElementById("galleryLightboxClose");
+  galleryLightboxFullscreenToggle = document.getElementById(
+    "galleryLightboxFullscreen",
+  );
 
   if (!galleryLightbox || !galleryLightboxImage) {
     return;
+  }
+
+  if (galleryLightboxFullscreenToggle) {
+    galleryLightboxFullscreenToggle.hidden = false;
   }
 
   galleryCollections = Array.from(
@@ -1833,7 +2021,16 @@ function initGalleryLightbox() {
     .filter(Boolean);
 
   if (galleryLightboxClose) {
-    galleryLightboxClose.addEventListener("click", closeGalleryLightbox);
+    galleryLightboxClose.addEventListener(
+      "click",
+      handleGalleryLightboxCloseButtonClick,
+    );
+  }
+
+  if (galleryLightboxFullscreenToggle) {
+    galleryLightboxFullscreenToggle.addEventListener("click", function () {
+      requestGalleryLightboxFullscreen();
+    });
   }
 
   if (galleryLightboxPrev) {
@@ -1853,6 +2050,16 @@ function initGalleryLightbox() {
       closeGalleryLightbox();
     }
   });
+
+  document.addEventListener("fullscreenchange", syncGalleryLightboxFullscreenState);
+  document.addEventListener(
+    "webkitfullscreenchange",
+    syncGalleryLightboxFullscreenState,
+  );
+  document.addEventListener(
+    "MSFullscreenChange",
+    syncGalleryLightboxFullscreenState,
+  );
 }
 
 function closeFaqItem(details) {

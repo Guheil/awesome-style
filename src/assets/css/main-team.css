@@ -1,0 +1,968 @@
+﻿.team-page-main {
+  position: relative;
+  z-index: 4;
+  background: var(--ivory);
+}
+
+.team-page-shell {
+  width: 100%;
+  max-width: var(--content-shell-max-width);
+  margin: 0 auto;
+  padding: 0 48px;
+}
+
+.team-page-shell--narrow {
+  max-width: 1160px;
+  margin: 0 auto;
+}
+
+.team-page-heading {
+  margin: 0;
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(36px, 4.6vw, 64px);
+  line-height: 0.98;
+  font-weight: 600;
+  color: var(--gold);
+}
+
+.team-page-hero {
+  position: relative;
+  min-height: clamp(540px, 78vh, 760px);
+  height: clamp(540px, 78vh, 760px);
+  justify-content: center;
+  overflow: hidden;
+  background: var(--navy);
+}
+
+.team-page-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: rgba(20, 13, 8, 0.38);
+}
+
+.team-page-hero-media {
+  position: absolute;
+  inset: 0;
+}
+
+.team-page-hero-media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(0.86) contrast(0.96) brightness(0.9);
+}
+
+.team-page-hero-copy {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: var(--content-shell-max-width);
+  margin: 0 auto;
+  padding: 82px 48px 0;
+}
+
+.team-page-hero-title {
+  max-width: 18ch;
+  margin: 0;
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(48px, 5.8vw, 92px);
+  line-height: 0.96;
+  font-weight: 500;
+  color: var(--ivory);
+  text-shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
+}
+
+.team-page-intro,
+.team-page-rates,
+.team-page-terms,
+.team-page-testimonials,
+.team-page-faq {
+  background: var(--white);
+}
+
+.team-page-intro {
+  padding: 54px 0 38px;
+}
+
+.team-page-intro p,
+.team-page-rates p,
+.team-page-catalog-header p,
+.team-page-activity-card p,
+.team-page-detail-card p,
+.team-page-cta-copy p,
+.team-page-testimonial-card p,
+.team-page-stay-copy,
+.team-page-terms-list li,
+.team-page-faq.events-page-faq p {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.9;
+}
+
+.team-page-intro p,
+.team-page-rates p {
+  margin: 0 auto;
+  text-align: center;
+  color: rgba(55, 41, 29, 0.78);
+}
+
+.team-page-intro a,
+.team-page-catalog a {
+  color: inherit;
+  text-decoration-color: rgba(181, 138, 84, 0.48);
+  text-underline-offset: 0.16em;
+}
+
+.team-page-rates {
+  padding: 8px 0 82px;
+}
+
+.team-page-rates-inner {
+  padding-top: 34px;
+  border-top: 1px solid rgba(181, 138, 84, 0.22);
+  display: grid;
+  grid-template-columns: minmax(280px, 0.78fr) minmax(0, 1.22fr);
+  gap: 48px;
+  align-items: start;
+  text-align: left;
+}
+
+.team-page-rates p {
+  margin-top: 6px;
+  max-width: none;
+  text-align: left;
+}
+
+.team-page-catalog {
+  padding: 88px 0 96px;
+  background: var(--navy);
+}
+
+.team-page-catalog-header {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.84fr) minmax(0, 1.16fr);
+  gap: 48px;
+  align-items: end;
+  text-align: left;
+}
+
+.team-page-catalog-header .team-page-heading {
+  color: var(--white);
+}
+
+.team-page-catalog-header p {
+  margin-top: 0;
+  color: rgba(251, 245, 234, 0.82);
+}
+
+.team-page-activity-grid,
+.team-page-room-grid,
+.team-page-testimonials-grid {
+  display: grid;
+  gap: 26px 24px;
+}
+
+.team-page-activity-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-rows: auto;
+  margin-top: 50px;
+  align-items: stretch;
+}
+
+.team-page-activity-card {
+  min-height: 100%;
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: clamp(240px, 21vw, 310px) 1fr;
+  overflow: hidden;
+  border: 1px solid rgba(243, 226, 189, 0.2);
+  border-radius: 12px;
+  background: var(--ivory);
+  box-shadow: 0 26px 62px rgba(5, 3, 2, 0.24);
+}
+
+.team-page-activity-card--feature {
+  grid-row: auto;
+  grid-template-columns: 1fr;
+}
+
+.team-page-activity-media {
+  min-height: 0;
+  margin: 0;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(181, 138, 84, 0.2);
+  background: var(--sand);
+}
+
+.team-page-activity-card--feature .team-page-activity-media {
+  min-height: 0;
+}
+
+.team-page-activity-media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  object-fit: cover;
+  filter: saturate(0.88) contrast(1.02);
+}
+
+.team-page-activity-copy {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: clamp(30px, 2.4vw, 40px);
+}
+
+.team-page-activity-card h3 {
+  margin: 0;
+  max-width: 100%;
+  color: var(--gold);
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(32px, 2.4vw, 42px);
+  line-height: 1;
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.team-page-activity-card--feature h3 {
+  max-width: 100%;
+  font-size: clamp(32px, 2.4vw, 42px);
+}
+
+.team-page-activity-card p {
+  margin-top: 18px;
+  color: rgba(55, 41, 29, 0.78);
+}
+
+.team-page-activity-card a {
+  color: var(--gold);
+  text-decoration-color: rgba(181, 138, 84, 0.5);
+}
+
+.team-page-room-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin-top: 52px;
+  padding-top: 48px;
+  border-top: 1px solid rgba(251, 245, 234, 0.16);
+  align-items: stretch;
+}
+
+.team-page-detail-card {
+  min-height: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: clamp(24px, 2.2vw, 34px);
+  border: 1px solid rgba(243, 226, 189, 0.22);
+  border-radius: 12px;
+  background: rgba(251, 245, 234, 0.045);
+  box-shadow: inset 0 1px 0 rgba(251, 245, 234, 0.08);
+  transition:
+    border-color 0.24s ease,
+    background 0.24s ease,
+    transform 0.24s ease;
+}
+
+.team-page-detail-card::before {
+  content: "";
+  width: 44px;
+  height: 1px;
+  margin-bottom: 22px;
+  background: rgba(215, 180, 122, 0.7);
+}
+
+.team-page-detail-card:hover {
+  border-color: rgba(243, 226, 189, 0.38);
+  background: rgba(251, 245, 234, 0.065);
+  transform: translateY(-2px);
+}
+
+.team-page-room-grid .team-page-detail-card:first-child {
+  grid-column: auto;
+}
+
+.team-page-detail-card h3 {
+  margin: 0;
+  color: var(--gold-pale);
+  font-family: var(--font-accent-heading);
+  font-size: clamp(17px, 1.55vw, 23px);
+  line-height: 1.14;
+  font-weight: 800;
+  letter-spacing: 0.025em;
+  text-transform: uppercase;
+}
+
+.team-page-detail-card p {
+  margin-top: 18px;
+  color: rgba(251, 245, 234, 0.76);
+}
+
+.team-page-room-meta {
+  display: grid;
+  gap: 10px;
+  margin: auto 0 0;
+  padding: 24px 0 0;
+  border-top: 1px solid rgba(243, 226, 189, 0.16);
+  list-style: none;
+}
+
+.team-page-room-meta li {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(54px, auto) minmax(0, 1fr);
+  gap: 10px;
+  padding-left: 0;
+  color: rgba(251, 245, 234, 0.82);
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.team-page-room-meta li::before {
+  display: none;
+}
+
+.team-page-room-meta strong {
+  color: var(--gold-bright);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.team-page-room-meta li:last-child {
+  display: block;
+  margin-top: 10px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(243, 226, 189, 0.16);
+  color: var(--ivory);
+  font-size: 15px;
+  line-height: 1.45;
+}
+
+.team-page-room-meta li:last-child strong {
+  display: block;
+  margin-bottom: 7px;
+  color: var(--gold-bright);
+}
+
+.team-page-room-action {
+  display: flex;
+  justify-content: center;
+  margin-top: 54px;
+}
+
+.team-page-room-action a,
+.team-page-cta-action button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 46px;
+  padding: 0 26px;
+  border-radius: 999px;
+  font-family: "Jost", sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background 0.24s ease,
+    border-color 0.24s ease,
+    color 0.24s ease,
+    transform 0.24s ease;
+}
+
+.team-page-room-action a {
+  border: 1px solid rgba(251, 245, 234, 0.52);
+  background: transparent;
+  color: var(--ivory);
+}
+
+.team-page-room-action a:hover,
+.team-page-cta-action button:hover {
+  transform: translateY(-1px);
+}
+
+.team-page-room-action a:hover {
+  border-color: var(--ivory);
+  background: var(--ivory);
+  color: var(--ink);
+}
+
+.team-page-terms {
+  padding: 92px 0 98px;
+  background: var(--ivory);
+}
+
+.team-page-terms-layout {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.58fr) minmax(0, 1.42fr);
+  gap: clamp(34px, 5vw, 76px);
+  align-items: stretch;
+  padding-top: 38px;
+  border-top: 1px solid rgba(181, 138, 84, 0.24);
+}
+
+.team-page-terms-copy {
+  display: flex;
+  align-items: flex-start;
+}
+
+.team-page-terms-copy .team-page-heading {
+  max-width: 10ch;
+}
+
+.team-page-terms-body {
+  padding: clamp(28px, 4vw, 44px);
+  border: 1px solid rgba(181, 138, 84, 0.18);
+  background: var(--white);
+  box-shadow: 0 18px 44px rgba(47, 36, 24, 0.05);
+}
+
+.team-page-terms-list {
+  counter-reset: teamTerms;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.team-page-terms-list li {
+  position: relative;
+  padding: 20px 0 20px 58px;
+  border-top: 1px solid rgba(181, 138, 84, 0.16);
+  color: rgba(55, 41, 29, 0.8);
+}
+
+.team-page-terms-list li:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.team-page-terms-list li:not(.team-page-terms-subitem)::before {
+  counter-increment: teamTerms;
+  content: counter(teamTerms, decimal-leading-zero);
+  position: absolute;
+  left: 0;
+  top: 20px;
+  color: var(--gold);
+  font-family: "Cormorant Garamond", serif;
+  font-size: 30px;
+  line-height: 1;
+  font-weight: 600;
+}
+
+.team-page-terms-list li:first-child::before {
+  top: 0;
+}
+
+.team-page-terms-list .team-page-terms-subitem {
+  margin-left: 58px;
+  padding: 14px 0 14px 24px;
+  border-top: 1px solid rgba(181, 138, 84, 0.12);
+  border-left: 1px solid rgba(181, 138, 84, 0.26);
+  font-size: 14px;
+}
+
+.team-page-testimonials {
+  padding: 108px 0 116px;
+  background: var(--sand);
+}
+
+.team-page-testimonials .team-page-shell {
+  display: grid;
+  grid-template-columns: minmax(260px, 0.34fr) minmax(0, 1fr);
+  gap: 0;
+  align-items: stretch;
+  border-top: 1px solid rgba(181, 138, 84, 0.26);
+  border-bottom: 1px solid rgba(181, 138, 84, 0.26);
+}
+
+.team-page-testimonials .team-page-heading {
+  max-width: 10ch;
+  padding: clamp(34px, 4vw, 54px) clamp(28px, 4vw, 46px) clamp(34px, 4vw, 54px)
+    0;
+  border-right: 1px solid rgba(181, 138, 84, 0.2);
+  text-align: left;
+}
+
+.team-page-testimonials-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  margin-top: 0;
+}
+
+.team-page-testimonial-card {
+  display: grid;
+  grid-template-columns: minmax(150px, 0.24fr) minmax(0, 1fr);
+  gap: clamp(24px, 4vw, 52px);
+  align-items: start;
+  min-height: auto;
+  padding: clamp(30px, 4vw, 48px) 0 clamp(30px, 4vw, 48px)
+    clamp(28px, 4vw, 52px);
+  border-top: 1px solid rgba(181, 138, 84, 0.16);
+  background: transparent;
+  box-shadow: none;
+}
+
+.team-page-testimonial-card:first-child {
+  border-top: 0;
+}
+
+.team-page-testimonial-card::before {
+  content: "";
+  grid-column: 1;
+  grid-row: 1;
+  width: 42px;
+  height: 1px;
+  margin-top: 0.68em;
+  background: rgba(181, 138, 84, 0.72);
+}
+
+.team-page-testimonial-card:first-child p {
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(26px, 2.4vw, 36px);
+  line-height: 1.22;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.team-page-testimonial-card p {
+  grid-column: 2;
+  grid-row: 1;
+  max-width: 76ch;
+  color: rgba(55, 41, 29, 0.78);
+}
+
+.team-page-testimonial-card cite {
+  grid-column: 1;
+  grid-row: 1;
+  align-self: start;
+  padding-left: 58px;
+  color: var(--gold);
+  font-style: normal;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.team-page-cta {
+  padding: 78px 0 82px;
+  background: var(--gold);
+}
+
+.team-page-cta-panel {
+  padding: clamp(34px, 4vw, 46px);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  background: rgba(251, 245, 234, 0.08);
+}
+
+.team-page-cta-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 34px;
+  align-items: center;
+}
+
+.team-page-cta .team-page-heading {
+  max-width: 12ch;
+  color: var(--white);
+}
+
+.team-page-cta-copy p {
+  max-width: 62ch;
+  margin-top: 18px;
+  color: rgba(255, 250, 242, 0.92);
+}
+
+.team-page-cta-action button {
+  border: 1px solid var(--white);
+  background: var(--white);
+  color: var(--gold);
+}
+
+.team-page-cta-action button:hover {
+  border-color: var(--ink);
+  background: var(--ink);
+  color: var(--ivory);
+}
+
+.team-page-stay-cta .stay-cta-stage {
+  min-height: clamp(560px, 66vh, 720px);
+  gap: 26px;
+  padding: clamp(76px, 8vw, 112px) 48px;
+}
+
+.team-page-stay-cta .stay-cta-stage::after {
+  background: rgba(20, 13, 8, 0.56);
+}
+
+.team-page-stay-cta .stay-cta-copy {
+  flex-direction: column;
+  width: min(100%, 1060px);
+  margin: 0 auto;
+  text-align: center;
+}
+
+.team-page-stay-cta .stay-cta-title {
+  max-width: 17ch;
+  margin: 0 auto;
+  font-size: clamp(46px, 5.2vw, 82px);
+}
+
+.team-page-stay-copy {
+  max-width: 78ch;
+  margin: 24px auto 0;
+  color: rgba(251, 245, 234, 0.86);
+  text-align: center;
+  text-shadow: 0 10px 28px rgba(0, 0, 0, 0.26);
+}
+
+.team-page-stay-cta .stay-cta-actions {
+  margin-top: 4px;
+}
+
+.team-page-faq.events-page-faq {
+  padding: 76px 0 84px;
+  background: var(--white);
+}
+
+.team-page-faq .team-page-heading {
+  max-width: 760px;
+  margin: 0 auto;
+  font-size: clamp(38px, 4.7vw, 68px);
+  text-align: center;
+}
+
+.team-page-faq-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 38px;
+  align-items: start;
+}
+
+.team-page-faq-copy {
+  padding-bottom: 32px;
+  border-bottom: 1px solid rgba(181, 138, 84, 0.18);
+}
+
+.team-page-faq-content {
+  width: 100%;
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+.team-page-faq .events-page-faq-list {
+  max-width: none;
+  margin-top: 0;
+  gap: 0;
+}
+
+.team-page-faq.events-page-faq details {
+  border-top: 1px solid rgba(55, 41, 29, 0.12);
+  border-right: 0;
+  border-bottom: 0;
+  border-left: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.team-page-faq.events-page-faq details:last-child {
+  border-bottom: 1px solid rgba(55, 41, 29, 0.12);
+}
+
+.team-page-faq.events-page-faq summary {
+  padding: 24px 50px 24px 0;
+  color: var(--ink);
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.7;
+  letter-spacing: 0;
+}
+
+.team-page-faq.events-page-faq summary::before,
+.team-page-faq.events-page-faq summary::after {
+  right: 8px;
+}
+
+.team-page-faq.events-page-faq details p {
+  padding: 0 48px 0 0;
+  color: rgba(55, 41, 29, 0.72);
+  font-size: 14px;
+  line-height: 1.82;
+}
+
+.team-page-faq.events-page-faq details.is-open p {
+  padding: 0 48px 24px 0;
+}
+
+@media (max-width: 1120px) {
+  .team-page-rates-inner,
+  .team-page-catalog-header,
+  .team-page-faq-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .team-page-activity-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .team-page-activity-card,
+  .team-page-activity-card--feature {
+    grid-template-columns: 1fr;
+    grid-template-rows: 300px 1fr;
+  }
+
+  .team-page-activity-card--feature .team-page-activity-media {
+    min-height: 0;
+  }
+
+  .team-page-room-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .team-page-testimonials .team-page-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .team-page-testimonials .team-page-heading {
+    max-width: 12ch;
+    padding-right: 0;
+    border-right: 0;
+    border-bottom: 1px solid rgba(181, 138, 84, 0.2);
+  }
+
+  .team-page-terms-layout,
+  .team-page-cta-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .team-page-terms-copy .team-page-heading {
+    max-width: none;
+  }
+
+  .team-page-faq .team-page-heading {
+    max-width: none;
+  }
+}
+
+@media (max-width: 760px) {
+  .team-page-shell,
+  .team-page-hero-copy {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .team-page-hero {
+    min-height: 520px;
+    height: 520px;
+  }
+
+  .team-page-intro {
+    padding: 42px 0 30px;
+  }
+
+  .team-page-rates,
+  .team-page-catalog,
+  .team-page-terms,
+  .team-page-testimonials,
+  .team-page-faq.events-page-faq,
+  .team-page-cta {
+    padding-top: 64px;
+    padding-bottom: 68px;
+  }
+
+  .team-page-heading {
+    font-size: clamp(30px, 10vw, 42px);
+  }
+
+  .team-page-intro p,
+  .team-page-rates p,
+  .team-page-catalog-header p,
+  .team-page-activity-card p,
+  .team-page-detail-card p,
+  .team-page-cta-copy p,
+  .team-page-testimonial-card p,
+  .team-page-stay-copy,
+  .team-page-terms-list li,
+  .team-page-faq.events-page-faq p {
+    font-size: 14px;
+    line-height: 1.8;
+  }
+
+  .team-page-activity-grid,
+  .team-page-room-grid,
+  .team-page-testimonials-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .team-page-testimonials .team-page-heading {
+    max-width: none;
+    padding: 28px 0;
+  }
+
+  .team-page-testimonial-card,
+  .team-page-testimonial-card:first-child {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding: 26px 0;
+  }
+
+  .team-page-testimonial-card::before {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .team-page-testimonial-card p,
+  .team-page-testimonial-card:first-child p {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .team-page-testimonial-card:first-child p {
+    font-size: clamp(22px, 8vw, 30px);
+  }
+
+  .team-page-testimonial-card cite {
+    grid-column: 1;
+    grid-row: 1;
+    padding-left: 58px;
+  }
+
+  .team-page-activity-grid {
+    grid-template-rows: auto;
+  }
+
+  .team-page-activity-card--feature {
+    grid-row: auto;
+  }
+
+  .team-page-activity-card,
+  .team-page-activity-card--feature {
+    grid-template-columns: 1fr;
+    grid-template-rows: 250px 1fr;
+  }
+
+  .team-page-activity-media,
+  .team-page-activity-card--feature .team-page-activity-media,
+  .team-page-activity-media img {
+    min-height: 250px;
+  }
+
+  .team-page-activity-copy {
+    padding: 26px;
+  }
+
+  .team-page-room-grid {
+    padding-top: 38px;
+  }
+
+  .team-page-room-action {
+    margin-top: 42px;
+  }
+
+  .team-page-terms-list .team-page-terms-subitem {
+    margin-left: 20px;
+    padding-left: 18px;
+  }
+
+  .team-page-terms-body {
+    padding: 24px 20px;
+  }
+
+  .team-page-terms-list li {
+    padding-left: 48px;
+  }
+
+  .team-page-stay-cta .stay-cta-stage {
+    min-height: 560px;
+    padding: 64px 20px;
+  }
+
+  .team-page-stay-cta .stay-cta-title {
+    max-width: 12ch;
+  }
+
+  .team-page-stay-copy {
+    margin-top: 20px;
+  }
+
+  .team-page-faq.events-page-faq summary {
+    padding: 18px 40px 18px 0;
+  }
+
+  .team-page-faq.events-page-faq details p {
+    padding: 0 24px 0 0;
+    font-size: 13px;
+  }
+
+  .team-page-faq.events-page-faq details.is-open p {
+    padding: 0 24px 18px 0;
+  }
+}
+
+@media (max-width: 760px) {
+  .about-hero {
+    min-height: 400px;
+    height: 400px;
+  }
+
+  .about-hero-copy,
+  .about-shell {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .about-hero-copy {
+    padding-bottom: 72px;
+  }
+
+  .about-feature {
+    padding: 74px 0;
+  }
+
+  .about-heading {
+    font-size: clamp(30px, 10vw, 42px);
+  }
+
+  .about-copy p {
+    font-size: 14px;
+    line-height: 1.82;
+  }
+
+  .about-visual {
+    padding: 0 12px 22px 0;
+  }
+
+  .about-visual-accent {
+    width: min(42%, 170px);
+    border-width: 6px;
+  }
+
+  .about-space-list {
+    gap: 16px;
+  }
+
+  .about-space-list li {
+    padding-left: 28px;
+    font-size: 18px;
+  }
+
+  .about-space-list li::before {
+    width: 12px;
+    height: 12px;
+    box-shadow:
+      inset 0 0 0 3px var(--ivory),
+      0 0 0 1px var(--navy);
+  }
+}

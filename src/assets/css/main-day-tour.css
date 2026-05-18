@@ -1,0 +1,613 @@
+﻿.day-tour-page {
+  background: var(--ivory);
+  color: var(--ink);
+}
+
+.day-tour-main {
+  position: relative;
+  z-index: 4;
+  background: var(--ivory);
+}
+
+.day-tour-shell {
+  width: 100%;
+  max-width: var(--content-shell-max-width);
+  margin: 0 auto;
+  padding: 0 48px;
+}
+
+.day-tour-heading {
+  margin: 0;
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(36px, 4.4vw, 64px);
+  line-height: 0.98;
+  font-weight: 600;
+  color: var(--gold);
+}
+
+.day-tour-hero {
+  position: relative;
+  min-height: clamp(540px, 78vh, 760px);
+  height: clamp(540px, 78vh, 760px);
+  justify-content: center;
+  overflow: hidden;
+  background: var(--gold);
+}
+
+.day-tour-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: rgba(20, 13, 8, 0.4);
+}
+
+.day-tour-hero-media {
+  position: absolute;
+  inset: 0;
+}
+
+.day-tour-hero-media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(0.86) contrast(0.96) brightness(0.9);
+}
+
+.day-tour-hero-copy {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: var(--content-shell-max-width);
+  margin: 0 auto;
+  padding: 82px 48px 0;
+}
+
+.day-tour-hero-title {
+  max-width: 19ch;
+  margin: 0;
+  color: var(--ivory);
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(48px, 5.8vw, 92px);
+  line-height: 0.96;
+  font-weight: 500;
+  text-shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
+}
+
+.day-tour-intro {
+  padding: 96px 0 74px;
+  background: var(--white);
+}
+
+.day-tour-poster {
+  position: relative;
+  max-width: 960px;
+  margin: 0 auto;
+  border: 1px solid rgba(181, 138, 84, 0.2);
+  background: var(--sand);
+  box-shadow: 0 26px 58px rgba(47, 36, 24, 0.09);
+}
+
+.day-tour-poster img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.day-tour-poster figcaption {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  display: grid;
+  place-items: center;
+  width: 78px;
+  height: 86px;
+  border: 1px solid rgba(243, 226, 189, 0.38);
+  background: var(--navy);
+  color: var(--gold-pale);
+  font-family: "Cormorant Garamond", serif;
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 0.94;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.day-tour-intro-copy {
+  max-width: 880px;
+  margin: 38px auto 0;
+  text-align: center;
+}
+
+.day-tour-intro-copy p,
+.day-tour-editorial-copy p,
+.day-tour-package-copy p,
+.day-tour-package-copy li,
+.day-tour-location-copy p,
+.day-tour-cta p,
+.day-tour-topic-card p,
+.day-tour-faq.events-page-faq p,
+.day-tour-accordion.events-page-faq p {
+  margin: 0;
+  color: rgba(55, 41, 29, 0.78);
+  font-size: 15px;
+  line-height: 1.88;
+}
+
+.day-tour-intro-copy p {
+  margin-top: 20px;
+}
+
+.day-tour-intro-copy button,
+.day-tour-cta button,
+.day-tour-show-more {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 46px;
+  padding: 0 26px;
+  border-radius: 999px;
+  font-family: "Jost", sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background 0.24s ease,
+    border-color 0.24s ease,
+    color 0.24s ease,
+    transform 0.24s ease;
+}
+
+.day-tour-intro-copy button {
+  margin-top: 28px;
+  border: 1px solid var(--gold);
+  background: var(--gold);
+  color: var(--ivory);
+}
+
+.day-tour-intro-copy button:hover,
+.day-tour-cta button:hover,
+.day-tour-show-more:hover {
+  transform: translateY(-1px);
+}
+
+.day-tour-editorial {
+  padding: 76px 0 88px;
+  background: var(--ivory);
+}
+
+.day-tour-editorial .day-tour-shell {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(360px, 0.86fr);
+  gap: 0;
+  align-items: stretch;
+}
+
+.day-tour-editorial-media {
+  min-height: 430px;
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid rgba(181, 138, 84, 0.18);
+  background: var(--latte);
+}
+
+.day-tour-editorial-media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(0.9) contrast(1.02);
+}
+
+.day-tour-editorial-copy {
+  display: grid;
+  align-content: center;
+  gap: 18px;
+  padding: clamp(34px, 5vw, 62px);
+  background: var(--gold);
+}
+
+.day-tour-editorial-copy p {
+  color: rgba(251, 245, 234, 0.84);
+}
+
+.day-tour-packages {
+  padding: 94px 0 92px;
+  background: var(--white);
+}
+
+.day-tour-package-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 112px;
+  gap: clamp(32px, 5vw, 72px);
+  align-items: start;
+  padding-top: 38px;
+  border-top: 1px solid rgba(181, 138, 84, 0.24);
+}
+
+.day-tour-package-copy h3 {
+  margin: 42px 0 18px;
+  color: var(--gold);
+  font-family: var(--font-accent-heading);
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.day-tour-package-copy p + p {
+  margin-top: 18px;
+}
+
+.day-tour-package-copy a,
+.day-tour-cta a,
+.day-tour-faq a,
+.day-tour-accordion a {
+  color: inherit;
+  text-decoration-color: rgba(181, 138, 84, 0.48);
+  text-underline-offset: 0.16em;
+}
+
+.day-tour-activity-list {
+  display: grid;
+  gap: 10px;
+  margin: 22px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.day-tour-activity-list li {
+  position: relative;
+  padding-left: 22px;
+}
+
+.day-tour-activity-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.78em;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--gold);
+}
+
+.day-tour-activity-list--nested {
+  margin-left: 28px;
+  padding-left: 28px;
+  border-left: 1px solid rgba(181, 138, 84, 0.2);
+}
+
+.day-tour-package-note {
+  position: sticky;
+  top: 110px;
+  display: grid;
+  place-items: center;
+  width: 112px;
+  min-height: 132px;
+  border: 1px solid rgba(181, 138, 84, 0.24);
+  background: var(--ivory);
+  color: var(--gold);
+  font-family: "Cormorant Garamond", serif;
+  text-transform: uppercase;
+}
+
+.day-tour-package-note span {
+  font-size: 22px;
+  line-height: 1;
+  font-weight: 600;
+}
+
+.day-tour-package-note strong {
+  color: var(--ink);
+  font-size: 42px;
+  line-height: 0.9;
+  font-weight: 500;
+}
+
+.day-tour-accordion {
+  margin-top: 46px;
+  padding: 0;
+  background: transparent;
+}
+
+.day-tour-accordion .events-page-faq-list,
+.day-tour-faq .events-page-faq-list {
+  max-width: none;
+}
+
+.day-tour-accordion.events-page-faq details,
+.day-tour-faq.events-page-faq details {
+  border: 1px solid rgba(181, 138, 84, 0.12);
+  border-radius: 0;
+  background: var(--ivory);
+}
+
+.day-tour-location {
+  padding: 86px 0 94px;
+  background: var(--ivory);
+}
+
+.day-tour-location-layout {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.58fr) minmax(0, 1fr);
+  gap: clamp(34px, 5vw, 72px);
+  align-items: stretch;
+}
+
+.day-tour-location-copy {
+  display: grid;
+  align-content: center;
+  gap: 22px;
+}
+
+.day-tour-map {
+  min-height: 360px;
+  border: 1px solid rgba(181, 138, 84, 0.2);
+  background: var(--sand);
+  overflow: hidden;
+}
+
+.day-tour-map iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 360px;
+  border: 0;
+}
+
+.day-tour-cta {
+  padding: 0 0 94px;
+  background: var(--ivory);
+}
+
+.day-tour-cta-panel {
+  position: relative;
+  display: grid;
+  gap: 20px;
+  padding: clamp(38px, 5vw, 58px);
+  border: 1px solid rgba(243, 226, 189, 0.2);
+  background: var(--navy);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.day-tour-cta-copy {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  gap: 20px;
+  width: min(100%, 760px);
+}
+
+.day-tour-cta-image {
+  position: absolute;
+  inset: 0 0 0 auto;
+  z-index: 1;
+  width: min(58%, 820px);
+  opacity: 0.56;
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(0, 0, 0, 0.22) 20%,
+    rgba(0, 0, 0, 0.78) 44%,
+    black 64%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(0, 0, 0, 0.22) 20%,
+    rgba(0, 0, 0, 0.78) 44%,
+    black 64%
+  );
+}
+
+.day-tour-cta-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center right;
+  filter: saturate(0.88) contrast(1.04) brightness(0.92);
+}
+
+.day-tour-cta .day-tour-heading {
+  max-width: 15ch;
+  color: var(--gold-pale);
+}
+
+.day-tour-cta p {
+  max-width: 86ch;
+  color: rgba(251, 245, 234, 0.84);
+}
+
+.day-tour-cta button {
+  justify-self: start;
+  margin-top: 6px;
+  border: 1px solid var(--gold);
+  background: var(--gold);
+  color: var(--ivory);
+}
+
+.day-tour-faq.events-page-faq {
+  padding: 94px 0 96px;
+  background: var(--white);
+}
+
+.day-tour-faq .day-tour-heading {
+  max-width: 820px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.day-tour-topics {
+  padding: 92px 0 108px;
+  background: var(--white);
+}
+
+.day-tour-topics .day-tour-shell {
+  padding-top: 46px;
+  border-top: 1px solid rgba(181, 138, 84, 0.24);
+}
+
+.day-tour-topics .day-tour-heading {
+  font-size: clamp(32px, 3.6vw, 52px);
+}
+
+.day-tour-topic-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+  margin-top: 34px;
+}
+
+.day-tour-topic-card {
+  min-height: 100%;
+  padding: clamp(28px, 3vw, 38px);
+  border: 1px solid rgba(181, 138, 84, 0.16);
+  background: var(--ivory);
+  box-shadow: 0 16px 38px rgba(47, 36, 24, 0.06);
+}
+
+.day-tour-topic-card h3 {
+  margin: 0;
+  color: var(--gold);
+  font-family: "Jost", sans-serif;
+  font-size: 13px;
+  line-height: 1.32;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.day-tour-topic-card span {
+  display: block;
+  margin-top: 14px;
+  color: rgba(55, 41, 29, 0.54);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.day-tour-topic-card p {
+  margin-top: 18px;
+}
+
+.day-tour-show-more {
+  float: right;
+  margin-top: 34px;
+  border: 1px solid var(--gold);
+  background: transparent;
+  color: var(--gold);
+}
+
+.day-tour-show-more:hover {
+  background: var(--gold);
+  color: var(--ivory);
+}
+
+@media (max-width: 1120px) {
+  .day-tour-editorial .day-tour-shell,
+  .day-tour-location-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .day-tour-package-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .day-tour-package-note {
+    position: static;
+    width: 100%;
+    min-height: auto;
+    grid-auto-flow: column;
+    justify-content: start;
+    gap: 8px;
+    padding: 18px 22px;
+  }
+}
+
+@media (max-width: 760px) {
+  .day-tour-shell,
+  .day-tour-hero-copy {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .day-tour-hero {
+    min-height: 520px;
+    height: 520px;
+  }
+
+  .day-tour-hero-title {
+    font-size: clamp(42px, 13vw, 58px);
+  }
+
+  .day-tour-intro,
+  .day-tour-editorial,
+  .day-tour-packages,
+  .day-tour-location,
+  .day-tour-faq.events-page-faq,
+  .day-tour-topics {
+    padding-top: 64px;
+    padding-bottom: 68px;
+  }
+
+  .day-tour-heading {
+    font-size: clamp(30px, 10vw, 42px);
+  }
+
+  .day-tour-poster figcaption {
+    top: 10px;
+    right: 10px;
+    width: 58px;
+    height: 64px;
+    font-size: 16px;
+  }
+
+  .day-tour-intro-copy p,
+  .day-tour-editorial-copy p,
+  .day-tour-package-copy p,
+  .day-tour-package-copy li,
+  .day-tour-location-copy p,
+  .day-tour-cta p,
+  .day-tour-topic-card p,
+  .day-tour-faq.events-page-faq p,
+  .day-tour-accordion.events-page-faq p {
+    font-size: 14px;
+    line-height: 1.8;
+  }
+
+  .day-tour-editorial-media {
+    min-height: 280px;
+  }
+
+  .day-tour-editorial-copy,
+  .day-tour-cta-panel {
+    padding: 28px 22px;
+  }
+
+  .day-tour-cta-image {
+    width: 100%;
+    opacity: 0.16;
+  }
+
+  .day-tour-activity-list--nested {
+    margin-left: 0;
+    padding-left: 20px;
+  }
+
+  .day-tour-topic-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .day-tour-show-more {
+    float: none;
+    width: 100%;
+  }
+}
