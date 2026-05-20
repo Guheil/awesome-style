@@ -2,9 +2,6 @@
   const app = (window.AwesomeHotel = window.AwesomeHotel || {});
   const features = (app.features = app.features || {});
 
-  let heroPlayer;
-  let heroVideoHasPlayed = false;
-
   function initLeafletMap() {
     const locationMap = document.getElementById("locationMap");
     if (!locationMap || typeof window.L === "undefined") {
@@ -47,117 +44,39 @@
       .openPopup();
   }
 
-  function onYouTubeIframeAPIReady() {
-    const heroVideoFrame = document.getElementById("heroVideoFrame");
+  function initHeroVideo() {
+    const heroVideo = document.querySelector(".video-bg .hero-video");
     const videoBackground = document.querySelector(".video-bg");
 
-    if (
-      !heroVideoFrame ||
-      !videoBackground ||
-      !window.YT ||
-      !window.YT.Player
-    ) {
+    if (!heroVideo || !videoBackground) {
       return;
     }
 
-    heroPlayer = new window.YT.Player("heroVideoFrame", {
-      host: "https://www.youtube-nocookie.com",
-      videoId: "u9Cpkz8wD8s",
-      playerVars: {
-        autoplay: 1,
-        cc_load_policy: 0,
-        controls: 0,
-        disablekb: 1,
-        enablejsapi: 1,
-        fs: 0,
-        iv_load_policy: 3,
-        loop: 1,
-        modestbranding: 1,
-        mute: 1,
-        origin: window.location.origin,
-        playsinline: 1,
-        playlist: "u9Cpkz8wD8s",
-        rel: 0,
-        showinfo: 0,
-      },
-      events: {
-        onReady: function (event) {
-          const playerIframe = event.target.getIframe?.();
+    function showVideo() {
+      videoBackground.classList.add("video-ready");
+    }
 
-          if (playerIframe) {
-            playerIframe.setAttribute("aria-hidden", "true");
-            playerIframe.setAttribute("tabindex", "-1");
-            playerIframe.setAttribute("title", "");
-          }
+    function hideVideo() {
+      videoBackground.classList.remove("video-ready");
+    }
 
-          event.target.mute();
-          event.target.setPlaybackQuality("hd1080");
-          event.target.playVideo();
-        },
-        onStateChange: function (event) {
-          const playerState = window.YT?.PlayerState;
+    if (heroVideo.readyState >= 2) {
+      showVideo();
+    } else {
+      heroVideo.addEventListener("loadeddata", showVideo, { once: true });
+      heroVideo.addEventListener("playing", showVideo, { once: true });
+    }
 
-          if (!playerState) {
-            return;
-          }
+    heroVideo.addEventListener("error", hideVideo);
 
-          if (event.data === playerState.PLAYING) {
-            heroVideoHasPlayed = true;
-            videoBackground.classList.add("video-ready");
-            return;
-          }
-
-          if (event.data === playerState.ENDED) {
-            event.target.seekTo(0);
-            event.target.playVideo();
-            return;
-          }
-
-          if (
-            event.data === playerState.PAUSED &&
-            document.visibilityState === "visible"
-          ) {
-            event.target.playVideo();
-            return;
-          }
-
-          if (!heroVideoHasPlayed) {
-            videoBackground.classList.remove("video-ready");
-          }
-        },
-        onError: function () {
-          videoBackground.classList.remove("video-ready");
-        },
-      },
-    });
+    const playAttempt = heroVideo.play();
+    if (playAttempt && typeof playAttempt.catch === "function") {
+      playAttempt.catch(hideVideo);
+    }
   }
 
-  function initYouTubeHero() {
-    const heroVideoFrame = document.getElementById("heroVideoFrame");
-    const videoBackground = document.querySelector(".video-bg");
-
-    if (!heroVideoFrame || !videoBackground) {
-      return;
-    }
-
-    if (window.location.protocol === "file:") {
-      return;
-    }
-
-    if (window.YT && window.YT.Player) {
-      onYouTubeIframeAPIReady();
-      return;
-    }
-
-    if (document.querySelector("script[data-youtube-api='true']")) {
-      return;
-    }
-
-    const script = document.createElement("script");
-    script.src = "https://www.youtube.com/iframe_api";
-    script.async = true;
-    script.dataset.youtubeApi = "true";
-    document.body.appendChild(script);
+  function onYouTubeIframeAPIReady() {
+    return undefined;
   }
 
   function initTransitAccordion() {
@@ -217,7 +136,7 @@
 
   function init() {
     initLeafletMap();
-    initYouTubeHero();
+    initHeroVideo();
     initTransitAccordion();
   }
 

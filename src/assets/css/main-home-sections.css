@@ -2197,11 +2197,23 @@
   display: flex;
   width: 100%;
   max-width: 284px;
-  min-height: 46px;
+  min-height: 50px;
+  padding: 4px;
   border-radius: 999px;
   overflow: hidden;
-  border: 1px solid rgba(243, 226, 189, 0.18);
-  background: rgba(251, 245, 234, 0.98);
+  border: 1px solid rgba(243, 226, 189, 0.34);
+  background: var(--champagne);
+  box-shadow: 0 14px 28px rgba(55, 41, 29, 0.12);
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.footer-newsletter:focus-within {
+  border-color: var(--gold-pale);
+  box-shadow:
+    0 16px 32px rgba(55, 41, 29, 0.16),
+    0 0 0 4px rgba(243, 226, 189, 0.14);
 }
 
 .footer-newsletter input {
@@ -2209,31 +2221,39 @@
   flex: 1;
   border: 0;
   background: transparent;
-  padding: 0 16px;
+  padding: 0 18px;
   color: var(--ink);
   font: inherit;
   font-size: 13px;
+  letter-spacing: 0.03em;
   outline: none;
 }
 
+.footer-newsletter input::placeholder {
+  color: rgba(55, 41, 29, 0.56);
+}
+
 .footer-newsletter button {
+  min-width: 96px;
   border: 0;
-  background: var(--gold);
-  color: var(--white);
-  padding: 0 20px;
+  border-radius: 999px;
+  background: var(--ink);
+  color: var(--gold-pale);
+  padding: 0 24px;
   cursor: pointer;
   font-size: 11px;
   font-weight: 800;
   text-transform: uppercase;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.22em;
+  box-shadow: inset 0 0 0 1px rgba(243, 226, 189, 0.18);
   transition:
     background 0.25s ease,
     color 0.25s ease;
 }
 
 .footer-newsletter button:hover {
-  background: var(--gold-pale);
-  color: var(--navy);
+  background: var(--navy);
+  color: var(--gold-pale);
 }
 
 .footer-follow {

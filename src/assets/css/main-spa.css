@@ -1302,16 +1302,21 @@ body :is(h1, h2, h3, h4, h5, h6, [class*="heading"], [class*="title"]) {
 }
 
 .footer-newsletter {
-  border-color: rgba(55, 41, 29, 0.24);
-  background: var(--ivory);
+  border-color: rgba(55, 41, 29, 0.28);
+  background: var(--champagne);
+  box-shadow: 0 14px 28px rgba(55, 41, 29, 0.1);
 }
 
 .footer-newsletter button {
   background: var(--ink);
-  color: var(--ivory);
+  color: var(--gold-pale);
 }
 
-.footer-newsletter button:hover,
+.footer-newsletter button:hover {
+  background: var(--navy);
+  color: var(--gold-pale);
+}
+
 .footer-social-list a:hover {
   background: var(--ivory);
   border-color: var(--ivory);
