@@ -112,8 +112,8 @@ textarea,
   max-width: none;
   height: 100dvh;
   overflow: hidden;
-  background: #17110b
-    url("https://awesomehotel.com/wp-content/uploads/2023/08/pool-beach.jpg")
+  background: var(--navy)
+    url("../images/gallery/scenery-dji-0434.jpg")
     center / cover no-repeat;
   z-index: 0;
   pointer-events: none;

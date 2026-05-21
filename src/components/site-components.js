@@ -222,7 +222,15 @@
     `
       <section class="hero">
         <div class="video-bg" aria-hidden="true">
-          <video class="hero-video" autoplay muted loop playsinline preload="auto">
+          <video
+            class="hero-video"
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="auto"
+            poster="${assetHref("images/gallery/scenery-dji-0434.jpg")}"
+          >
             <source src="${assetHref("vid/Hero_awesome_HD.webm")}" type="video/webm" />
           </video>
         </div>
