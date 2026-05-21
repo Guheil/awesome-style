@@ -22,6 +22,15 @@
     { actualPath: "/src/pages/spa", prettyPath: "/spa" },
     { actualPath: "/src/pages/services", prettyPath: "/services" },
     { actualPath: "/src/pages/gallery", prettyPath: "/gallery" },
+    { actualPath: "/src/pages/blogs-news", prettyPath: "/blogs-news" },
+    {
+      actualPath: "/src/pages/blog-detail",
+      prettyPath: "/blog-detail",
+    },
+    {
+      actualPath: "/src/pages/seaside-retreat",
+      prettyPath: "/seaside-retreat",
+    },
     { actualPath: "/src/pages/contact", prettyPath: "/contact" },
   ]);
 

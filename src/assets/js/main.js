@@ -16,6 +16,7 @@
   const scriptPaths = [
     "./core/gestures.js",
     "./data/catalogs.js",
+    "./data/blogs.js",
     "./features/booking.js",
     "./features/navigation.js",
     "./features/carousels.js",
@@ -25,6 +26,7 @@
     "./features/faq.js",
     "./features/reviews.js",
     "./features/rooms.js",
+    "./features/blogs.js",
     "./features/media.js",
     "./app/init.js",
   ];

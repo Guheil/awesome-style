@@ -131,6 +131,7 @@
     initFeature("faq");
     initFeature("reviews");
     initFeature("rooms");
+    initFeature("blogs");
     initFeature("media");
 
     bindListeners();

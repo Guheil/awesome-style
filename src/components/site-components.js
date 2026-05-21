@@ -36,6 +36,7 @@
     spa: "spa",
     services: "services",
     gallery: "gallery",
+    blogs: "blogs-news",
     contact: "contact",
   };
 
@@ -122,7 +123,7 @@
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Blogs</a>
+            <a class="nav-link${getCurrentClass(page, "blogs")}" href="${pageHref("blogs")}"${getAriaCurrent(page, "blogs")}>Blogs</a>
           </li>
           <li class="nav-item">
             <a class="nav-link${getCurrentClass(page, "contact")}" href="${pageHref("contact")}"${getAriaCurrent(page, "contact")}>Contact Us</a>
@@ -190,7 +191,7 @@
               </div>
             </li>
             <li>
-              <a href="#" onclick="closeMobileMenu()">Blogs</a>
+              <a href="${pageHref("blogs")}" class="${page === "blogs" ? "is-current" : ""}"${getAriaCurrent(page, "blogs")} onclick="closeMobileMenu()">Blogs</a>
             </li>
             <li>
               <a href="${pageHref("contact")}" class="${page === "contact" ? "is-current" : ""}"${getAriaCurrent(page, "contact")} onclick="closeMobileMenu()">Contact Us</a>

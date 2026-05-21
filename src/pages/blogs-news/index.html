@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blogs/News - Awesome Hotel</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@200;300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../../assets/css/main.css" />
+    <script defer src="../../components/site-components.js"></script>
+    <script defer src="../../assets/js/main.js"></script>
+  </head>
+  <body class="blog-page">
+    <site-navbar data-page="blogs"></site-navbar>
+
+    <section class="hero blog-hero" aria-labelledby="blogHeroTitle">
+      <div class="blog-hero-media" aria-hidden="true">
+        <img
+          src="../../assets/images/gallery/scenery-dji-0434.jpg"
+          alt=""
+        />
+      </div>
+      <div class="blog-hero-copy">
+        <h1 id="blogHeroTitle">Blogs/News</h1>
+      </div>
+    </section>
+
+    <main class="blog-main">
+      <section class="blog-index" aria-labelledby="blogIndexTitle">
+        <div class="blog-shell">
+          <h2 class="blog-index-title" id="blogIndexTitle">Blogs/News</h2>
+
+          <div class="blog-featured-news" data-blog-featured></div>
+
+          <div class="blog-list" data-blog-list></div>
+
+          <div
+            class="blog-pagination"
+            role="navigation"
+            aria-label="Blog pagination"
+          >
+            <span>Page 1 of 8</span>
+            <a href="#" aria-current="page">1</a>
+            <a href="https://awesomehotel.com/blogs-news/page/2/">2</a>
+            <a href="https://awesomehotel.com/blogs-news/page/3/">3</a>
+            <a href="https://awesomehotel.com/blogs-news/page/4/">4</a>
+            <a href="https://awesomehotel.com/blogs-news/page/5/">5</a>
+            <span>...</span>
+            <a href="https://awesomehotel.com/blogs-news/page/2/">&gt;</a>
+            <a href="https://awesomehotel.com/blogs-news/page/8/">Last &raquo;</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <site-stay-cta></site-stay-cta>
+    <site-footer></site-footer>
+  </body>
+</html>
