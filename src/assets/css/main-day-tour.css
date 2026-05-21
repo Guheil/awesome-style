@@ -562,6 +562,10 @@
     font-size: clamp(30px, 10vw, 42px);
   }
 
+  .day-tour-cta .day-tour-heading {
+    max-width: 70vw;
+  }
+
   .day-tour-poster figcaption {
     top: 10px;
     right: 10px;

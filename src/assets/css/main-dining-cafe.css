@@ -2067,6 +2067,14 @@
     font-size: clamp(38px, 11vw, 56px);
   }
 
+  .cafe-reviews-heading {
+    max-width: 90vw;
+  }
+
+  .cafe-brew-cta-heading {
+    max-width: 70vw;
+  }
+
   .dining-intro-body p,
   .dining-venue-description p,
   .dining-venue-hours p,

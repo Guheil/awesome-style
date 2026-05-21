@@ -1013,6 +1013,11 @@
     text-align: left;
   }
 
+  .cafe-reviews-heading,
+  .restaurant-reviews .restaurant-reviews-header h2 {
+    max-width: 90vw;
+  }
+
   .cafe-reviews-intro,
   .restaurant-reviews-header p {
     margin-left: 0;

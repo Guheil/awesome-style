@@ -786,6 +786,10 @@
     font-size: clamp(30px, 10vw, 42px);
   }
 
+  .team-page-cta .team-page-heading {
+    max-width: 70vw;
+  }
+
   .team-page-intro p,
   .team-page-rates p,
   .team-page-catalog-header p,
@@ -807,7 +811,7 @@
   }
 
   .team-page-testimonials .team-page-heading {
-    max-width: none;
+    max-width: 90vw;
     padding: 28px 0;
   }
 
