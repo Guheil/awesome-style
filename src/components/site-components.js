@@ -70,8 +70,7 @@
     return `${prefix}${path}`;
   }
 
-  const heroVideoId = "zZcO9VuL2pk";
-  const heroVideoEmbedSrc = `https://www.youtube-nocookie.com/embed/${heroVideoId}?autoplay=1&mute=1&controls=0&loop=1&playlist=${heroVideoId}&playsinline=1&rel=0&modestbranding=1&iv_load_policy=3&disablekb=1&fs=0`;
+  const heroVideoSrc = assetHref("vid/hero.webm");
 
   function renderNavbar(page = "home") {
     return `
@@ -225,15 +224,16 @@
     `
       <section class="hero">
         <div class="video-bg" aria-hidden="true">
-          <iframe
+          <video
             class="hero-video"
-            src="${heroVideoEmbedSrc}"
-            title="Awesome Hotel hero video"
-            loading="eager"
-            allow="autoplay; encrypted-media"
-            referrerpolicy="strict-origin-when-cross-origin"
-            tabindex="-1"
-          ></iframe>
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="auto"
+          >
+            <source src="${heroVideoSrc}" type="video/webm" />
+          </video>
         </div>
 
         <div class="booking-wrap">
