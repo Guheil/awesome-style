@@ -128,7 +128,8 @@ textarea,
   transform: translate(-50%, -50%);
   border: 0;
   display: block;
-  object-fit: cover;
+  object-fit: contain;
+  background: var(--navy);
   pointer-events: none;
   opacity: 0;
   visibility: hidden;

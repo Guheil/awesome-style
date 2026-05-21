@@ -2454,7 +2454,7 @@
 
   .stay-cta-title {
     width: auto;
-    max-width: 11ch;
+    max-width: 70vw;
     padding: 0;
     border-radius: 0;
     font-size: clamp(42px, 13vw, 62px);
@@ -2909,6 +2909,7 @@
     padding: 0 20px;
   }
   .reviews-title {
+    max-width: 90vw;
     font-size: clamp(34px, 10vw, 46px);
   }
   .reviews-stars-row {
