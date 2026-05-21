@@ -1,6 +1,7 @@
 (function () {
   const app = (window.AwesomeHotel = window.AwesomeHotel || {});
   app.features = app.features || {};
+  const BLOG_INDEX_PAGE_SIZE = 4;
 
   function getBlogData() {
     return app.data && app.data.blogs ? app.data.blogs : null;
@@ -79,9 +80,63 @@
     `;
   }
 
+  function getBlogIndexPosts(posts, featuredPost) {
+    return posts.filter(function (post) {
+      return !featuredPost || post.slug !== featuredPost.slug;
+    });
+  }
+
+  function getPageFromUrl(totalPages) {
+    const params = new URLSearchParams(window.location.search);
+    const requestedPage = Number.parseInt(params.get("page"), 10);
+
+    if (!Number.isFinite(requestedPage)) {
+      return 1;
+    }
+
+    return Math.min(Math.max(requestedPage, 1), totalPages);
+  }
+
+  function setPageInUrl(page) {
+    const url = new URL(window.location.href);
+
+    if (page <= 1) {
+      url.searchParams.delete("page");
+    } else {
+      url.searchParams.set("page", String(page));
+    }
+
+    window.history.pushState({ blogPage: page }, "", url);
+  }
+
+  function renderPagination(pagination, currentPage, totalPages) {
+    if (!pagination || totalPages <= 1) {
+      if (pagination) {
+        pagination.hidden = true;
+        pagination.innerHTML = "";
+      }
+      return;
+    }
+
+    const pageButtons = Array.from({ length: totalPages }, function (_, index) {
+      const page = index + 1;
+      const currentAttr = page === currentPage ? ' aria-current="page"' : "";
+      return `<button class="blog-pagination-button" type="button" data-blog-page="${page}"${currentAttr}>${page}</button>`;
+    }).join("");
+
+    pagination.hidden = false;
+    pagination.innerHTML = `
+      <span>Page ${currentPage} of ${totalPages}</span>
+      <button class="blog-pagination-button" type="button" data-blog-page="${currentPage - 1}" ${currentPage === 1 ? "disabled" : ""}>Previous</button>
+      ${pageButtons}
+      <button class="blog-pagination-button" type="button" data-blog-page="${currentPage + 1}" ${currentPage === totalPages ? "disabled" : ""}>Next</button>
+    `;
+  }
+
   function renderBlogIndex() {
     const list = document.querySelector("[data-blog-list]");
     const featured = document.querySelector("[data-blog-featured]");
+    const pagination = document.querySelector("[data-blog-pagination]");
     if (!list) {
       return;
     }
@@ -92,21 +147,48 @@
         return post.featured;
       }) || posts[0];
 
-    if (featured && featuredPost) {
-      featured.innerHTML = renderFeaturedNews(featuredPost);
+    const indexPosts = getBlogIndexPosts(posts, featuredPost);
+    const totalPages = Math.max(
+      Math.ceil(indexPosts.length / BLOG_INDEX_PAGE_SIZE),
+      1,
+    );
+    const currentPage = getPageFromUrl(totalPages);
+    const showFeatured = currentPage === 1;
+    const pageStart = (currentPage - 1) * BLOG_INDEX_PAGE_SIZE;
+    const visiblePosts = indexPosts.slice(
+      pageStart,
+      pageStart + BLOG_INDEX_PAGE_SIZE,
+    );
+
+    if (featured) {
+      featured.hidden = !showFeatured;
+      featured.innerHTML =
+        showFeatured && featuredPost ? renderFeaturedNews(featuredPost) : "";
     }
 
-    list.innerHTML = posts
-      .filter(function (post) {
-        return (
-          post.slug !== "seaside-beachfront-a-valentines-day-getaway" &&
-          (!featuredPost || post.slug !== featuredPost.slug)
-        );
-      })
+    list.hidden = visiblePosts.length === 0;
+    list.innerHTML = visiblePosts
       .map(function (post) {
         return renderPostCard(post, false);
       })
       .join("");
+
+    renderPagination(pagination, currentPage, totalPages);
+  }
+
+  function handlePaginationClick(event) {
+    const button = event.target.closest("[data-blog-page]");
+    if (!button || button.disabled) {
+      return;
+    }
+
+    const page = Number.parseInt(button.dataset.blogPage, 10);
+    if (!Number.isFinite(page)) {
+      return;
+    }
+
+    setPageInUrl(page);
+    renderBlogIndex();
   }
 
   function renderBlocks(post) {
@@ -188,6 +270,12 @@
   function init() {
     renderBlogIndex();
     renderBlogDetail();
+
+    const pagination = document.querySelector("[data-blog-pagination]");
+    if (pagination) {
+      pagination.addEventListener("click", handlePaginationClick);
+      window.addEventListener("popstate", renderBlogIndex);
+    }
   }
 
   app.features.blogs = {
