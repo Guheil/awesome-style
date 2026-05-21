@@ -70,6 +70,9 @@
     return `${prefix}${path}`;
   }
 
+  const heroVideoId = "zZcO9VuL2pk";
+  const heroVideoEmbedSrc = `https://www.youtube-nocookie.com/embed/${heroVideoId}?autoplay=1&mute=1&controls=0&loop=1&playlist=${heroVideoId}&playsinline=1&rel=0&modestbranding=1&iv_load_policy=3&disablekb=1&fs=0`;
+
   function renderNavbar(page = "home") {
     return `
       <nav aria-label="Primary navigation">
@@ -222,17 +225,15 @@
     `
       <section class="hero">
         <div class="video-bg" aria-hidden="true">
-          <video
+          <iframe
             class="hero-video"
-            autoplay
-            muted
-            loop
-            playsinline
-            preload="auto"
-            poster="${assetHref("images/gallery/scenery-dji-0434.jpg")}"
-          >
-            <source src="${assetHref("vid/Hero_awesome_HD.webm")}" type="video/webm" />
-          </video>
+            src="${heroVideoEmbedSrc}"
+            title="Awesome Hotel hero video"
+            loading="eager"
+            allow="autoplay; encrypted-media"
+            referrerpolicy="strict-origin-when-cross-origin"
+            tabindex="-1"
+          ></iframe>
         </div>
 
         <div class="booking-wrap">

@@ -60,6 +60,12 @@
       videoBackground.classList.remove("video-ready");
     }
 
+    if (heroVideo.tagName === "IFRAME") {
+      heroVideo.addEventListener("load", showVideo, { once: true });
+      heroVideo.addEventListener("error", hideVideo);
+      return;
+    }
+
     if (heroVideo.readyState >= 2) {
       showVideo();
     } else {
