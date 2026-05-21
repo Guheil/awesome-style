@@ -119,15 +119,14 @@
 
   function initSolidNavigation() {
     const nav = document.querySelector("nav");
-    const hero = document.querySelector(".hero, .contact-hero");
-    if (!nav || !hero) {
+    if (!nav) {
       return;
     }
 
     let ticking = false;
 
     function updateNav() {
-      if (window.scrollY >= hero.offsetHeight - 100) {
+      if (window.scrollY >= 1) {
         nav.classList.add("nav--solid");
       } else {
         nav.classList.remove("nav--solid");

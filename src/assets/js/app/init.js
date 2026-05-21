@@ -133,6 +133,7 @@
     initFeature("rooms");
     initFeature("blogs");
     initFeature("media");
+    initFeature("smoothScroll");
 
     bindListeners();
   }

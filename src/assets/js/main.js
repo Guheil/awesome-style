@@ -28,6 +28,7 @@
     "./features/rooms.js",
     "./features/blogs.js",
     "./features/media.js",
+    "./features/smooth-scroll.js",
     "./app/init.js",
   ];
 
