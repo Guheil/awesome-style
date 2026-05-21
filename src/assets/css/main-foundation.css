@@ -112,9 +112,8 @@ textarea,
   max-width: none;
   height: 100dvh;
   overflow: hidden;
-  background: var(--navy)
-    url("../images/gallery/scenery-dji-0434.jpg")
-    center / cover no-repeat;
+  background: var(--navy) url("../images/gallery/scenery-dji-0434.jpg") center /
+    cover no-repeat;
   z-index: 0;
   pointer-events: none;
   transform: none;
