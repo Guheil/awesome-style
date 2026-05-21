@@ -71,6 +71,7 @@
   }
 
   const heroVideoSrc = assetHref("vid/hero.mp4");
+  const heroVideoPosterSrc = assetHref("images/cta-bigger-photo.jpg");
 
   function renderNavbar(page = "home") {
     return `
@@ -230,6 +231,7 @@
             muted
             loop
             playsinline
+            poster="${heroVideoPosterSrc}"
             preload="auto"
           >
             <source src="${heroVideoSrc}" type="video/mp4" />
