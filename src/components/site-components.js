@@ -70,7 +70,7 @@
     return `${prefix}${path}`;
   }
 
-  const heroVideoSrc = assetHref("vid/hero.webm");
+  const heroVideoSrc = assetHref("vid/hero.mp4");
 
   function renderNavbar(page = "home") {
     return `
@@ -232,7 +232,7 @@
             playsinline
             preload="auto"
           >
-            <source src="${heroVideoSrc}" type="video/webm" />
+            <source src="${heroVideoSrc}" type="video/mp4" />
           </video>
         </div>
 
