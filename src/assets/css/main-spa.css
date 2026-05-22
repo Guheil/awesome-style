@@ -505,7 +505,8 @@
   box-shadow: 0 28px 74px rgba(47, 36, 24, 0.13);
 }
 
-.spa-page .spa-intro-media img {
+.spa-page .spa-intro-media img,
+.spa-page .spa-intro-media video {
   min-height: 440px;
   border-radius: 8px;
 }
@@ -862,7 +863,8 @@
   box-shadow: none;
 }
 
-.spa-page .spa-intro-media img {
+.spa-page .spa-intro-media img,
+.spa-page .spa-intro-media video {
   min-height: 100%;
   border-radius: 0;
   object-position: center;

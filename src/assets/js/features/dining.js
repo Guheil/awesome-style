@@ -164,7 +164,7 @@
   }
 
   function setDiningVenueVideo(venue) {
-    if (!diningVenueVideo || !diningVenueVideoSource || !venue.video) {
+    if (!diningVenueVideo || !diningVenueVideoSource) {
       return;
     }
 
@@ -180,13 +180,21 @@
     diningVenueVideo.dataset.reelLoaded = "false";
 
     diningVenueVideoSource.removeAttribute("src");
+    delete diningVenueVideoSource.dataset.src;
+    delete diningVenueVideoSource.dataset.type;
+    diningVenueVideoSource.removeAttribute("type");
+
+    if (!venue.video) {
+      diningVenueVideo.load();
+      return;
+    }
+
     diningVenueVideoSource.dataset.src = venue.video;
 
     if (venue.videoType) {
       diningVenueVideoSource.dataset.type = venue.videoType;
       diningVenueVideoSource.type = venue.videoType;
     } else {
-      delete diningVenueVideoSource.dataset.type;
       diningVenueVideoSource.removeAttribute("type");
     }
 

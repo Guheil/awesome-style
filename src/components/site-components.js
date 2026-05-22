@@ -686,14 +686,10 @@
               <div class="dining-track" id="diningTrack">
                 <article class="dining-slide">
                   <figure class="dining-image dining-image--wide">
-                    <video data-reel-video autoplay muted loop playsinline preload="none" poster="https://awesomehotel.com/wp-content/uploads/2025/09/restaurant-new.jpg" aria-hidden="true">
-                      <source data-src="${assetHref("vid/reels/menu-reel.mov")}" />
-                    </video>
+                    <img src="https://awesomehotel.com/wp-content/uploads/2025/09/restaurant-new.jpg" alt="Restaurant dining" loading="lazy" decoding="async" />
                   </figure>
                   <figure class="dining-image dining-image--tall">
-                    <video data-reel-video autoplay muted loop playsinline preload="none" poster="https://awesomehotel.com/wp-content/uploads/2023/07/hotel-cocktails.jpg" aria-hidden="true">
-                      <source data-src="${assetHref("vid/reels/cocktail1.mov")}" />
-                    </video>
+                    <img src="https://awesomehotel.com/wp-content/uploads/2023/07/hotel-cocktails.jpg" alt="Signature cocktails" loading="lazy" decoding="async" />
                   </figure>
                 </article>
 
@@ -702,9 +698,7 @@
                     <img src="https://awesomehotel.com/wp-content/uploads/2025/09/sports-bar.jpg" alt="Poolside dining" loading="lazy" decoding="async" />
                   </figure>
                   <figure class="dining-image dining-image--tall">
-                    <video data-reel-video autoplay muted loop playsinline preload="none" poster="https://awesomehotel.com/wp-content/uploads/2023/07/DSC05433.jpg" aria-hidden="true">
-                      <source data-src="${assetHref("vid/reels/coffee.mp4")}" data-type="video/mp4" />
-                    </video>
+                    <img src="https://awesomehotel.com/wp-content/uploads/2023/07/DSC05433.jpg" alt="Fresh cafe selections" loading="lazy" decoding="async" />
                   </figure>
                 </article>
 
