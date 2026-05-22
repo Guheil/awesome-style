@@ -71,7 +71,7 @@
   }
 
   function ensureFavicon() {
-    const faviconHref = assetHref("images/logo.png");
+    const faviconHref = assetHref("images/favicon.ico.png");
     let favicon = document.querySelector('link[rel="icon"]');
 
     if (!favicon) {
