@@ -1,12 +1,72 @@
 (function () {
   const app = (window.AwesomeHotel = window.AwesomeHotel || {});
   const features = (app.features = app.features || {});
+  const leafletCssUrl = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.css";
+  const leafletScriptUrl = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.js";
+  let leafletLoadPromise = null;
 
-  function initLeafletMap() {
-    const locationMap = document.getElementById("locationMap");
-    if (!locationMap || typeof window.L === "undefined") {
+  function loadStylesheet(url, dataAttribute) {
+    if (document.querySelector(`link[${dataAttribute}]`)) {
       return;
     }
+
+    const link = document.createElement("link");
+    link.rel = "stylesheet";
+    link.href = url;
+    link.setAttribute(dataAttribute, "true");
+    document.head.appendChild(link);
+  }
+
+  function loadScript(url, dataAttribute) {
+    const existingScript = document.querySelector(`script[${dataAttribute}]`);
+    if (existingScript) {
+      return new Promise(function (resolve, reject) {
+        existingScript.addEventListener("load", resolve, { once: true });
+        existingScript.addEventListener("error", reject, { once: true });
+      });
+    }
+
+    return new Promise(function (resolve, reject) {
+      const script = document.createElement("script");
+      script.src = url;
+      script.async = true;
+      script.setAttribute(dataAttribute, "true");
+      script.onload = resolve;
+      script.onerror = function () {
+        reject(new Error(`Unable to load ${url}`));
+      };
+      document.head.appendChild(script);
+    });
+  }
+
+  function loadLeafletAssets() {
+    if (window.L) {
+      return Promise.resolve();
+    }
+
+    if (leafletLoadPromise) {
+      return leafletLoadPromise;
+    }
+
+    loadStylesheet(leafletCssUrl, "data-awesome-leaflet-css");
+    leafletLoadPromise = loadScript(
+      leafletScriptUrl,
+      "data-awesome-leaflet-js",
+    );
+
+    return leafletLoadPromise;
+  }
+
+  function createLeafletMap(locationMap) {
+    if (!locationMap || locationMap.dataset.mapInitialized === "true") {
+      return;
+    }
+
+    if (typeof window.L === "undefined") {
+      return;
+    }
+
+    locationMap.dataset.mapInitialized = "true";
 
     const latitude = 16.678407713843825;
     const longitude = 120.33690274114296;
@@ -44,6 +104,48 @@
       .openPopup();
   }
 
+  function initLeafletMap() {
+    const locationMap = document.getElementById("locationMap");
+    if (!locationMap) {
+      return;
+    }
+
+    function loadAndCreateMap() {
+      loadLeafletAssets()
+        .then(function () {
+          createLeafletMap(locationMap);
+        })
+        .catch(function (error) {
+          console.warn(error.message);
+        });
+    }
+
+    if ("IntersectionObserver" in window) {
+      const observer = new IntersectionObserver(
+        function (entries) {
+          if (!entries.some((entry) => entry.isIntersecting)) {
+            return;
+          }
+
+          observer.disconnect();
+          loadAndCreateMap();
+        },
+        { rootMargin: "360px 0px" },
+      );
+
+      observer.observe(locationMap);
+      return;
+    }
+
+    window.addEventListener(
+      "load",
+      function () {
+        window.setTimeout(loadAndCreateMap, 1200);
+      },
+      { once: true },
+    );
+  }
+
   function initHeroVideo() {
     const heroVideo = document.querySelector(".video-bg .hero-video");
     const videoBackground = document.querySelector(".video-bg");
@@ -58,6 +160,59 @@
 
     function hideVideo() {
       videoBackground.classList.remove("video-ready");
+    }
+
+    function shouldSkipVideo() {
+      const connection =
+        navigator.connection ||
+        navigator.mozConnection ||
+        navigator.webkitConnection;
+      const saveData = Boolean(connection && connection.saveData);
+      const reducedMotion =
+        window.matchMedia &&
+        window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const compactViewport =
+        window.matchMedia && window.matchMedia("(max-width: 760px)").matches;
+
+      return saveData || reducedMotion || compactViewport;
+    }
+
+    function addSource(src, type) {
+      if (!src) {
+        return;
+      }
+
+      const source = document.createElement("source");
+      source.src = src;
+      source.type = type;
+      heroVideo.appendChild(source);
+    }
+
+    function hasSources() {
+      return Boolean(heroVideo.querySelector("source"));
+    }
+
+    function loadVideoSources() {
+      if (hasSources() || shouldSkipVideo()) {
+        return;
+      }
+
+      addSource(heroVideo.dataset.srcMp4, "video/mp4");
+      heroVideo.load();
+
+      const playAttempt = heroVideo.play();
+      if (playAttempt && typeof playAttempt.catch === "function") {
+        playAttempt.catch(hideVideo);
+      }
+    }
+
+    function deferVideoLoad() {
+      if (window.requestIdleCallback) {
+        window.requestIdleCallback(loadVideoSources, { timeout: 2400 });
+        return;
+      }
+
+      window.setTimeout(loadVideoSources, 900);
     }
 
     if (heroVideo.tagName === "IFRAME") {
@@ -75,10 +230,12 @@
 
     heroVideo.addEventListener("error", hideVideo);
 
-    const playAttempt = heroVideo.play();
-    if (playAttempt && typeof playAttempt.catch === "function") {
-      playAttempt.catch(hideVideo);
+    if (document.readyState === "complete") {
+      deferVideoLoad();
+      return;
     }
+
+    window.addEventListener("load", deferVideoLoad, { once: true });
   }
 
   function onYouTubeIframeAPIReady() {

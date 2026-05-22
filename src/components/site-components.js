@@ -95,7 +95,7 @@
     shortcutIcon.href = faviconHref;
   }
 
-  const heroVideoSrc = assetHref("vid/hero.mp4");
+  const heroVideoMp4Src = assetHref("vid/hero1.mp4");
   const heroVideoPosterSrc = assetHref("images/cta-bigger-photo.jpg");
 
   ensureFavicon();
@@ -259,10 +259,9 @@
             loop
             playsinline
             poster="${heroVideoPosterSrc}"
-            preload="auto"
-          >
-            <source src="${heroVideoSrc}" type="video/mp4" />
-          </video>
+            preload="none"
+            data-src-mp4="${heroVideoMp4Src}"
+          ></video>
         </div>
 
         <div class="booking-wrap">
@@ -452,6 +451,8 @@
                   <img
                     src="https://awesomehotel.com/wp-content/uploads/2023/10/Bigger-Photo.jpg"
                     alt="Luxury resort carousel image"
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
               </article>
@@ -461,6 +462,7 @@
                     src="https://awesomehotel.com/wp-content/uploads/2023/08/pool-beach.jpg"
                     alt="Luxury resort carousel image"
                     loading="lazy"
+                    decoding="async"
                   />
                 </div>
               </article>
@@ -470,6 +472,7 @@
                     src="https://awesomehotel.com/wp-content/uploads/2023/09/PS-Bedroom.jpg"
                     alt="Luxury resort carousel image"
                     loading="lazy"
+                    decoding="async"
                   />
                 </div>
               </article>
@@ -526,7 +529,7 @@
               <div class="amenities-track" id="amenitiesTrack">
                 <article class="amenity-slide">
                   <div class="amenity-media">
-                    <img src="https://awesomehotel.com/wp-content/uploads/2023/10/convent-serv.jpg" alt="Convention center" />
+                    <img src="https://awesomehotel.com/wp-content/uploads/2023/10/convent-serv.jpg" alt="Convention center" loading="lazy" decoding="async" />
                   </div>
                   <div class="amenity-content">
                     <span class="amenity-number">01</span>
@@ -543,7 +546,7 @@
 
                 <article class="amenity-slide">
                   <div class="amenity-media">
-                    <img src="https://awesomehotel.com/wp-content/uploads/2025/08/tour-packages.jpg" alt="Kayak rental" loading="lazy" />
+                    <img src="https://awesomehotel.com/wp-content/uploads/2025/08/tour-packages.jpg" alt="Kayak rental" loading="lazy" decoding="async" />
                   </div>
                   <div class="amenity-content">
                     <span class="amenity-number">02</span>
@@ -558,7 +561,7 @@
 
                 <article class="amenity-slide">
                   <div class="amenity-media">
-                    <img src="https://awesomehotel.com/wp-content/uploads/2023/08/pool-beach.jpg" alt="Beach volleyball" loading="lazy" />
+                    <img src="https://awesomehotel.com/wp-content/uploads/2023/08/pool-beach.jpg" alt="Beach volleyball" loading="lazy" decoding="async" />
                   </div>
                   <div class="amenity-content">
                     <span class="amenity-number">03</span>
@@ -573,7 +576,7 @@
 
                 <article class="amenity-slide">
                   <div class="amenity-media">
-                    <img src="https://awesomehotel.com/wp-content/uploads/2023/10/hotel-spa-treatment-illustration-ai-generativexa_118124-27025.jpg" alt="In-room massage" loading="lazy" />
+                    <img src="https://awesomehotel.com/wp-content/uploads/2023/10/hotel-spa-treatment-illustration-ai-generativexa_118124-27025.jpg" alt="In-room massage" loading="lazy" decoding="async" />
                   </div>
                   <div class="amenity-content">
                     <span class="amenity-number">04</span>
@@ -638,28 +641,28 @@
               <div class="dining-track" id="diningTrack">
                 <article class="dining-slide">
                   <figure class="dining-image dining-image--wide">
-                    <img src="https://awesomehotel.com/wp-content/uploads/2025/09/restaurant-new.jpg" alt="Dining selection" />
+                    <img src="https://awesomehotel.com/wp-content/uploads/2025/09/restaurant-new.jpg" alt="Dining selection" loading="lazy" decoding="async" />
                   </figure>
                   <figure class="dining-image dining-image--tall">
-                    <img src="https://awesomehotel.com/wp-content/uploads/2023/07/hotel-cocktails.jpg" alt="Signature drink" />
+                    <img src="https://awesomehotel.com/wp-content/uploads/2023/07/hotel-cocktails.jpg" alt="Signature drink" loading="lazy" decoding="async" />
                   </figure>
                 </article>
 
                 <article class="dining-slide">
                   <figure class="dining-image dining-image--wide">
-                    <img src="https://awesomehotel.com/wp-content/uploads/2025/09/sports-bar.jpg" alt="Poolside dining" loading="lazy" />
+                    <img src="https://awesomehotel.com/wp-content/uploads/2025/09/sports-bar.jpg" alt="Poolside dining" loading="lazy" decoding="async" />
                   </figure>
                   <figure class="dining-image dining-image--tall">
-                    <img src="https://awesomehotel.com/wp-content/uploads/2023/07/DSC05433.jpg" alt="Dessert plate" loading="lazy" />
+                    <img src="https://awesomehotel.com/wp-content/uploads/2023/07/DSC05433.jpg" alt="Dessert plate" loading="lazy" decoding="async" />
                   </figure>
                 </article>
 
                 <article class="dining-slide">
                   <figure class="dining-image dining-image--wide">
-                    <img src="https://awesomehotel.com/wp-content/uploads/2025/09/breakfast-buffet.jpg" alt="Global cuisine" loading="lazy" />
+                    <img src="https://awesomehotel.com/wp-content/uploads/2025/09/breakfast-buffet.jpg" alt="Global cuisine" loading="lazy" decoding="async" />
                   </figure>
                   <figure class="dining-image dining-image--tall">
-                    <img src="https://awesomehotel.com/wp-content/uploads/2023/07/hotel-drinks.jpg" alt="Signature offering" loading="lazy" />
+                    <img src="https://awesomehotel.com/wp-content/uploads/2023/07/hotel-drinks.jpg" alt="Signature offering" loading="lazy" decoding="async" />
                   </figure>
                 </article>
               </div>
@@ -735,7 +738,7 @@
 
           <div class="dining-venue-stage" role="tabpanel">
             <div class="dining-venue-media">
-              <img id="diningVenueImage" src="https://awesomehotel.com/wp-content/uploads/2025/09/restaurant-new.jpg" alt="Restaurant" />
+              <img id="diningVenueImage" src="https://awesomehotel.com/wp-content/uploads/2025/09/restaurant-new.jpg" alt="Restaurant" loading="lazy" decoding="async" />
             </div>
 
             <article class="dining-venue-panel">
@@ -783,7 +786,7 @@
             <div class="daytour-viewport">
               <div class="daytour-track" id="daytourTrack">
                 <article class="daytour-slide">
-                  <img src="https://awesomehotel.com/wp-content/uploads/2025/08/tour-packages.jpg" alt="La Union coastline" />
+                  <img src="https://awesomehotel.com/wp-content/uploads/2025/08/tour-packages.jpg" alt="La Union coastline" loading="lazy" decoding="async" />
                   <div class="daytour-caption">
                     <strong>01</strong>
                     <span>Coastline mornings and open water</span>
@@ -791,7 +794,7 @@
                 </article>
 
                 <article class="daytour-slide">
-                  <img src="https://awesomehotel.com/wp-content/uploads/2023/09/DSCF7267.jpg" alt="Surfing in La Union" loading="lazy" />
+                  <img src="https://awesomehotel.com/wp-content/uploads/2023/09/DSCF7267.jpg" alt="Surfing in La Union" loading="lazy" decoding="async" />
                   <div class="daytour-caption">
                     <strong>02</strong>
                     <span>Surf culture and golden-hour walks</span>
@@ -799,7 +802,7 @@
                 </article>
 
                 <article class="daytour-slide">
-                  <img src="https://awesomehotel.com/wp-content/uploads/2023/08/pool-beach.jpg" alt="Day tour exploration" loading="lazy" />
+                  <img src="https://awesomehotel.com/wp-content/uploads/2023/08/pool-beach.jpg" alt="Day tour exploration" loading="lazy" decoding="async" />
                   <div class="daytour-caption">
                     <strong>03</strong>
                     <span>Local stops, scenic routes, and slow afternoons</span>
@@ -918,7 +921,7 @@
             </article>
 
             <div class="events-media">
-              <img id="eventImage" src="https://awesomehotel.com/wp-content/uploads/2025/08/Awesome-Hotel-Wedding_1.jpg" alt="Beachfront Wedding" />
+              <img id="eventImage" src="https://awesomehotel.com/wp-content/uploads/2025/08/Awesome-Hotel-Wedding_1.jpg" alt="Beachfront Wedding" loading="lazy" decoding="async" />
             </div>
           </div>
         </div>
@@ -1089,7 +1092,7 @@
         <div class="stay-cta-inner">
           <div class="stay-cta-stage">
             <div class="stay-cta-media">
-              <img src="${assetHref("images/cta-bigger-photo.jpg")}" alt="Luxury hotel courtyard with pool and balconies" />
+              <img src="${assetHref("images/cta-bigger-photo.jpg")}" alt="Luxury hotel courtyard with pool and balconies" loading="lazy" decoding="async" />
             </div>
 
             <div class="stay-cta-copy">

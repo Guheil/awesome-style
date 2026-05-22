@@ -13,24 +13,86 @@
       ? new URL(".", currentScript.src)
       : new URL("./", window.location.href);
 
-  const scriptPaths = [
-    "./core/gestures.js",
-    "./data/catalogs.js",
-    "./data/blogs.js",
-    "./features/booking.js",
-    "./features/navigation.js",
-    "./features/carousels.js",
-    "./features/dining.js",
-    "./features/events.js",
-    "./features/gallery.js",
-    "./features/faq.js",
-    "./features/reviews.js",
-    "./features/rooms.js",
-    "./features/blogs.js",
-    "./features/media.js",
-    "./features/smooth-scroll.js",
-    "./app/init.js",
-  ];
+  function has(selector) {
+    return Boolean(document.querySelector(selector));
+  }
+
+  function getScriptGroups() {
+    const needsCarousels = has(
+      "#resortCarouselTrack, #amenitiesTrack, #diningTrack, #daytourTrack",
+    );
+    const needsDining = has(
+      ".dining-venue-tab, #diningVenueTitle, #venueMenuSection",
+    );
+    const needsEvents = has(".events-tab, [data-events-gallery]");
+    const needsFaq = has(".events-page-faq");
+    const needsGallery = has("#galleryLightbox, .gallery-collection");
+    const needsReviews = has("#reviewsTrack");
+    const needsRooms = has("#roomsGuestForm, [data-room-gallery]");
+    const needsBlogs = has(
+      "[data-blog-list], [data-blog-featured], [data-blog-detail]",
+    );
+    const needsMedia = has(
+      ".video-bg .hero-video, #locationMap, .breakfast-transit",
+    );
+    const needsGestures =
+      needsCarousels || needsEvents || needsGallery || needsReviews;
+    const needsCatalogs = needsDining || needsEvents;
+
+    const dependencyGroup = [];
+    if (needsGestures) {
+      dependencyGroup.push("./core/gestures.js");
+    }
+    if (needsCatalogs) {
+      dependencyGroup.push("./data/catalogs.js");
+    }
+    if (needsBlogs) {
+      dependencyGroup.push("./data/blogs.js");
+    }
+
+    const globalFeatureGroup = [
+      "./features/booking.js",
+      "./features/navigation.js",
+    ];
+    const pageFeatureGroup = [];
+
+    if (needsCarousels) {
+      pageFeatureGroup.push("./features/carousels.js");
+    }
+    if (needsDining) {
+      pageFeatureGroup.push("./features/dining.js");
+    }
+    if (needsEvents) {
+      pageFeatureGroup.push("./features/events.js");
+    }
+    if (needsGallery) {
+      pageFeatureGroup.push("./features/gallery.js");
+    }
+    if (needsFaq) {
+      pageFeatureGroup.push("./features/faq.js");
+    }
+    if (needsReviews) {
+      pageFeatureGroup.push("./features/reviews.js");
+    }
+    if (needsRooms) {
+      pageFeatureGroup.push("./features/rooms.js");
+    }
+    if (needsBlogs) {
+      pageFeatureGroup.push("./features/blogs.js");
+    }
+    if (needsMedia) {
+      pageFeatureGroup.push("./features/media.js");
+    }
+
+    return [
+      dependencyGroup,
+      globalFeatureGroup,
+      pageFeatureGroup,
+      ["./app/init.js"],
+    ].filter(function (group) {
+      return group.length > 0;
+    });
+  }
 
   function loadScript(relativePath) {
     return new Promise(function (resolve, reject) {
@@ -52,10 +114,10 @@
     }
   }
 
-  scriptPaths
-    .reduce(function (chain, relativePath) {
+  getScriptGroups()
+    .reduce(function (chain, group) {
       return chain.then(function () {
-        return loadScript(relativePath);
+        return Promise.all(group.map(loadScript));
       });
     }, Promise.resolve())
     .then(function () {
