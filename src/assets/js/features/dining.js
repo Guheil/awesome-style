@@ -8,6 +8,8 @@
 
   let diningVenueTabs = [];
   let diningVenueImage;
+  let diningVenueVideo;
+  let diningVenueVideoSource;
   let diningVenueTitle;
   let diningVenueCuisine;
   let diningVenueDescription;
@@ -148,6 +150,61 @@
     return hash && diningVenueData[hash] ? hash : "";
   }
 
+  function shouldSkipMotionMedia() {
+    const connection =
+      navigator.connection ||
+      navigator.mozConnection ||
+      navigator.webkitConnection;
+    const saveData = Boolean(connection && connection.saveData);
+    const reducedMotion =
+      window.matchMedia &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    return saveData || reducedMotion;
+  }
+
+  function setDiningVenueVideo(venue) {
+    if (!diningVenueVideo || !diningVenueVideoSource || !venue.video) {
+      return;
+    }
+
+    diningVenueVideo.pause();
+    diningVenueVideo.poster = venue.image || "";
+    diningVenueVideo.muted = true;
+    diningVenueVideo.defaultMuted = true;
+    diningVenueVideo.loop = true;
+    diningVenueVideo.playsInline = true;
+    diningVenueVideo.setAttribute("muted", "");
+    diningVenueVideo.setAttribute("loop", "");
+    diningVenueVideo.setAttribute("playsinline", "");
+    diningVenueVideo.dataset.reelLoaded = "false";
+
+    diningVenueVideoSource.removeAttribute("src");
+    diningVenueVideoSource.dataset.src = venue.video;
+
+    if (venue.videoType) {
+      diningVenueVideoSource.dataset.type = venue.videoType;
+      diningVenueVideoSource.type = venue.videoType;
+    } else {
+      delete diningVenueVideoSource.dataset.type;
+      diningVenueVideoSource.removeAttribute("type");
+    }
+
+    if (shouldSkipMotionMedia()) {
+      diningVenueVideo.load();
+      return;
+    }
+
+    diningVenueVideoSource.src = venue.video;
+    diningVenueVideo.dataset.reelLoaded = "true";
+    diningVenueVideo.load();
+
+    const playAttempt = diningVenueVideo.play();
+    if (playAttempt && typeof playAttempt.catch === "function") {
+      playAttempt.catch(function () {});
+    }
+  }
+
   function setDiningVenue(key) {
     const venue = diningVenueData[key];
     if (!venue) {
@@ -164,6 +221,8 @@
       diningVenueImage.src = venue.image;
       diningVenueImage.alt = venue.alt;
     }
+
+    setDiningVenueVideo(venue);
 
     if (diningVenueTitle) {
       diningVenueTitle.textContent = venue.title;
@@ -205,6 +264,10 @@
       document.querySelectorAll(".dining-venue-tab"),
     );
     diningVenueImage = document.getElementById("diningVenueImage");
+    diningVenueVideo = document.getElementById("diningVenueVideo");
+    diningVenueVideoSource = diningVenueVideo
+      ? diningVenueVideo.querySelector("source")
+      : null;
     diningVenueTitle = document.getElementById("diningVenueTitle");
     diningVenueCuisine = document.getElementById("diningVenueCuisine");
     diningVenueDescription = document.getElementById("diningVenueDescription");

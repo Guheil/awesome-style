@@ -33,7 +33,7 @@
       "[data-blog-list], [data-blog-featured], [data-blog-detail]",
     );
     const needsMedia = has(
-      ".video-bg .hero-video, #locationMap, .breakfast-transit",
+      ".video-bg .hero-video, #locationMap, .breakfast-transit, [data-reel-video]",
     );
     const needsGestures =
       needsCarousels || needsEvents || needsGallery || needsReviews;

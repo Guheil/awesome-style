@@ -230,7 +230,8 @@
     0 8px 24px rgba(47, 36, 24, 0.06);
 }
 
-.dining-venue-figure img {
+.dining-venue-figure img,
+.dining-venue-figure [data-reel-video] {
   display: block;
   width: 100%;
   height: 100%;
@@ -238,7 +239,8 @@
   transition: transform 0.7s ease;
 }
 
-.dining-venues-stage:hover .dining-venue-figure img {
+.dining-venues-stage:hover .dining-venue-figure img,
+.dining-venues-stage:hover .dining-venue-figure [data-reel-video] {
   transform: scale(1.03);
 }
 
@@ -1942,7 +1944,7 @@
   font-weight: 600;
   line-height: 0.96;
   letter-spacing: 0;
-  color: var(--ivory);
+  color: var(--ink);
 }
 
 .dining-menu-heading {

@@ -238,6 +238,88 @@
     window.addEventListener("load", deferVideoLoad, { once: true });
   }
 
+  function shouldSkipMotionMedia() {
+    const connection =
+      navigator.connection ||
+      navigator.mozConnection ||
+      navigator.webkitConnection;
+    const saveData = Boolean(connection && connection.saveData);
+    const reducedMotion =
+      window.matchMedia &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    return saveData || reducedMotion;
+  }
+
+  function loadReelVideo(video) {
+    if (!video || video.dataset.reelLoaded === "true" || shouldSkipMotionMedia()) {
+      return;
+    }
+
+    const sources = Array.from(video.querySelectorAll("source[data-src]"));
+
+    video.muted = true;
+    video.defaultMuted = true;
+    video.loop = true;
+    video.playsInline = true;
+    video.setAttribute("muted", "");
+    video.setAttribute("loop", "");
+    video.setAttribute("playsinline", "");
+
+    sources.forEach(function (source) {
+      source.src = source.dataset.src;
+
+      if (source.dataset.type) {
+        source.type = source.dataset.type;
+      }
+    });
+
+    video.dataset.reelLoaded = "true";
+    video.load();
+
+    const playAttempt = video.play();
+    if (playAttempt && typeof playAttempt.catch === "function") {
+      playAttempt.catch(function () {});
+    }
+  }
+
+  function initReelVideos() {
+    const reelVideos = Array.from(document.querySelectorAll("[data-reel-video]"));
+
+    if (reelVideos.length === 0 || shouldSkipMotionMedia()) {
+      return;
+    }
+
+    if ("IntersectionObserver" in window) {
+      const observer = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (entry) {
+            if (!entry.isIntersecting) {
+              return;
+            }
+
+            observer.unobserve(entry.target);
+            loadReelVideo(entry.target);
+          });
+        },
+        { rootMargin: "420px 0px" },
+      );
+
+      reelVideos.forEach(function (video) {
+        observer.observe(video);
+      });
+      return;
+    }
+
+    window.addEventListener(
+      "load",
+      function () {
+        reelVideos.forEach(loadReelVideo);
+      },
+      { once: true },
+    );
+  }
+
   function onYouTubeIframeAPIReady() {
     return undefined;
   }
@@ -300,6 +382,7 @@
   function init() {
     initLeafletMap();
     initHeroVideo();
+    initReelVideos();
     initTransitAccordion();
   }
 
