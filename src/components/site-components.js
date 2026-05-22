@@ -70,8 +70,35 @@
     return `${prefix}${path}`;
   }
 
+  function ensureFavicon() {
+    const faviconHref = assetHref("images/logo.png");
+    let favicon = document.querySelector('link[rel="icon"]');
+
+    if (!favicon) {
+      favicon = document.createElement("link");
+      favicon.rel = "icon";
+      document.head.appendChild(favicon);
+    }
+
+    favicon.type = "image/png";
+    favicon.href = faviconHref;
+
+    let shortcutIcon = document.querySelector('link[rel="shortcut icon"]');
+
+    if (!shortcutIcon) {
+      shortcutIcon = document.createElement("link");
+      shortcutIcon.rel = "shortcut icon";
+      document.head.appendChild(shortcutIcon);
+    }
+
+    shortcutIcon.type = "image/png";
+    shortcutIcon.href = faviconHref;
+  }
+
   const heroVideoSrc = assetHref("vid/hero.mp4");
   const heroVideoPosterSrc = assetHref("images/cta-bigger-photo.jpg");
+
+  ensureFavicon();
 
   function renderNavbar(page = "home") {
     return `
