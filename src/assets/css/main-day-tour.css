@@ -188,7 +188,7 @@
 }
 
 .day-tour-editorial-media {
-  height: clamp(340px, 34vw, 480px);
+  height: clamp(370px, 35vw, 520px);
   min-height: 0;
   margin: 0;
   overflow: hidden;
@@ -591,7 +591,7 @@
   }
 
   .day-tour-editorial-media {
-    height: 300px;
+    height: 320px;
     min-height: 0;
   }
 

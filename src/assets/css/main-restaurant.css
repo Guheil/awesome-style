@@ -133,6 +133,7 @@
 
 .restaurant-intro-media img,
 .restaurant-menu-card img,
+.restaurant-menu-card video,
 .restaurant-feature-media img,
 .restaurant-promo-card img,
 .restaurant-directions img {
@@ -200,6 +201,7 @@
 .restaurant-menu-card--wide {
   grid-column: 1 / -1;
   grid-template-columns: minmax(320px, 0.45fr) minmax(0, 0.55fr);
+  min-height: 0;
 }
 
 .restaurant-menu-card figure {
@@ -207,6 +209,15 @@
   overflow: hidden;
   min-height: 100%;
   background: var(--champagne);
+}
+
+.restaurant-menu-card--wide figure {
+  min-height: clamp(280px, 24vw, 380px);
+  aspect-ratio: 16 / 10;
+}
+
+.restaurant-menu-card--wide [data-reel-video] {
+  min-height: 0;
 }
 
 .restaurant-menu-card div {
@@ -529,6 +540,23 @@
   .restaurant-menu-card--wide {
     grid-column: auto;
     grid-template-columns: minmax(240px, 0.4fr) minmax(0, 0.6fr);
+  }
+}
+
+@media (max-width: 980px) {
+  .restaurant-menu-card,
+  .restaurant-menu-card--wide {
+    min-height: 0;
+    grid-template-columns: minmax(220px, 0.42fr) minmax(0, 0.58fr);
+  }
+
+  .restaurant-menu-card figure {
+    min-height: 220px;
+  }
+
+  .restaurant-menu-card div {
+    justify-content: flex-start;
+    padding: 24px 26px;
   }
 }
 
