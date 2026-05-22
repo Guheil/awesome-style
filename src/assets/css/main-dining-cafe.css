@@ -1790,8 +1790,17 @@
 
 @media (max-width: 900px) {
   .cafe-intro-grid--single,
-  .cafe-reviews-header {
+  .cafe-reviews-header,
+  .cafe-highlights-header {
     grid-template-columns: 1fr;
+  }
+
+  .cafe-highlights-header {
+    gap: 28px;
+  }
+
+  .cafe-highlights-heading {
+    max-width: none;
   }
 
   .cafe-intro-body {
