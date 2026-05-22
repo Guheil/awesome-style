@@ -1118,7 +1118,43 @@ nav.nav--solid {
   color: rgba(92, 69, 43, 0.68);
   text-transform: uppercase;
   font-weight: 500;
-  margin-bottom: 28px;
+  margin-bottom: 18px;
+}
+.calendar-toolbar {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+.calendar-nav-btn {
+  width: 34px;
+  height: 34px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--glass-border);
+  border-radius: 999px;
+  background: var(--ivory);
+  color: var(--ink);
+  cursor: pointer;
+  padding: 0;
+  transition:
+    background 0.2s,
+    border-color 0.2s,
+    color 0.2s;
+}
+.calendar-nav-btn:hover {
+  background: var(--champagne);
+  border-color: var(--gold-dim);
+  color: var(--navy);
+}
+.calendar-nav-btn:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+.calendar-nav-btn svg {
+  width: 16px;
+  height: 16px;
 }
 .calendar-grid {
   display: grid;

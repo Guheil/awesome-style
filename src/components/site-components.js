@@ -329,6 +329,7 @@
               <span class="field-label">Guests</span>
               <div class="guest-counter">
                 <button
+                  type="button"
                   class="counter-btn"
                   onclick="adjustGuests(-1)"
                   aria-label="Decrease guests"
@@ -339,6 +340,7 @@
                   <div class="counter-num" id="guestCount">2</div>
                 </div>
                 <button
+                  type="button"
                   class="counter-btn"
                   onclick="adjustGuests(1)"
                   aria-label="Increase guests"
@@ -349,7 +351,7 @@
               </div>
             </div>
 
-            <button class="btn-book-cta" onclick="handleBook()">
+            <button type="button" class="btn-book-cta" onclick="handleBook()">
               <span class="btn-book-label">Check Availability</span>
               <span class="btn-book-sublabel">Instant Confirmation</span>
             </button>
@@ -365,6 +367,49 @@
             >
               <p class="modal-title" id="modalTitle">Select Check-In Date</p>
               <p class="modal-sub">Choose your arrival date</p>
+
+              <div class="calendar-toolbar" aria-label="Calendar navigation">
+                <button
+                  type="button"
+                  class="calendar-nav-btn"
+                  data-booking-calendar-prev
+                  aria-label="Previous month"
+                >
+                  <svg
+                    width="16"
+                    height="16"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.6"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                  >
+                    <path d="M15 18l-6-6 6-6" />
+                  </svg>
+                </button>
+                <button
+                  type="button"
+                  class="calendar-nav-btn"
+                  data-booking-calendar-next
+                  aria-label="Next month"
+                >
+                  <svg
+                    width="16"
+                    height="16"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.6"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                  >
+                    <path d="M9 6l6 6-6 6" />
+                  </svg>
+                </button>
+              </div>
 
               <div class="calendar-grid">
                 <div>
@@ -384,10 +429,10 @@
               </div>
 
               <div class="modal-actions">
-                <button class="btn-modal-cancel" onclick="closeDateModal()">
+                <button type="button" class="btn-modal-cancel" onclick="closeDateModal()">
                   Cancel
                 </button>
-                <button class="btn-modal-confirm" onclick="confirmDate()">
+                <button type="button" class="btn-modal-confirm" onclick="confirmDate()">
                   Confirm Date
                 </button>
               </div>

@@ -1,15 +1,25 @@
 (function () {
   const app = (window.AwesomeHotel = window.AwesomeHotel || {});
   const features = (app.features = app.features || {});
+  const BOOKING_ORIGIN = "https://live.ipms247.com";
+  const BOOKING_PATH_PREFIX = "/booking/book-rooms-";
+  const BOOKING_HOTEL_ID = "870650";
+  const BOOKING_FORM_ID = "awesomeBookingIpmsForm";
+  const BOOKING_FORM_NAME = "_resBBBox";
+  const BOOKING_DATE_FORMAT = "mm-dd-yy";
+  const BOOKING_LANGUAGE = "en";
+  const MIN_GUESTS = 1;
+  const MAX_GUESTS = 12;
+  const DEFAULT_CHILDREN = 0;
+  const DEFAULT_ROOMS = 1;
 
   const baseToday = new Date();
   baseToday.setHours(0, 0, 0, 0);
 
   const defaultCheckin = new Date(baseToday);
-  defaultCheckin.setDate(defaultCheckin.getDate() + 7);
 
   const defaultCheckout = new Date(defaultCheckin);
-  defaultCheckout.setDate(defaultCheckout.getDate() + 3);
+  defaultCheckout.setDate(defaultCheckout.getDate() + 1);
 
   const MONTHS = [
     "January",
@@ -36,6 +46,8 @@
     "Saturday",
   ];
 
+  let calendarNavigationBound = false;
+
   const state = {
     checkin: defaultCheckin,
     checkout: defaultCheckout,
@@ -51,8 +63,53 @@
     return `${day} ${MONTHS[date.getMonth()].slice(0, 3)} ${date.getFullYear()}`;
   }
 
+  function clampInteger(value, min, max, fallback) {
+    const number = Number.parseInt(value, 10);
+
+    if (!Number.isFinite(number)) {
+      return fallback;
+    }
+
+    return Math.max(min, Math.min(max, number));
+  }
+
   function nightsDiff(startDate, endDate) {
     return Math.round((endDate - startDate) / (1000 * 60 * 60 * 24));
+  }
+
+  function addDays(date, days) {
+    const nextDate = new Date(date);
+    nextDate.setDate(nextDate.getDate() + days);
+    nextDate.setHours(0, 0, 0, 0);
+    return nextDate;
+  }
+
+  function getToday() {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    return today;
+  }
+
+  function isValidDate(date) {
+    return date instanceof Date && !Number.isNaN(date.getTime());
+  }
+
+  function monthStart(date) {
+    return new Date(date.getFullYear(), date.getMonth(), 1);
+  }
+
+  function formatIpmsDate(date) {
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
+    return `${month}-${day}-${date.getFullYear()}`;
+  }
+
+  function getMinimumSelectableDate() {
+    if (state.activeModal === "checkout") {
+      return addDays(state.checkin, 1);
+    }
+
+    return getToday();
   }
 
   function sameDay(left, right) {
@@ -94,13 +151,52 @@
   }
 
   function adjustGuests(delta) {
-    state.guests = Math.max(1, Math.min(12, state.guests + delta));
+    state.guests = clampInteger(
+      state.guests + delta,
+      MIN_GUESTS,
+      MAX_GUESTS,
+      state.guests,
+    );
     renderBar();
   }
 
+  function commitDate(date) {
+    const selectedDate = new Date(date);
+    selectedDate.setHours(0, 0, 0, 0);
+
+    if (state.activeModal === "checkin") {
+      if (selectedDate < getToday()) {
+        return false;
+      }
+
+      state.checkin = selectedDate;
+
+      if (state.checkout <= state.checkin) {
+        state.checkout = addDays(state.checkin, 1);
+      }
+    } else if (state.activeModal === "checkout") {
+      if (selectedDate <= state.checkin) {
+        window.alert("Check-out must be after check-in.");
+        return false;
+      }
+
+      state.checkout = selectedDate;
+    } else {
+      return false;
+    }
+
+    state.pendingDate = selectedDate;
+    renderBar();
+    return true;
+  }
+
   function selectDate(date) {
-    state.pendingDate = new Date(date);
+    if (!commitDate(date)) {
+      return;
+    }
+
     renderCalendars();
+    closeDateModal();
   }
 
   function renderCalendar(calendarNumber, year, month) {
@@ -115,8 +211,7 @@
 
     const firstDay = new Date(year, month, 1).getDay();
     const daysInMonth = new Date(year, month + 1, 0).getDate();
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
+    const minimumSelectableDate = getMinimumSelectableDate();
 
     for (let index = 0; index < firstDay; index += 1) {
       const emptyCell = document.createElement("div");
@@ -130,13 +225,15 @@
       cell.className = "cal-day";
       cell.textContent = String(day);
 
-      if (date < today) {
+      if (date < minimumSelectableDate) {
         cell.classList.add("past");
       } else {
         if (state.pendingDate && sameDay(date, state.pendingDate)) {
           cell.classList.add("selected");
         }
-        cell.addEventListener("click", function () {
+        cell.addEventListener("click", function (event) {
+          event.preventDefault();
+          event.stopPropagation();
           selectDate(date);
         });
       }
@@ -149,6 +246,50 @@
     renderCalendar(1, state.calendarYear, state.calendarMonth);
     const nextMonth = new Date(state.calendarYear, state.calendarMonth + 1, 1);
     renderCalendar(2, nextMonth.getFullYear(), nextMonth.getMonth());
+  }
+
+  function moveCalendar(delta) {
+    const requestedMonth = new Date(
+      state.calendarYear,
+      state.calendarMonth + delta,
+      1,
+    );
+    const earliestMonth = monthStart(getMinimumSelectableDate());
+
+    if (requestedMonth < earliestMonth) {
+      return;
+    }
+
+    state.calendarYear = requestedMonth.getFullYear();
+    state.calendarMonth = requestedMonth.getMonth();
+    renderCalendars();
+  }
+
+  function bindCalendarNavigation() {
+    if (calendarNavigationBound) {
+      return;
+    }
+
+    document.addEventListener("click", function (event) {
+      const target = event.target;
+
+      if (!target || typeof target.closest !== "function") {
+        return;
+      }
+
+      const previousButton = target.closest("[data-booking-calendar-prev]");
+      const nextButton = target.closest("[data-booking-calendar-next]");
+
+      if (!previousButton && !nextButton) {
+        return;
+      }
+
+      event.preventDefault();
+      event.stopPropagation();
+      moveCalendar(previousButton ? -1 : 1);
+    });
+
+    calendarNavigationBound = true;
   }
 
   function openDateModal(type, event) {
@@ -203,21 +344,10 @@
       return;
     }
 
-    if (state.activeModal === "checkin") {
-      state.checkin = new Date(state.pendingDate);
-      if (state.checkout <= state.checkin) {
-        state.checkout = new Date(state.checkin);
-        state.checkout.setDate(state.checkout.getDate() + 1);
-      }
-    } else {
-      if (state.pendingDate <= state.checkin) {
-        window.alert("Check-out must be after check-in.");
-        return;
-      }
-      state.checkout = new Date(state.pendingDate);
+    if (!commitDate(state.pendingDate)) {
+      return;
     }
 
-    renderBar();
     closeDateModal();
   }
 
@@ -251,15 +381,125 @@
     return false;
   }
 
-  function handleBook() {
-    const nights = nightsDiff(state.checkin, state.checkout);
-    window.alert(
-      `Reservation Summary\n\nCheck-in: ${fmtDate(state.checkin)}\nCheck-out: ${fmtDate(state.checkout)}\nNights: ${nights}\nGuests: ${state.guests}\n\nProceeding to secure booking...`,
+  function buildBookingUrl() {
+    if (!/^\d+$/.test(BOOKING_HOTEL_ID)) {
+      throw new Error("Invalid booking hotel id.");
+    }
+
+    const url = new URL(
+      `${BOOKING_PATH_PREFIX}${BOOKING_HOTEL_ID}`,
+      BOOKING_ORIGIN,
     );
+
+    if (url.protocol !== "https:" || url.origin !== BOOKING_ORIGIN) {
+      throw new Error("Untrusted booking destination.");
+    }
+
+    return url;
+  }
+
+  function getRequestedGuestCount() {
+    const roomGuestInput = document.getElementById("roomsGuestInput");
+    const roomGuestValue = roomGuestInput ? roomGuestInput.value : "";
+
+    if (roomGuestValue !== "") {
+      return clampInteger(roomGuestValue, MIN_GUESTS, MAX_GUESTS, state.guests);
+    }
+
+    return clampInteger(state.guests, MIN_GUESTS, MAX_GUESTS, 2);
+  }
+
+  function getSafeBookingState() {
+    const today = getToday();
+    const checkin =
+      isValidDate(state.checkin) && state.checkin >= today
+        ? new Date(state.checkin)
+        : today;
+    const checkout =
+      isValidDate(state.checkout) && state.checkout > checkin
+        ? new Date(state.checkout)
+        : addDays(checkin, 1);
+
+    checkin.setHours(0, 0, 0, 0);
+    checkout.setHours(0, 0, 0, 0);
+
+    return {
+      checkin,
+      checkout,
+      nights: Math.max(1, nightsDiff(checkin, checkout)),
+      adults: getRequestedGuestCount(),
+      children: DEFAULT_CHILDREN,
+      rooms: DEFAULT_ROOMS,
+    };
+  }
+
+  function ensureHiddenField(form, name, value) {
+    let field = form.elements.namedItem(name);
+
+    if (!field) {
+      field = document.createElement("input");
+      field.type = "hidden";
+      field.name = name;
+      form.appendChild(field);
+    }
+
+    field.value = String(value);
+  }
+
+  function getBookingForm(actionUrl) {
+    let form = document.getElementById(BOOKING_FORM_ID);
+
+    if (!form || form.tagName !== "FORM") {
+      form = document.createElement("form");
+      form.id = BOOKING_FORM_ID;
+      form.name = BOOKING_FORM_NAME;
+      form.style.display = "none";
+      form.setAttribute("aria-hidden", "true");
+      document.body.appendChild(form);
+    }
+
+    form.replaceChildren();
+    form.method = "post";
+    form.action = actionUrl.toString();
+    form.target = "_blank";
+    form.referrerPolicy = "no-referrer";
+    form.setAttribute("referrerpolicy", "no-referrer");
+
+    return form;
+  }
+
+  function submitTrustedBookingForm() {
+    const actionUrl = buildBookingUrl();
+    const bookingState = getSafeBookingState();
+    const form = getBookingForm(actionUrl);
+    const arrivalDate = formatIpmsDate(bookingState.checkin);
+    const departureDate = formatIpmsDate(bookingState.checkout);
+
+    ensureHiddenField(form, "eZ_chkin", arrivalDate);
+    ensureHiddenField(form, "eZ_chkout", departureDate);
+    ensureHiddenField(form, "eZ_Nights", bookingState.nights);
+    ensureHiddenField(form, "eZ_adult", bookingState.adults);
+    ensureHiddenField(form, "eZ_child", bookingState.children);
+    ensureHiddenField(form, "eZ_room", bookingState.rooms);
+    ensureHiddenField(form, "calformat", BOOKING_DATE_FORMAT);
+    ensureHiddenField(form, "hidBodyLanguage", BOOKING_LANGUAGE);
+    ensureHiddenField(form, "ArDt", arrivalDate);
+    ensureHiddenField(form, "acturl", actionUrl.toString());
+
+    form.submit();
+  }
+
+  function handleBook() {
+    try {
+      submitTrustedBookingForm();
+    } catch (error) {
+      console.error("Unable to open the booking engine.", error);
+    }
   }
 
   function init() {
     renderBar();
+    bindCalendarNavigation();
   }
 
   features.booking = {
