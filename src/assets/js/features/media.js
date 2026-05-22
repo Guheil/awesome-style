@@ -251,20 +251,33 @@
     return saveData || reducedMotion;
   }
 
-  function loadReelVideo(video) {
-    if (!video || video.dataset.reelLoaded === "true" || shouldSkipMotionMedia()) {
-      return;
+  function prepareReelVideo(video) {
+    if (!video) {
+      return false;
     }
-
-    const sources = Array.from(video.querySelectorAll("source[data-src]"));
 
     video.muted = true;
     video.defaultMuted = true;
     video.loop = true;
     video.playsInline = true;
+    video.preload = "metadata";
     video.setAttribute("muted", "");
     video.setAttribute("loop", "");
     video.setAttribute("playsinline", "");
+
+    return true;
+  }
+
+  function loadReelVideo(video) {
+    if (
+      !prepareReelVideo(video) ||
+      video.dataset.reelLoaded === "true" ||
+      shouldSkipMotionMedia()
+    ) {
+      return;
+    }
+
+    const sources = Array.from(video.querySelectorAll("source[data-src]"));
 
     sources.forEach(function (source) {
       source.src = source.dataset.src;
@@ -276,6 +289,16 @@
 
     video.dataset.reelLoaded = "true";
     video.load();
+  }
+
+  function playReelVideo(video) {
+    if (!prepareReelVideo(video) || shouldSkipMotionMedia()) {
+      return;
+    }
+
+    if (video.dataset.reelLoaded !== "true") {
+      loadReelVideo(video);
+    }
 
     const playAttempt = video.play();
     if (playAttempt && typeof playAttempt.catch === "function") {
@@ -283,8 +306,48 @@
     }
   }
 
+  function pauseReelVideo(video) {
+    if (!video || video.paused) {
+      return;
+    }
+
+    video.pause();
+  }
+
+  function isVideoNearViewport(video) {
+    if (!video || typeof video.getBoundingClientRect !== "function") {
+      return false;
+    }
+
+    const rect = video.getBoundingClientRect();
+    const viewportHeight =
+      window.innerHeight || document.documentElement.clientHeight || 0;
+
+    return rect.bottom >= -120 && rect.top <= viewportHeight + 120;
+  }
+
+  function syncReelVideo(video) {
+    if (!video) {
+      return;
+    }
+
+    if (document.visibilityState === "hidden") {
+      pauseReelVideo(video);
+      return;
+    }
+
+    if (isVideoNearViewport(video)) {
+      playReelVideo(video);
+      return;
+    }
+
+    pauseReelVideo(video);
+  }
+
   function initReelVideos() {
-    const reelVideos = Array.from(document.querySelectorAll("[data-reel-video]"));
+    const reelVideos = Array.from(
+      document.querySelectorAll("[data-reel-video]"),
+    );
 
     if (reelVideos.length === 0 || shouldSkipMotionMedia()) {
       return;
@@ -295,29 +358,54 @@
         function (entries) {
           entries.forEach(function (entry) {
             if (!entry.isIntersecting) {
+              pauseReelVideo(entry.target);
               return;
             }
 
-            observer.unobserve(entry.target);
-            loadReelVideo(entry.target);
+            playReelVideo(entry.target);
           });
         },
-        { rootMargin: "420px 0px" },
+        {
+          rootMargin: "160px 0px",
+          threshold: 0.2,
+        },
       );
 
       reelVideos.forEach(function (video) {
         observer.observe(video);
       });
+
+      document.addEventListener("visibilitychange", function () {
+        reelVideos.forEach(syncReelVideo);
+      });
+
       return;
     }
 
-    window.addEventListener(
-      "load",
-      function () {
-        reelVideos.forEach(loadReelVideo);
-      },
-      { once: true },
-    );
+    let rafId = 0;
+
+    function syncVisibleVideos() {
+      rafId = 0;
+      reelVideos.forEach(syncReelVideo);
+    }
+
+    function requestSync() {
+      if (rafId) {
+        return;
+      }
+
+      rafId = window.requestAnimationFrame(syncVisibleVideos);
+    }
+
+    if (document.readyState === "complete") {
+      requestSync();
+    } else {
+      window.addEventListener("load", requestSync, { once: true });
+    }
+
+    window.addEventListener("scroll", requestSync, { passive: true });
+    window.addEventListener("resize", requestSync, { passive: true });
+    document.addEventListener("visibilitychange", requestSync);
   }
 
   function onYouTubeIframeAPIReady() {

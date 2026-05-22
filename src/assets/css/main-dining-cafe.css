@@ -269,6 +269,10 @@
   letter-spacing: 0.01em;
 }
 
+.dining-page #diningVenueTitle {
+  color: var(--navy);
+}
+
 .dining-venue-description {
   display: grid;
   gap: 12px;
@@ -283,12 +287,17 @@
   color: rgba(55, 41, 29, 0.72);
 }
 
+.dining-page #diningVenueDescription p {
+  color: rgba(55, 41, 29, 0.84);
+}
+
 .dining-venue-hours-wrap {
   display: grid;
   gap: 10px;
   padding: 22px 24px;
   background: var(--sand);
   border-left: 3px solid var(--gold);
+  box-shadow: inset 0 0 0 1px rgba(181, 138, 84, 0.08);
 }
 
 .dining-venue-hours-label {
@@ -310,6 +319,10 @@
   font-size: 13px;
   line-height: 1.62;
   color: rgba(55, 41, 29, 0.76);
+}
+
+.dining-page #diningVenueHours p {
+  color: rgba(55, 41, 29, 0.88);
 }
 
 /* ── RESTAURANT MENU ── */
@@ -2090,4 +2103,3 @@
     line-height: 1.82;
   }
 }
-
