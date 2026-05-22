@@ -53,6 +53,7 @@
     const globalFeatureGroup = [
       "./features/booking.js",
       "./features/navigation.js",
+      "./features/smooth-scroll.js",
     ];
     const pageFeatureGroup = [];
 
