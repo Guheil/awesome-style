@@ -697,12 +697,12 @@
                       loop
                       playsinline
                       webkit-playsinline
-                      poster="https://awesomehotel.com/wp-content/uploads/2023/07/DSC05433.jpg"
+                      poster="https://awesomehotel.com/wp-content/uploads/2023/07/hotel-cocktails.jpg"
                       preload="none"
                       aria-hidden="true"
                     >
                       <source
-                        data-src="${assetHref("vid/reels/coffee.mp4")}"
+                        data-src="${assetHref("vid/reels/cocktail2.mov")}"
                         data-type="video/mp4"
                       />
                     </video>
@@ -738,7 +738,22 @@
                     <img src="https://awesomehotel.com/wp-content/uploads/2025/09/breakfast-buffet.jpg" alt="Global cuisine" loading="lazy" decoding="async" />
                   </figure>
                   <figure class="dining-image dining-image--tall">
-                    <img src="https://awesomehotel.com/wp-content/uploads/2023/07/hotel-drinks.jpg" alt="Signature offering" loading="lazy" decoding="async" />
+                    <video
+                      data-reel-video
+                      autoplay
+                      muted
+                      loop
+                      playsinline
+                      webkit-playsinline
+                      poster="https://awesomehotel.com/wp-content/uploads/2023/07/hotel-drinks.jpg"
+                      preload="none"
+                      aria-hidden="true"
+                    >
+                      <source
+                        data-src="${assetHref("vid/reels/kitchen.mov")}"
+                        data-type="video/mp4"
+                      />
+                    </video>
                   </figure>
                 </article>
               </div>

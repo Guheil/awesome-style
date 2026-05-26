@@ -46,7 +46,7 @@
     }
 
     if (cleanSrc.endsWith(".mov")) {
-      return "video/quicktime";
+      return "video/mp4";
     }
 
     if (cleanSrc.endsWith(".webm")) {
