@@ -198,18 +198,18 @@
       diningVenueVideoSource.removeAttribute("type");
     }
 
+    // Keep the real src unset so the shared media lazy-loader controls fetch timing.
+    diningVenueVideo.load();
+
     if (shouldSkipMotionMedia()) {
-      diningVenueVideo.load();
       return;
     }
 
-    diningVenueVideoSource.src = venue.video;
-    diningVenueVideo.dataset.reelLoaded = "true";
-    diningVenueVideo.load();
-
-    const playAttempt = diningVenueVideo.play();
-    if (playAttempt && typeof playAttempt.catch === "function") {
-      playAttempt.catch(function () {});
+    const media = app.features && app.features.media;
+    if (media && typeof media.syncReelVideo === "function") {
+      window.requestAnimationFrame(function () {
+        media.syncReelVideo(diningVenueVideo);
+      });
     }
   }
 

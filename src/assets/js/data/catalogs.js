@@ -22,6 +22,8 @@
       hours: ["Daily: 7:00 AM - 12:00 AM (Sunday - Saturday)"],
       image:
         "https://awesomehotel.com/wp-content/uploads/2025/09/lobby-cafe.jpg",
+      video: "../../assets/vid/reels/coffee.mp4",
+      videoType: "video/mp4",
       alt: "Lobby Cafe",
     },
     sportsBar: {
@@ -37,6 +39,7 @@
       ],
       image:
         "https://awesomehotel.com/wp-content/uploads/2025/09/sports-bar.jpg",
+      video: "../../assets/vid/reels/cocktail2.mov",
       alt: "Sports Bar",
     },
     breakfastBuffet: {
@@ -50,6 +53,7 @@
       ],
       image:
         "https://awesomehotel.com/wp-content/uploads/2025/09/breakfast-buffet.jpg",
+      video: "../../assets/vid/reels/kitchen.mov",
       alt: "Breakfast Buffet",
     },
   };

@@ -92,7 +92,6 @@
 .team-page-activity-card p,
 .team-page-detail-card p,
 .team-page-cta-copy p,
-.team-page-testimonial-card p,
 .team-page-stay-copy,
 .team-page-terms-list li,
 .team-page-faq.events-page-faq p {
@@ -168,8 +167,7 @@
 }
 
 .team-page-activity-grid,
-.team-page-room-grid,
-.team-page-testimonials-grid {
+.team-page-room-grid {
   display: grid;
   gap: 26px 24px;
 }
@@ -506,10 +504,11 @@
 
 .team-page-terms-layout {
   display: grid;
-  grid-template-columns: minmax(280px, 0.58fr) minmax(0, 1.42fr);
-  gap: clamp(34px, 5vw, 76px);
-  align-items: stretch;
-  padding-top: 12px;
+  grid-template-columns: minmax(280px, 0.5fr) minmax(0, 1.5fr);
+  gap: clamp(38px, 5vw, 78px);
+  align-items: start;
+  padding-top: 42px;
+  border-top: 1px solid rgba(181, 138, 84, 0.18);
 }
 
 .team-page-terms-copy {
@@ -523,28 +522,31 @@
 
 .team-page-terms-body {
   position: relative;
-  padding: clamp(24px, 3vw, 34px);
-  border: 1px solid rgba(181, 138, 84, 0.18);
-  border-radius: 18px;
-  background: var(--white);
-  box-shadow: 0 20px 48px rgba(47, 36, 24, 0.06);
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
 }
 
 .team-page-terms-list {
   counter-reset: teamTerms;
   display: grid;
-  gap: 14px;
+  gap: 0;
   margin: 0;
   padding: 0;
+  border-top: 1px solid rgba(181, 138, 84, 0.16);
   list-style: none;
 }
 
 .team-page-terms-list > li {
   position: relative;
-  padding: 22px 24px 22px 82px;
-  border: 1px solid rgba(181, 138, 84, 0.14);
-  border-radius: 14px;
-  background: var(--ivory);
+  display: block;
+  padding: 24px 0 24px 74px;
+  border: 0;
+  border-bottom: 1px solid rgba(181, 138, 84, 0.16);
+  border-radius: 0;
+  background: transparent;
   color: rgba(55, 41, 29, 0.8);
 }
 
@@ -552,19 +554,20 @@
   counter-increment: teamTerms;
   content: counter(teamTerms, decimal-leading-zero);
   position: absolute;
-  left: 22px;
-  top: 22px;
-  display: grid;
-  place-items: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 999px;
-  background: rgba(181, 138, 84, 0.12);
+  left: 0;
+  top: 27px;
+  display: block;
+  width: auto;
+  height: auto;
+  margin-top: 0;
+  border-radius: 0;
+  background: transparent;
   color: var(--gold);
-  font-family: "Cormorant Garamond", serif;
-  font-size: 22px;
+  font-family: "Jost", sans-serif;
+  font-size: 12px;
   line-height: 1;
-  font-weight: 600;
+  font-weight: 700;
+  letter-spacing: 0.18em;
 }
 
 .team-page-terms-list > li strong {
@@ -573,9 +576,8 @@
 }
 
 .team-page-terms-item--billing {
-  display: grid;
-  gap: 18px;
-  background: var(--white);
+  display: block;
+  background: transparent;
 }
 
 .team-page-terms-item--billing > span {
@@ -585,104 +587,93 @@
 .team-page-terms-bank-list {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
-  margin: 0;
+  gap: 14px;
+  margin: 16px 0 0;
   padding: 0;
   list-style: none;
 }
 
 .team-page-terms-bank-list li {
-  padding: 16px 18px;
-  border: 1px solid rgba(181, 138, 84, 0.14);
-  border-radius: 12px;
-  background: var(--ivory);
+  padding: 18px 20px;
+  border: 1px solid rgba(181, 138, 84, 0.16);
+  border-radius: 14px;
+  background: rgba(251, 245, 234, 0.54);
   color: rgba(55, 41, 29, 0.76);
-  font-size: 14px;
+  font-size: 13.5px;
   line-height: 1.7;
 }
 
 .team-page-testimonials {
-  padding: 108px 0 116px;
-  background: var(--ivory);
+  padding: 104px 0 112px;
+  background: var(--sand);
 }
 
 .team-page-testimonials .team-page-shell {
-  display: grid;
-  grid-template-columns: minmax(260px, 0.34fr) minmax(0, 1fr);
-  gap: 0;
-  align-items: stretch;
-  border-top: 1px solid rgba(181, 138, 84, 0.26);
-  border-bottom: 1px solid rgba(181, 138, 84, 0.26);
+  display: block;
+  max-width: var(--content-shell-max-width);
+  padding: 0 48px;
+  border: 0;
+  text-align: center;
 }
 
 .team-page-testimonials .team-page-heading {
-  max-width: 10ch;
-  padding: clamp(34px, 4vw, 54px) clamp(28px, 4vw, 46px) clamp(34px, 4vw, 54px)
-    0;
-  border-right: 1px solid rgba(181, 138, 84, 0.2);
-  text-align: left;
-}
-
-.team-page-testimonials-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 0;
-  margin-top: 0;
-}
-
-.team-page-testimonial-card {
-  display: grid;
-  grid-template-columns: minmax(150px, 0.24fr) minmax(0, 1fr);
-  gap: clamp(24px, 4vw, 52px);
-  align-items: start;
-  min-height: auto;
-  padding: clamp(30px, 4vw, 48px) 0 clamp(30px, 4vw, 48px)
-    clamp(28px, 4vw, 52px);
-  border-top: 1px solid rgba(181, 138, 84, 0.16);
-  background: transparent;
-  box-shadow: none;
-}
-
-.team-page-testimonial-card:first-child {
-  border-top: 0;
-}
-
-.team-page-testimonial-card::before {
-  content: "";
-  grid-column: 1;
-  grid-row: 1;
-  width: 42px;
-  height: 1px;
-  margin-top: 0.68em;
-  background: rgba(181, 138, 84, 0.72);
-}
-
-.team-page-testimonial-card:first-child p {
-  font-family: "Cormorant Garamond", serif;
-  font-size: clamp(26px, 2.4vw, 36px);
-  line-height: 1.22;
-  font-weight: 500;
+  max-width: 12ch;
+  margin: 0 auto 18px;
+  padding: 0;
+  border: 0;
   color: var(--ink);
+  text-align: center;
 }
 
-.team-page-testimonial-card p {
-  grid-column: 2;
-  grid-row: 1;
-  max-width: 76ch;
-  color: rgba(55, 41, 29, 0.78);
+.team-page-testimonials .reviews-stars-row {
+  margin-bottom: 48px;
 }
 
-.team-page-testimonial-card cite {
-  grid-column: 1;
-  grid-row: 1;
-  align-self: start;
-  padding-left: 58px;
+.team-page-testimonials .reviews-track {
+  align-items: stretch;
+}
+
+.team-page-testimonials .review-card {
+  flex: 0 1 calc((100% - 48px) / 3);
+  max-width: 370px;
+  min-height: 390px;
+}
+
+.team-page-testimonials .review-card__text {
+  color: var(--navy-mid);
+}
+
+.team-page-review-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(181, 138, 84, 0.28);
+  background: var(--ivory);
   color: var(--gold);
-  font-style: normal;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+}
+
+.team-page-review-avatar svg {
+  width: 25px;
+  height: 25px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.team-page-testimonials .reviews-controls {
+  margin-top: 34px;
+}
+
+.team-page-testimonials .reviews-cta {
+  display: none;
+}
+
+@media (max-width: 1040px) {
+  .team-page-testimonials .review-card {
+    flex-basis: calc((100% - 24px) / 2);
+  }
 }
 
 .team-page-cta {
@@ -866,14 +857,12 @@
   }
 
   .team-page-testimonials .team-page-shell {
-    grid-template-columns: 1fr;
+    padding-left: 36px;
+    padding-right: 36px;
   }
 
   .team-page-testimonials .team-page-heading {
     max-width: 12ch;
-    padding-right: 0;
-    border-right: 0;
-    border-bottom: 1px solid rgba(181, 138, 84, 0.2);
   }
 
   .team-page-terms-layout,
@@ -925,7 +914,6 @@
   .team-page-activity-card p,
   .team-page-detail-card p,
   .team-page-cta-copy p,
-  .team-page-testimonial-card p,
   .team-page-stay-copy,
   .team-page-terms-list li,
   .team-page-faq.events-page-faq p {
@@ -934,8 +922,7 @@
   }
 
   .team-page-activity-grid,
-  .team-page-room-grid,
-  .team-page-testimonials-grid {
+  .team-page-room-grid {
     grid-template-columns: 1fr;
   }
 
@@ -950,35 +937,17 @@
 
   .team-page-testimonials .team-page-heading {
     max-width: 90vw;
-    padding: 28px 0;
   }
 
-  .team-page-testimonial-card,
-  .team-page-testimonial-card:first-child {
-    grid-template-columns: 1fr;
-    gap: 16px;
-    padding: 26px 0;
+  .team-page-testimonials .team-page-shell {
+    padding-left: 20px;
+    padding-right: 20px;
   }
 
-  .team-page-testimonial-card::before {
-    grid-column: 1;
-    grid-row: 1;
-  }
-
-  .team-page-testimonial-card p,
-  .team-page-testimonial-card:first-child p {
-    grid-column: 1;
-    grid-row: 2;
-  }
-
-  .team-page-testimonial-card:first-child p {
-    font-size: clamp(22px, 8vw, 30px);
-  }
-
-  .team-page-testimonial-card cite {
-    grid-column: 1;
-    grid-row: 1;
-    padding-left: 58px;
+  .team-page-testimonials .review-card {
+    flex-basis: 100%;
+    max-width: 100%;
+    min-height: auto;
   }
 
   .team-page-activity-grid {
@@ -1014,23 +983,24 @@
   }
 
   .team-page-terms-body {
-    padding: 24px 20px;
+    padding: 0;
   }
 
   .team-page-terms-list > li {
-    padding: 20px 18px 20px 68px;
+    padding: 20px 0 20px 58px;
   }
 
   .team-page-terms-list > li::before {
-    left: 16px;
-    top: 20px;
-    width: 34px;
-    height: 34px;
-    font-size: 18px;
+    position: absolute;
+    left: 0;
+    top: 23px;
+    width: auto;
+    height: auto;
+    font-size: 11px;
   }
 
   .team-page-terms-item--billing {
-    gap: 14px;
+    display: block;
   }
 
   .team-page-terms-bank-list {

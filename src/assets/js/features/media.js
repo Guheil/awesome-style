@@ -477,5 +477,6 @@
   features.media = {
     init,
     onYouTubeIframeAPIReady,
+    syncReelVideo,
   };
 })();

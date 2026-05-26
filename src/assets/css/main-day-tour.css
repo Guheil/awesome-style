@@ -371,11 +371,28 @@
   display: grid;
   gap: 20px;
   padding: clamp(38px, 5vw, 58px);
-  padding-right: clamp(280px, 36vw, 520px);
+  padding-right: clamp(420px, 43vw, 620px);
   border: 1px solid rgba(243, 226, 189, 0.2);
   background: var(--navy);
   overflow: hidden;
   isolation: isolate;
+}
+
+.day-tour-cta-panel::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    90deg,
+    var(--navy) 0%,
+    var(--navy) 48%,
+    rgba(47, 36, 24, 0.98) 56%,
+    rgba(47, 36, 24, 0.78) 68%,
+    rgba(47, 36, 24, 0.36) 84%,
+    rgba(47, 36, 24, 0) 100%
+  );
+  pointer-events: none;
 }
 
 .day-tour-cta-copy {
@@ -384,29 +401,33 @@
   display: grid;
   gap: 20px;
   width: 100%;
-  max-width: 520px;
+  max-width: 500px;
 }
 
 .day-tour-cta-image {
   position: absolute;
   inset: 0 0 0 auto;
-  z-index: 1;
-  width: min(48%, 680px);
-  opacity: 0.62;
+  z-index: 0;
+  width: min(58%, 780px);
+  opacity: 0.82;
   pointer-events: none;
   -webkit-mask-image: linear-gradient(
     to right,
     transparent 0%,
-    rgba(0, 0, 0, 0.08) 34%,
-    rgba(0, 0, 0, 0.72) 66%,
-    black 82%
+    transparent 18%,
+    rgba(0, 0, 0, 0.08) 40%,
+    rgba(0, 0, 0, 0.34) 58%,
+    rgba(0, 0, 0, 0.72) 76%,
+    black 100%
   );
   mask-image: linear-gradient(
     to right,
     transparent 0%,
-    rgba(0, 0, 0, 0.08) 34%,
-    rgba(0, 0, 0, 0.72) 66%,
-    black 82%
+    transparent 18%,
+    rgba(0, 0, 0, 0.08) 40%,
+    rgba(0, 0, 0, 0.34) 58%,
+    rgba(0, 0, 0, 0.72) 76%,
+    black 100%
   );
 }
 
@@ -633,6 +654,10 @@
     padding-right: clamp(38px, 5vw, 58px);
   }
 
+  .day-tour-cta-panel::after {
+    display: none;
+  }
+
   .day-tour-cta-copy {
     max-width: none;
   }
@@ -643,6 +668,8 @@
     width: 100%;
     min-height: 320px;
     opacity: 0.28;
+    -webkit-mask-image: none;
+    mask-image: none;
   }
 }
 
