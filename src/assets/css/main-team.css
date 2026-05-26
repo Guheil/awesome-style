@@ -42,6 +42,18 @@
   background: rgba(20, 13, 8, 0.38);
 }
 
+.team-page-nowrap {
+  white-space: nowrap;
+}
+
+.team-page-intro,
+.team-page-rates,
+.team-page-terms,
+.team-page-testimonials,
+.team-page-faq {
+  background: var(--white);
+}
+
 .team-page-hero-media {
   position: absolute;
   inset: 0;
@@ -497,8 +509,7 @@
   grid-template-columns: minmax(280px, 0.58fr) minmax(0, 1.42fr);
   gap: clamp(34px, 5vw, 76px);
   align-items: stretch;
-  padding-top: 38px;
-  border-top: 1px solid rgba(181, 138, 84, 0.24);
+  padding-top: 12px;
 }
 
 .team-page-terms-copy {
@@ -511,54 +522,83 @@
 }
 
 .team-page-terms-body {
-  padding: clamp(28px, 4vw, 44px);
+  position: relative;
+  padding: clamp(24px, 3vw, 34px);
   border: 1px solid rgba(181, 138, 84, 0.18);
-  background: var(--ivory);
-  box-shadow: 0 18px 44px rgba(47, 36, 24, 0.05);
+  border-radius: 18px;
+  background: var(--white);
+  box-shadow: 0 20px 48px rgba(47, 36, 24, 0.06);
 }
 
 .team-page-terms-list {
   counter-reset: teamTerms;
+  display: grid;
+  gap: 14px;
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
-.team-page-terms-list li {
+.team-page-terms-list > li {
   position: relative;
-  padding: 20px 0 20px 58px;
-  border-top: 1px solid rgba(181, 138, 84, 0.16);
+  padding: 22px 24px 22px 82px;
+  border: 1px solid rgba(181, 138, 84, 0.14);
+  border-radius: 14px;
+  background: var(--ivory);
   color: rgba(55, 41, 29, 0.8);
 }
 
-.team-page-terms-list li:first-child {
-  border-top: 0;
-  padding-top: 0;
-}
-
-.team-page-terms-list li:not(.team-page-terms-subitem)::before {
+.team-page-terms-list > li::before {
   counter-increment: teamTerms;
   content: counter(teamTerms, decimal-leading-zero);
   position: absolute;
-  left: 0;
-  top: 20px;
+  left: 22px;
+  top: 22px;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  background: rgba(181, 138, 84, 0.12);
   color: var(--gold);
   font-family: "Cormorant Garamond", serif;
-  font-size: 30px;
+  font-size: 22px;
   line-height: 1;
   font-weight: 600;
 }
 
-.team-page-terms-list li:first-child::before {
-  top: 0;
+.team-page-terms-list > li strong {
+  color: var(--ink);
+  font-weight: 600;
 }
 
-.team-page-terms-list .team-page-terms-subitem {
-  margin-left: 58px;
-  padding: 14px 0 14px 24px;
-  border-top: 1px solid rgba(181, 138, 84, 0.12);
-  border-left: 1px solid rgba(181, 138, 84, 0.26);
+.team-page-terms-item--billing {
+  display: grid;
+  gap: 18px;
+  background: var(--white);
+}
+
+.team-page-terms-item--billing > span {
+  display: block;
+}
+
+.team-page-terms-bank-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.team-page-terms-bank-list li {
+  padding: 16px 18px;
+  border: 1px solid rgba(181, 138, 84, 0.14);
+  border-radius: 12px;
+  background: var(--ivory);
+  color: rgba(55, 41, 29, 0.76);
   font-size: 14px;
+  line-height: 1.7;
 }
 
 .team-page-testimonials {
@@ -973,17 +1013,33 @@
     margin-top: 42px;
   }
 
-  .team-page-terms-list .team-page-terms-subitem {
-    margin-left: 20px;
-    padding-left: 18px;
-  }
-
   .team-page-terms-body {
     padding: 24px 20px;
   }
 
-  .team-page-terms-list li {
-    padding-left: 48px;
+  .team-page-terms-list > li {
+    padding: 20px 18px 20px 68px;
+  }
+
+  .team-page-terms-list > li::before {
+    left: 16px;
+    top: 20px;
+    width: 34px;
+    height: 34px;
+    font-size: 18px;
+  }
+
+  .team-page-terms-item--billing {
+    gap: 14px;
+  }
+
+  .team-page-terms-bank-list {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .team-page-terms-bank-list li {
+    padding: 14px 16px;
   }
 
   .team-page-stay-cta .stay-cta-stage {

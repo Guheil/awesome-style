@@ -59,6 +59,10 @@
   text-shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
 }
 
+.events-page-nowrap {
+  white-space: nowrap;
+}
+
 .events-page-hero-actions,
 .events-page-cta-actions {
   display: flex;

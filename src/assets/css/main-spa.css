@@ -1251,62 +1251,62 @@ body :is(h1, h2, h3, h4, h5, h6, [class*="heading"], [class*="title"]) {
 }
 
 .site-footer {
-  background: var(--gold);
-  color: var(--white);
-  border-top: 0;
+  background: var(--ink);
+  color: var(--champagne);
+  border-top: 1px solid rgba(243, 226, 189, 0.16);
 }
 
 .footer-block {
-  border-top-color: rgba(55, 41, 29, 0.18);
+  border-top-color: rgba(243, 226, 189, 0.14);
 }
 
 .footer-logo,
 .footer-heading {
-  color: var(--white);
+  color: var(--ivory);
 }
 
 .footer-logo-rule {
-  background: rgba(55, 41, 29, 0.28);
+  background: rgba(243, 226, 189, 0.68);
 }
 
 .footer-logo-sub,
 .footer-links-list a,
 .footer-contact-list a {
-  color: rgba(255, 255, 255, 0.86);
+  color: var(--gold-pale);
 }
 
 .footer-links-list a:hover,
 .footer-contact-list a:hover {
-  color: var(--white);
+  color: var(--ivory);
 }
 
 .footer-icon,
 .footer-social-list a {
-  background: rgba(251, 245, 234, 0.18);
-  border-color: rgba(255, 255, 255, 0.32);
-  color: var(--white);
+  background: rgba(251, 245, 234, 0.05);
+  border-color: rgba(243, 226, 189, 0.18);
+  color: var(--gold);
 }
 
 .footer-newsletter {
-  border-color: rgba(55, 41, 29, 0.28);
-  background: var(--champagne);
-  box-shadow: 0 14px 28px rgba(55, 41, 29, 0.1);
+  border-color: rgba(243, 226, 189, 0.18);
+  background: rgba(251, 245, 234, 0.05);
+  box-shadow: none;
 }
 
 .footer-newsletter button {
-  background: var(--ink);
-  color: var(--gold-pale);
+  background: var(--gold);
+  color: var(--ink);
 }
 
 .footer-newsletter button:hover {
-  background: var(--navy);
-  color: var(--gold-pale);
+  background: var(--gold-bright);
+  color: var(--ink);
 }
 
 .footer-social-list a:hover {
-  background: var(--ivory);
-  border-color: var(--ivory);
-  color: var(--gold);
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--ink);
 }
 
 .services-page {
@@ -1323,4 +1323,3 @@ body :is(h1, h2, h3, h4, h5, h6, [class*="heading"], [class*="title"]) {
   width: min(var(--content-max-width), calc(100% - 64px));
   margin: 0 auto;
 }
-
