@@ -452,7 +452,7 @@
         <div class="resort-carousel-inner">
           <div class="resort-carousel-copy">
             <h2 class="resort-carousel-title">
-              Sunset, sand, pool and seaside luxury getaway in La Union
+              Sunset, sand, pool and seaside luxury getaway in <span class="resort-carousel-title-nowrap">La Union</span>
             </h2>
 
             <div class="resort-carousel-body">
@@ -875,7 +875,9 @@
           <article class="daytour-card">
             <span class="daytour-kicker">La Union Day Tours</span>
             <h2 class="daytour-title" id="daytourTitle">
-              Escape to San Juan&ndash; Relax, Explore, and Enjoy
+              <span class="daytour-title-line">Escape to <span class="daytour-title-nowrap">San Juan</span>&ndash;</span>
+              <span class="daytour-title-line">Relax, Explore, and</span>
+              <span class="daytour-title-line">Enjoy</span>
             </h2>
 
             <div class="daytour-body">
@@ -903,19 +905,6 @@
 
             <div class="daytour-actions">
               <a href="${pageHref("dayTourPackages")}" class="daytour-cta">Explore Day Tour Package</a>
-
-              <div class="daytour-controls">
-                <button class="daytour-arrow" type="button" aria-label="Previous day tour slide" onclick="moveDaytourCarousel(-1)">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                    <path d="M15 18l-6-6 6-6" />
-                  </svg>
-                </button>
-                <button class="daytour-arrow" type="button" aria-label="Next day tour slide" onclick="moveDaytourCarousel(1)">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                    <path d="M9 18l6-6-6-6" />
-                  </svg>
-                </button>
-              </div>
             </div>
           </article>
         </div>
@@ -1048,68 +1037,48 @@
           <div class="reviews-track-wrap">
             <div class="reviews-track" id="reviewsTrack">
               <article class="review-card">
-                <div class="review-card__avatar" aria-hidden="true"></div>
+                <img class="review-card__avatar" src="https://www.gstatic.com/images/branding/product/1x/googleg_48dp.png" alt="" width="48" height="48" aria-hidden="true" />
                 <div class="review-card__stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
                 <blockquote class="review-card__text">
                   &ldquo;Definitely one of the best hotels in La Union and in Luzon island, by far. True to its name, the experience you will have when you stay here will be awesome. Great and modern rooms! The restrooms are also modern.&rdquo;
                 </blockquote>
                 <p class="review-card__name">Matt Dailisan</p>
-                <p class="review-card__source">
-                  <img src="https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png" alt="" width="14" height="14" />
-                  Google
-                </p>
               </article>
 
               <article class="review-card">
-                <div class="review-card__avatar" aria-hidden="true"></div>
+                <img class="review-card__avatar" src="https://www.gstatic.com/images/branding/product/1x/googleg_48dp.png" alt="" width="48" height="48" aria-hidden="true" />
                 <div class="review-card__stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
                 <blockquote class="review-card__text">
                   &ldquo;They live up to their name, Awesome Hotel. We absolutely had an awesome stay! The infinity pool made our 4-year-old stay in it, infinitely. The beach is awesome as is. Rooms are spacious with a balcony overlooking the infinity pool.&rdquo;
                 </blockquote>
                 <p class="review-card__name">Ane Fallarme</p>
-                <p class="review-card__source">
-                  <img src="https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png" alt="" width="14" height="14" />
-                  Google
-                </p>
               </article>
 
               <article class="review-card">
-                <div class="review-card__avatar" aria-hidden="true"></div>
+                <img class="review-card__avatar" src="https://www.gstatic.com/images/branding/product/1x/googleg_48dp.png" alt="" width="48" height="48" aria-hidden="true" />
                 <div class="review-card__stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
                 <blockquote class="review-card__text">
                   &ldquo;Location is near town proper which is a plus. Never thought such hotel exists in the province. Rooms are quite spacious and clean. We got the Premium Suite for two nights with a beautiful view of the sea. Food is exceptional.&rdquo;
                 </blockquote>
                 <p class="review-card__name">M.B. Llarenas</p>
-                <p class="review-card__source">
-                  <img src="https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png" alt="" width="14" height="14" />
-                  Google
-                </p>
               </article>
 
               <article class="review-card">
-                <div class="review-card__avatar" aria-hidden="true"></div>
+                <img class="review-card__avatar" src="https://www.gstatic.com/images/branding/product/1x/googleg_48dp.png" alt="" width="48" height="48" aria-hidden="true" />
                 <div class="review-card__stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
                 <blockquote class="review-card__text">
                   &ldquo;Great stay with family - clean, tidy and rooms were spacious. We could hear the ocean waves from our rooms at night which was so soothing. The pool view was spectacular at sunset looking out onto the beach. Highly recommended!&rdquo;
                 </blockquote>
                 <p class="review-card__name">Nessa Alpha</p>
-                <p class="review-card__source">
-                  <img src="https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png" alt="" width="14" height="14" />
-                  Google
-                </p>
               </article>
 
               <article class="review-card">
-                <div class="review-card__avatar" aria-hidden="true"></div>
+                <img class="review-card__avatar" src="https://www.gstatic.com/images/branding/product/1x/googleg_48dp.png" alt="" width="48" height="48" aria-hidden="true" />
                 <div class="review-card__stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
                 <blockquote class="review-card__text">
                   &ldquo;The infinity pool is breathtaking, especially at golden hour. Staff were incredibly warm and attentive throughout our stay. The beachfront access is just steps away. We will definitely be returning for our anniversary.&rdquo;
                 </blockquote>
                 <p class="review-card__name">Patricia Santos</p>
-                <p class="review-card__source">
-                  <img src="https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png" alt="" width="14" height="14" />
-                  Google
-                </p>
               </article>
             </div>
           </div>
