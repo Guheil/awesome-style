@@ -1,9 +1,43 @@
 (function () {
   const app = (window.AwesomeHotel = window.AwesomeHotel || {});
   const features = (app.features = app.features || {});
+
   const leafletCssUrl = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.css";
   const leafletScriptUrl = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.js";
+
   let leafletLoadPromise = null;
+
+  // ---------------------------------------------------------------------------
+  // FIX #3 — Memoize media/connection checks at module init time.
+  // Previously, shouldSkipVideo() and shouldSkipMotionMedia() re-queried
+  // navigator.connection and window.matchMedia on every call, which on the
+  // reel fallback path meant re-evaluating on every RAF frame × every video.
+  // ---------------------------------------------------------------------------
+  const connection =
+    navigator.connection ||
+    navigator.mozConnection ||
+    navigator.webkitConnection;
+
+  const SAVE_DATA = Boolean(connection && connection.saveData);
+  const REDUCED_MOTION = Boolean(
+    window.matchMedia &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches,
+  );
+  const COMPACT_VIEWPORT = Boolean(
+    window.matchMedia && window.matchMedia("(max-width: 760px)").matches,
+  );
+
+  // Used by hero video (skips on mobile too).
+  const SKIP_HERO_VIDEO = SAVE_DATA || REDUCED_MOTION || COMPACT_VIEWPORT;
+
+  // FIX #5 — Reel videos now also skip on mobile, matching hero video behaviour.
+  // Previously shouldSkipMotionMedia() had no viewport-width guard, so mobile
+  // users would download and play reel videos while the hero video was skipped.
+  const SKIP_MOTION_MEDIA = SAVE_DATA || REDUCED_MOTION || COMPACT_VIEWPORT;
+
+  // ---------------------------------------------------------------------------
+  // Script / stylesheet loading helpers
+  // ---------------------------------------------------------------------------
 
   function loadStylesheet(url, dataAttribute) {
     if (document.querySelector(`link[${dataAttribute}]`)) {
@@ -17,9 +51,29 @@
     document.head.appendChild(link);
   }
 
+  // FIX #1 — loadScript previously returned a never-resolving promise when the
+  // <script> tag already existed in the DOM but had already fired its "load"
+  // event (i.e. it was already loaded). The new listeners would never fire,
+  // leaving every caller awaiting forever.
+  //
+  // Fix: track load state via data-loaded / data-failed attributes so we can
+  // short-circuit synchronously on repeat calls.
   function loadScript(url, dataAttribute) {
     const existingScript = document.querySelector(`script[${dataAttribute}]`);
+
     if (existingScript) {
+      // Already fully loaded — resolve immediately.
+      if (existingScript.dataset.loaded === "true") {
+        return Promise.resolve();
+      }
+
+      // Previously failed — reject immediately so callers can decide whether
+      // to surface an error rather than hanging forever.
+      if (existingScript.dataset.failed === "true") {
+        return Promise.reject(new Error(`Previously failed to load: ${url}`));
+      }
+
+      // Still in flight — attach to the existing element.
       return new Promise(function (resolve, reject) {
         existingScript.addEventListener("load", resolve, { once: true });
         existingScript.addEventListener("error", reject, { once: true });
@@ -31,13 +85,24 @@
       script.src = url;
       script.async = true;
       script.setAttribute(dataAttribute, "true");
-      script.onload = resolve;
+
+      script.onload = function () {
+        script.dataset.loaded = "true";
+        resolve();
+      };
+
       script.onerror = function () {
+        script.dataset.failed = "true";
         reject(new Error(`Unable to load ${url}`));
       };
+
       document.head.appendChild(script);
     });
   }
+
+  // ---------------------------------------------------------------------------
+  // Leaflet helpers
+  // ---------------------------------------------------------------------------
 
   function loadLeafletAssets() {
     if (window.L) {
@@ -49,10 +114,20 @@
     }
 
     loadStylesheet(leafletCssUrl, "data-awesome-leaflet-css");
+
+    // FIX #2 — Previously a rejected leafletLoadPromise was cached forever.
+    // If Leaflet's CDN timed out on first load, every subsequent scroll-into-
+    // view attempt would immediately reject without retrying.
+    //
+    // Fix: clear leafletLoadPromise on failure so the next intersection event
+    // triggers a fresh load attempt.
     leafletLoadPromise = loadScript(
       leafletScriptUrl,
       "data-awesome-leaflet-js",
-    );
+    ).catch(function (err) {
+      leafletLoadPromise = null; // allow retry on next intersection
+      throw err;
+    });
 
     return leafletLoadPromise;
   }
@@ -78,6 +153,7 @@
     });
 
     map.setView([latitude, longitude], 16);
+
     window.setTimeout(function () {
       map.invalidateSize();
     }, 100);
@@ -123,7 +199,11 @@
     if ("IntersectionObserver" in window) {
       const observer = new IntersectionObserver(
         function (entries) {
-          if (!entries.some((entry) => entry.isIntersecting)) {
+          if (
+            !entries.some(function (entry) {
+              return entry.isIntersecting;
+            })
+          ) {
             return;
           }
 
@@ -146,6 +226,10 @@
     );
   }
 
+  // ---------------------------------------------------------------------------
+  // Hero video
+  // ---------------------------------------------------------------------------
+
   function initHeroVideo() {
     const heroVideo = document.querySelector(".video-bg .hero-video");
     const videoBackground = document.querySelector(".video-bg");
@@ -160,21 +244,6 @@
 
     function hideVideo() {
       videoBackground.classList.remove("video-ready");
-    }
-
-    function shouldSkipVideo() {
-      const connection =
-        navigator.connection ||
-        navigator.mozConnection ||
-        navigator.webkitConnection;
-      const saveData = Boolean(connection && connection.saveData);
-      const reducedMotion =
-        window.matchMedia &&
-        window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-      const compactViewport =
-        window.matchMedia && window.matchMedia("(max-width: 760px)").matches;
-
-      return saveData || reducedMotion || compactViewport;
     }
 
     function addSource(src, type) {
@@ -193,7 +262,8 @@
     }
 
     function loadVideoSources() {
-      if (hasSources() || shouldSkipVideo()) {
+      // SKIP_HERO_VIDEO is pre-computed at module init (FIX #3).
+      if (hasSources() || SKIP_HERO_VIDEO) {
         return;
       }
 
@@ -238,24 +308,17 @@
     window.addEventListener("load", deferVideoLoad, { once: true });
   }
 
-  function shouldSkipMotionMedia() {
-    const connection =
-      navigator.connection ||
-      navigator.mozConnection ||
-      navigator.webkitConnection;
-    const saveData = Boolean(connection && connection.saveData);
-    const reducedMotion =
-      window.matchMedia &&
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  // ---------------------------------------------------------------------------
+  // Reel videos
+  // ---------------------------------------------------------------------------
 
-    return saveData || reducedMotion;
-  }
-
-  function prepareReelVideo(video) {
-    if (!video) {
-      return false;
-    }
-
+  // FIX #4 — prepareReelVideo() previously set muted/loop/playsInline/etc. on
+  // every play and pause call. These attributes never change, so writing them
+  // repeatedly on every RAF frame was wasteful.
+  //
+  // Fix: run the one-time attribute setup inside initReelVideos() and replace
+  // the runtime calls to prepareReelVideo() with a simple null-guard.
+  function setupReelVideo(video) {
     video.muted = true;
     video.defaultMuted = true;
     video.loop = true;
@@ -264,16 +327,10 @@
     video.setAttribute("muted", "");
     video.setAttribute("loop", "");
     video.setAttribute("playsinline", "");
-
-    return true;
   }
 
   function loadReelVideo(video) {
-    if (
-      !prepareReelVideo(video) ||
-      video.dataset.reelLoaded === "true" ||
-      shouldSkipMotionMedia()
-    ) {
+    if (video.dataset.reelLoaded === "true") {
       return;
     }
 
@@ -292,7 +349,7 @@
   }
 
   function playReelVideo(video) {
-    if (!prepareReelVideo(video) || shouldSkipMotionMedia()) {
+    if (!video) {
       return;
     }
 
@@ -349,9 +406,13 @@
       document.querySelectorAll("[data-reel-video]"),
     );
 
-    if (reelVideos.length === 0 || shouldSkipMotionMedia()) {
+    // SKIP_MOTION_MEDIA is pre-computed at module init (FIX #3, #5).
+    if (reelVideos.length === 0 || SKIP_MOTION_MEDIA) {
       return;
     }
+
+    // FIX #4 — Run one-time attribute setup here instead of on every play/pause.
+    reelVideos.forEach(setupReelVideo);
 
     if ("IntersectionObserver" in window) {
       const observer = new IntersectionObserver(
@@ -382,6 +443,7 @@
       return;
     }
 
+    // Fallback for browsers without IntersectionObserver.
     let rafId = 0;
 
     function syncVisibleVideos() {
@@ -408,9 +470,19 @@
     document.addEventListener("visibilitychange", requestSync);
   }
 
+  // ---------------------------------------------------------------------------
+  // YouTube API stub
+  // Note: if YouTube iFrame embeds are ever added, this must be assigned to
+  // window.onYouTubeIframeAPIReady *before* the YouTube script tag loads,
+  // otherwise the API fires the callback before this module runs.
+  // ---------------------------------------------------------------------------
   function onYouTubeIframeAPIReady() {
     return undefined;
   }
+
+  // ---------------------------------------------------------------------------
+  // Transit / breakfast accordion
+  // ---------------------------------------------------------------------------
 
   function initTransitAccordion() {
     document.querySelectorAll(".breakfast-transit").forEach(function (details) {
@@ -466,6 +538,10 @@
       });
     });
   }
+
+  // ---------------------------------------------------------------------------
+  // Entry point
+  // ---------------------------------------------------------------------------
 
   function init() {
     initLeafletMap();
