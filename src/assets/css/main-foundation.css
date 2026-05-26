@@ -49,7 +49,9 @@ body {
   height: 100%;
   font-family: "Jost", sans-serif;
   scroll-behavior: smooth;
+  overflow-x: hidden;
   overflow-x: clip;
+  -webkit-tap-highlight-color: rgba(181, 138, 84, 0.18);
 }
 
 html.lenis,
@@ -70,6 +72,7 @@ html.lenis body {
 }
 
 .lenis:not(.lenis-autoToggle).lenis-stopped {
+  overflow: hidden;
   overflow: clip;
 }
 
@@ -80,7 +83,12 @@ html.lenis body {
 .lenis.lenis-autoToggle {
   transition-property: overflow;
   transition-duration: 1ms;
-  transition-behavior: allow-discrete;
+}
+
+@supports (transition-behavior: allow-discrete) {
+  .lenis.lenis-autoToggle {
+    transition-behavior: allow-discrete;
+  }
 }
 
 .is-draggable-horizontal {
@@ -141,6 +149,7 @@ textarea,
   left: 0;
   width: 100vw;
   max-width: none;
+  height: 100vh;
   height: 100dvh;
   overflow: hidden;
   background: var(--navy) url("../images/cta-bigger-photo.jpg") center /
@@ -154,6 +163,8 @@ textarea,
   position: absolute;
   top: 50%;
   left: 50%;
+  width: max(100vw, calc(100vh * 16 / 9));
+  height: max(100vh, calc(100vw * 9 / 16));
   width: max(100vw, calc(100dvh * 16 / 9));
   height: max(100dvh, calc(100vw * 9 / 16));
   transform: translate(-50%, -50%);
@@ -221,8 +232,18 @@ nav {
   justify-content: space-between;
   padding-top: 22px;
   padding-bottom: 22px;
-  padding-left: max(32px, calc((100% - var(--content-max-width)) / 2));
-  padding-right: max(32px, calc((100% - var(--content-max-width)) / 2));
+  padding-left: 32px;
+  padding-right: 32px;
+  padding-left: max(
+    32px,
+    calc(24px + env(safe-area-inset-left, 0px)),
+    calc((100% - var(--content-max-width)) / 2)
+  );
+  padding-right: max(
+    32px,
+    calc(24px + env(safe-area-inset-right, 0px)),
+    calc((100% - var(--content-max-width)) / 2)
+  );
   transition:
     background 0.38s ease,
     box-shadow 0.38s ease,
@@ -826,6 +847,9 @@ nav.nav--solid {
   align-items: center;
   justify-content: space-between;
   padding: 26px 28px 0;
+  padding: calc(26px + env(safe-area-inset-top, 0px))
+    calc(28px + env(safe-area-inset-right, 0px)) 0
+    calc(28px + env(safe-area-inset-left, 0px));
   border-bottom: 1px solid rgba(201, 148, 58, 0.1);
   padding-bottom: 24px;
 }
@@ -867,6 +891,9 @@ nav.nav--solid {
   align-items: center;
   justify-content: flex-start;
   padding: 32px 28px 48px;
+  padding: 32px calc(28px + env(safe-area-inset-right, 0px))
+    calc(48px + env(safe-area-inset-bottom, 0px))
+    calc(28px + env(safe-area-inset-left, 0px));
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
 }
@@ -969,6 +996,8 @@ nav.nav--solid {
   nav {
     padding-left: 24px;
     padding-right: 24px;
+    padding-left: max(24px, calc(18px + env(safe-area-inset-left, 0px)));
+    padding-right: max(24px, calc(18px + env(safe-area-inset-right, 0px)));
   }
 
   .booking-wrap {
@@ -1002,6 +1031,8 @@ nav.nav--solid {
   nav {
     padding-left: 16px;
     padding-right: 16px;
+    padding-left: max(16px, calc(14px + env(safe-area-inset-left, 0px)));
+    padding-right: max(16px, calc(14px + env(safe-area-inset-right, 0px)));
   }
 
   .nav-links,
@@ -1301,6 +1332,7 @@ nav.nav--solid {
     right: 0;
     top: auto;
     width: 100%;
+    max-height: 88vh;
     max-height: 88dvh;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;

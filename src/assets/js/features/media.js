@@ -30,10 +30,31 @@
   // Used by hero video (skips on mobile too).
   const SKIP_HERO_VIDEO = SAVE_DATA || REDUCED_MOTION || COMPACT_VIEWPORT;
 
-  // FIX #5 — Reel videos now also skip on mobile, matching hero video behaviour.
-  // Previously shouldSkipMotionMedia() had no viewport-width guard, so mobile
-  // users would download and play reel videos while the hero video was skipped.
-  const SKIP_MOTION_MEDIA = SAVE_DATA || REDUCED_MOTION || COMPACT_VIEWPORT;
+  // Reels stay lazy-loaded on mobile/iOS instead of being globally disabled.
+  // Save-data and reduced-motion users still get the static poster fallback.
+  const SKIP_MOTION_MEDIA = SAVE_DATA || REDUCED_MOTION;
+
+  function getVideoTypeFromSrc(src) {
+    if (!src) {
+      return "";
+    }
+
+    const cleanSrc = src.split("?")[0].split("#")[0].toLowerCase();
+
+    if (cleanSrc.endsWith(".mp4")) {
+      return "video/mp4";
+    }
+
+    if (cleanSrc.endsWith(".mov")) {
+      return "video/quicktime";
+    }
+
+    if (cleanSrc.endsWith(".webm")) {
+      return "video/webm";
+    }
+
+    return "";
+  }
 
   // ---------------------------------------------------------------------------
   // Script / stylesheet loading helpers
@@ -291,6 +312,15 @@
       return;
     }
 
+    heroVideo.muted = true;
+    heroVideo.defaultMuted = true;
+    heroVideo.loop = true;
+    heroVideo.playsInline = true;
+    heroVideo.setAttribute("muted", "");
+    heroVideo.setAttribute("loop", "");
+    heroVideo.setAttribute("playsinline", "");
+    heroVideo.setAttribute("webkit-playsinline", "");
+
     if (heroVideo.readyState >= 2) {
       showVideo();
     } else {
@@ -327,6 +357,7 @@
     video.setAttribute("muted", "");
     video.setAttribute("loop", "");
     video.setAttribute("playsinline", "");
+    video.setAttribute("webkit-playsinline", "");
   }
 
   function loadReelVideo(video) {
@@ -339,8 +370,9 @@
     sources.forEach(function (source) {
       source.src = source.dataset.src;
 
-      if (source.dataset.type) {
-        source.type = source.dataset.type;
+      const sourceType = source.dataset.type || getVideoTypeFromSrc(source.src);
+      if (sourceType) {
+        source.type = sourceType;
       }
     });
 
@@ -385,6 +417,11 @@
 
   function syncReelVideo(video) {
     if (!video) {
+      return;
+    }
+
+    if (SKIP_MOTION_MEDIA) {
+      pauseReelVideo(video);
       return;
     }
 

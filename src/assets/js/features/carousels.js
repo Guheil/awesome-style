@@ -46,6 +46,26 @@
     });
   }
 
+  function syncReelsAfterCarouselUpdate(root) {
+    const media = app.features && app.features.media;
+
+    if (!root || !media || typeof media.syncReelVideo !== "function") {
+      return;
+    }
+
+    const videos = Array.from(root.querySelectorAll("[data-reel-video]"));
+    if (videos.length === 0) {
+      return;
+    }
+
+    function syncVideos() {
+      videos.forEach(media.syncReelVideo);
+    }
+
+    window.requestAnimationFrame(syncVideos);
+    window.setTimeout(syncVideos, 720);
+  }
+
   function updateResortCarousel() {
     if (!resortCarouselTrack || resortCarouselDots.length === 0) {
       return;
@@ -131,6 +151,8 @@
     if (diningIndex) {
       diningIndex.textContent = `${String(activeDiningSlide + 1).padStart(2, "0")} / ${String(diningDots.length).padStart(2, "0")}`;
     }
+
+    syncReelsAfterCarouselUpdate(diningTrack.children[activeDiningSlide]);
   }
 
   function moveDiningCarousel(step) {

@@ -258,6 +258,7 @@
             muted
             loop
             playsinline
+            webkit-playsinline
             poster="${heroVideoPosterSrc}"
             preload="none"
             data-src-mp4="${heroVideoMp4Src}"
@@ -689,7 +690,22 @@
                     <img src="https://awesomehotel.com/wp-content/uploads/2025/09/restaurant-new.jpg" alt="Restaurant dining" loading="lazy" decoding="async" />
                   </figure>
                   <figure class="dining-image dining-image--tall">
-                    <img src="https://awesomehotel.com/wp-content/uploads/2023/07/hotel-cocktails.jpg" alt="Signature cocktails" loading="lazy" decoding="async" />
+                    <video
+                      data-reel-video
+                      autoplay
+                      muted
+                      loop
+                      playsinline
+                      webkit-playsinline
+                      poster="https://awesomehotel.com/wp-content/uploads/2023/07/DSC05433.jpg"
+                      preload="none"
+                      aria-hidden="true"
+                    >
+                      <source
+                        data-src="${assetHref("vid/reels/coffee.mp4")}"
+                        data-type="video/mp4"
+                      />
+                    </video>
                   </figure>
                 </article>
 
@@ -698,7 +714,22 @@
                     <img src="https://awesomehotel.com/wp-content/uploads/2025/09/sports-bar.jpg" alt="Poolside dining" loading="lazy" decoding="async" />
                   </figure>
                   <figure class="dining-image dining-image--tall">
-                    <img src="https://awesomehotel.com/wp-content/uploads/2023/07/DSC05433.jpg" alt="Fresh cafe selections" loading="lazy" decoding="async" />
+                    <video
+                      data-reel-video
+                      autoplay
+                      muted
+                      loop
+                      playsinline
+                      webkit-playsinline
+                      poster="https://awesomehotel.com/wp-content/uploads/2023/07/DSC05433.jpg"
+                      preload="none"
+                      aria-hidden="true"
+                    >
+                      <source
+                        data-src="${assetHref("vid/reels/coffee.mp4")}"
+                        data-type="video/mp4"
+                      />
+                    </video>
                   </figure>
                 </article>
 

@@ -177,6 +177,7 @@
     diningVenueVideo.setAttribute("muted", "");
     diningVenueVideo.setAttribute("loop", "");
     diningVenueVideo.setAttribute("playsinline", "");
+    diningVenueVideo.setAttribute("webkit-playsinline", "");
     diningVenueVideo.dataset.reelLoaded = "false";
 
     diningVenueVideoSource.removeAttribute("src");
