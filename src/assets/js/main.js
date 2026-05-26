@@ -19,7 +19,7 @@
 
   function getScriptGroups() {
     const needsCarousels = has(
-      "#resortCarouselTrack, #amenitiesTrack, #diningTrack, #daytourTrack",
+      "#resortCarouselTrack, #amenitiesTrack, #diningTrack, #daytourTrack, #teamRoomTrack",
     );
     const needsDining = has(
       ".dining-venue-tab, #diningVenueTitle, #venueMenuSection",

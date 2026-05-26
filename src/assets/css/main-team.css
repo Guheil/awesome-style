@@ -75,19 +75,6 @@
   text-shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
 }
 
-.team-page-intro,
-.team-page-rates,
-.team-page-terms,
-.team-page-testimonials,
-.team-page-faq {
-  background: var(--white);
-}
-
-.team-page-intro {
-  padding: 54px 0 38px;
-}
-
-.team-page-intro p,
 .team-page-rates p,
 .team-page-catalog-header p,
 .team-page-activity-card p,
@@ -102,14 +89,12 @@
   line-height: 1.9;
 }
 
-.team-page-intro p,
 .team-page-rates p {
   margin: 0 auto;
   text-align: center;
   color: rgba(55, 41, 29, 0.78);
 }
 
-.team-page-intro a,
 .team-page-catalog a {
   color: inherit;
   text-decoration-color: rgba(181, 138, 84, 0.48);
@@ -117,7 +102,8 @@
 }
 
 .team-page-rates {
-  padding: 8px 0 82px;
+  padding: 82px 0;
+  background: var(--white);
 }
 
 .team-page-rates-inner {
@@ -130,15 +116,26 @@
   text-align: left;
 }
 
+.team-page-rates-copy {
+  display: grid;
+  gap: 26px;
+}
+
 .team-page-rates p {
-  margin-top: 6px;
+  margin-top: 0;
   max-width: none;
   text-align: left;
 }
 
+.team-page-rates a {
+  color: var(--gold);
+  text-decoration-color: rgba(181, 138, 84, 0.52);
+  text-underline-offset: 0.16em;
+}
+
 .team-page-catalog {
   padding: 88px 0 96px;
-  background: var(--navy);
+  background: var(--ivory);
 }
 
 .team-page-catalog-header {
@@ -150,12 +147,12 @@
 }
 
 .team-page-catalog-header .team-page-heading {
-  color: var(--white);
+  color: var(--ink);
 }
 
 .team-page-catalog-header p {
   margin-top: 0;
-  color: rgba(251, 245, 234, 0.82);
+  color: rgba(55, 41, 29, 0.76);
 }
 
 .team-page-activity-grid,
@@ -179,10 +176,10 @@
   grid-template-columns: 1fr;
   grid-template-rows: clamp(240px, 21vw, 310px) 1fr;
   overflow: hidden;
-  border: 1px solid rgba(243, 226, 189, 0.2);
+  border: 1px solid var(--glass-border);
   border-radius: 12px;
-  background: var(--ivory);
-  box-shadow: 0 26px 62px rgba(5, 3, 2, 0.24);
+  background: var(--white);
+  box-shadow: 0 22px 54px rgba(47, 36, 24, 0.08);
 }
 
 .team-page-activity-card--feature {
@@ -247,11 +244,30 @@
 }
 
 .team-page-room-grid {
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  display: flex;
+  gap: 24px;
+  align-items: stretch;
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
+  transition: transform 0.42s ease;
+  will-change: transform;
+}
+
+.team-page-room-carousel {
   margin-top: 52px;
   padding-top: 48px;
-  border-top: 1px solid rgba(251, 245, 234, 0.16);
-  align-items: stretch;
+  border-top: 1px solid rgba(181, 138, 84, 0.22);
+}
+
+.team-page-room-carousel-window {
+  overflow: hidden;
+  margin: -8px;
+  padding: 8px;
+}
+
+.team-page-room-grid .team-page-detail-card {
+  flex: 0 0 calc((100% - 72px) / 4);
 }
 
 .team-page-detail-card {
@@ -260,13 +276,13 @@
   display: flex;
   flex-direction: column;
   padding: clamp(24px, 2.2vw, 34px);
-  border: 1px solid rgba(243, 226, 189, 0.22);
+  border: 1px solid var(--glass-border);
   border-radius: 12px;
-  background: rgba(251, 245, 234, 0.045);
-  box-shadow: inset 0 1px 0 rgba(251, 245, 234, 0.08);
+  background: var(--white);
+  box-shadow: none;
   transition:
     border-color 0.24s ease,
-    background 0.24s ease,
+    box-shadow 0.24s ease,
     transform 0.24s ease;
 }
 
@@ -279,9 +295,9 @@
 }
 
 .team-page-detail-card:hover {
-  border-color: rgba(243, 226, 189, 0.38);
-  background: rgba(251, 245, 234, 0.065);
-  transform: translateY(-2px);
+  border-color: var(--gold-dim);
+  box-shadow: none;
+  transform: translateY(-1px);
 }
 
 .team-page-room-grid .team-page-detail-card:first-child {
@@ -290,7 +306,7 @@
 
 .team-page-detail-card h3 {
   margin: 0;
-  color: var(--gold-pale);
+  color: var(--gold);
   font-family: var(--font-accent-heading);
   font-size: clamp(17px, 1.55vw, 23px);
   line-height: 1.14;
@@ -301,7 +317,7 @@
 
 .team-page-detail-card p {
   margin-top: 18px;
-  color: rgba(251, 245, 234, 0.76);
+  color: rgba(55, 41, 29, 0.76);
 }
 
 .team-page-room-meta {
@@ -309,7 +325,7 @@
   gap: 10px;
   margin: auto 0 0;
   padding: 24px 0 0;
-  border-top: 1px solid rgba(243, 226, 189, 0.16);
+  border-top: 1px solid rgba(181, 138, 84, 0.18);
   list-style: none;
 }
 
@@ -319,7 +335,7 @@
   grid-template-columns: minmax(54px, auto) minmax(0, 1fr);
   gap: 10px;
   padding-left: 0;
-  color: rgba(251, 245, 234, 0.82);
+  color: rgba(55, 41, 29, 0.74);
   font-size: 13px;
   line-height: 1.55;
 }
@@ -329,7 +345,7 @@
 }
 
 .team-page-room-meta strong {
-  color: var(--gold-bright);
+  color: var(--gold);
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.1em;
@@ -340,8 +356,8 @@
   display: block;
   margin-top: 10px;
   padding-top: 18px;
-  border-top: 1px solid rgba(243, 226, 189, 0.16);
-  color: var(--ivory);
+  border-top: 1px solid rgba(181, 138, 84, 0.18);
+  color: var(--ink);
   font-size: 15px;
   line-height: 1.45;
 }
@@ -349,7 +365,81 @@
 .team-page-room-meta li:last-child strong {
   display: block;
   margin-bottom: 7px;
-  color: var(--gold-bright);
+  color: var(--gold);
+}
+
+.team-page-room-carousel-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 28px;
+}
+
+.team-page-room-carousel-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--glass-border);
+  border-radius: 50%;
+  background: var(--white);
+  color: var(--gold);
+  cursor: pointer;
+  transition:
+    background 0.24s ease,
+    border-color 0.24s ease,
+    color 0.24s ease,
+    transform 0.24s ease,
+    opacity 0.24s ease;
+}
+
+.team-page-room-carousel-arrow svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.team-page-room-carousel-arrow:hover:not(:disabled) {
+  transform: translateY(-1px);
+  border-color: var(--gold);
+  background: var(--gold);
+  color: var(--ivory);
+}
+
+.team-page-room-carousel-arrow:disabled {
+  cursor: default;
+  opacity: 0.42;
+}
+
+.team-page-room-carousel-dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-width: 56px;
+}
+
+.team-page-room-carousel-dot {
+  width: 7px;
+  height: 7px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--latte);
+  cursor: pointer;
+  transition:
+    background 0.24s ease,
+    transform 0.24s ease;
+}
+
+.team-page-room-carousel-dot.is-active {
+  background: var(--gold);
+  transform: scale(1.25);
 }
 
 .team-page-room-action {
@@ -381,9 +471,9 @@
 }
 
 .team-page-room-action a {
-  border: 1px solid rgba(251, 245, 234, 0.52);
+  border: 1px solid rgba(181, 138, 84, 0.52);
   background: transparent;
-  color: var(--ivory);
+  color: var(--gold);
 }
 
 .team-page-room-action a:hover,
@@ -392,14 +482,14 @@
 }
 
 .team-page-room-action a:hover {
-  border-color: var(--ivory);
-  background: var(--ivory);
-  color: var(--ink);
+  border-color: var(--gold);
+  background: var(--gold);
+  color: var(--ivory);
 }
 
 .team-page-terms {
   padding: 92px 0 98px;
-  background: var(--ivory);
+  background: var(--white);
 }
 
 .team-page-terms-layout {
@@ -423,7 +513,7 @@
 .team-page-terms-body {
   padding: clamp(28px, 4vw, 44px);
   border: 1px solid rgba(181, 138, 84, 0.18);
-  background: var(--white);
+  background: var(--ivory);
   box-shadow: 0 18px 44px rgba(47, 36, 24, 0.05);
 }
 
@@ -473,7 +563,7 @@
 
 .team-page-testimonials {
   padding: 108px 0 116px;
-  background: var(--sand);
+  background: var(--ivory);
 }
 
 .team-page-testimonials .team-page-shell {
@@ -731,6 +821,10 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .team-page-room-grid .team-page-detail-card {
+    flex-basis: calc((100% - 24px) / 2);
+  }
+
   .team-page-testimonials .team-page-shell {
     grid-template-columns: 1fr;
   }
@@ -768,10 +862,6 @@
     height: 520px;
   }
 
-  .team-page-intro {
-    padding: 42px 0 30px;
-  }
-
   .team-page-rates,
   .team-page-catalog,
   .team-page-terms,
@@ -790,7 +880,6 @@
     max-width: 70vw;
   }
 
-  .team-page-intro p,
   .team-page-rates p,
   .team-page-catalog-header p,
   .team-page-activity-card p,
@@ -808,6 +897,15 @@
   .team-page-room-grid,
   .team-page-testimonials-grid {
     grid-template-columns: 1fr;
+  }
+
+  .team-page-room-carousel {
+    margin-top: 40px;
+    padding-top: 34px;
+  }
+
+  .team-page-room-grid .team-page-detail-card {
+    flex-basis: 100%;
   }
 
   .team-page-testimonials .team-page-heading {
@@ -868,7 +966,7 @@
   }
 
   .team-page-room-grid {
-    padding-top: 38px;
+    padding-top: 0;
   }
 
   .team-page-room-action {

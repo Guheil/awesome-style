@@ -25,6 +25,15 @@
   let daytourStops = [];
   let activeDaytourSlide = 0;
 
+  let teamRoomTrack;
+  let teamRoomCards = [];
+  let teamRoomDotsWrap;
+  let teamRoomDots = [];
+  let teamRoomPrevButton;
+  let teamRoomNextButton;
+  let teamRoomPerPage = 4;
+  let activeTeamRoomPage = 0;
+
   function bindHorizontalSwipe(element, onSwipe, canStart) {
     if (!bindSwipeNavigation || !element) {
       return;
@@ -175,6 +184,90 @@
     updateDaytourCarousel();
   }
 
+  function getTeamRoomPerPage() {
+    if (window.innerWidth <= 760) {
+      return 1;
+    }
+
+    if (window.innerWidth <= 1120) {
+      return 2;
+    }
+
+    return 4;
+  }
+
+  function totalTeamRoomPages() {
+    return Math.max(1, Math.ceil(teamRoomCards.length / teamRoomPerPage));
+  }
+
+  function renderTeamRoomDots() {
+    if (!teamRoomDotsWrap) {
+      return;
+    }
+
+    teamRoomDotsWrap.innerHTML = "";
+    teamRoomDots = [];
+
+    for (let index = 0; index < totalTeamRoomPages(); index += 1) {
+      const dot = document.createElement("button");
+      dot.type = "button";
+      dot.className = "team-page-room-carousel-dot";
+      dot.setAttribute("aria-label", `Go to room card group ${index + 1}`);
+      dot.addEventListener("click", function () {
+        goToTeamRoomPage(index);
+      });
+      teamRoomDotsWrap.appendChild(dot);
+      teamRoomDots.push(dot);
+    }
+  }
+
+  function updateTeamRoomCarousel() {
+    if (!teamRoomTrack || teamRoomCards.length === 0) {
+      return;
+    }
+
+    const pageCount = totalTeamRoomPages();
+    activeTeamRoomPage = Math.max(0, Math.min(activeTeamRoomPage, pageCount - 1));
+    const targetIndex = activeTeamRoomPage * teamRoomPerPage;
+    const targetCard = teamRoomCards[targetIndex];
+    const offset = targetCard ? targetCard.offsetLeft : 0;
+    teamRoomTrack.style.transform = `translateX(-${offset}px)`;
+
+    teamRoomDots.forEach(function (dot, index) {
+      dot.classList.toggle("is-active", index === activeTeamRoomPage);
+      dot.setAttribute("aria-pressed", String(index === activeTeamRoomPage));
+    });
+
+    if (teamRoomPrevButton) {
+      teamRoomPrevButton.disabled = activeTeamRoomPage === 0;
+    }
+
+    if (teamRoomNextButton) {
+      teamRoomNextButton.disabled = activeTeamRoomPage >= pageCount - 1;
+    }
+  }
+
+  function goToTeamRoomPage(index) {
+    activeTeamRoomPage = index;
+    updateTeamRoomCarousel();
+  }
+
+  function moveTeamRoomCarousel(step) {
+    goToTeamRoomPage(activeTeamRoomPage + step);
+  }
+
+  function handleTeamRoomResize() {
+    const nextPerPage = getTeamRoomPerPage();
+
+    if (nextPerPage !== teamRoomPerPage) {
+      teamRoomPerPage = nextPerPage;
+      activeTeamRoomPage = 0;
+      renderTeamRoomDots();
+    }
+
+    updateTeamRoomCarousel();
+  }
+
   function init() {
     resortCarouselTrack = document.getElementById("resortCarouselTrack");
     resortCarouselDots = Array.from(
@@ -192,6 +285,33 @@
 
     daytourTrack = document.getElementById("daytourTrack");
     daytourStops = Array.from(document.querySelectorAll(".daytour-stop"));
+
+    teamRoomTrack = document.getElementById("teamRoomTrack");
+    teamRoomCards = teamRoomTrack
+      ? Array.from(teamRoomTrack.querySelectorAll(".team-page-detail-card"))
+      : [];
+    teamRoomDotsWrap = document.getElementById("teamRoomDots");
+    teamRoomPrevButton = document.querySelector("[data-team-room-prev]");
+    teamRoomNextButton = document.querySelector("[data-team-room-next]");
+
+    if (teamRoomTrack && teamRoomCards.length > 0) {
+      teamRoomPerPage = getTeamRoomPerPage();
+      renderTeamRoomDots();
+
+      if (teamRoomPrevButton) {
+        teamRoomPrevButton.addEventListener("click", function () {
+          moveTeamRoomCarousel(-1);
+        });
+      }
+
+      if (teamRoomNextButton) {
+        teamRoomNextButton.addEventListener("click", function () {
+          moveTeamRoomCarousel(1);
+        });
+      }
+
+      window.addEventListener("resize", handleTeamRoomResize);
+    }
 
     bindHorizontalSwipe(
       resortCarouselTrack ? resortCarouselTrack.parentElement : null,
@@ -225,10 +345,19 @@
       },
     );
 
+    bindHorizontalSwipe(
+      teamRoomTrack ? teamRoomTrack.parentElement : null,
+      moveTeamRoomCarousel,
+      function () {
+        return totalTeamRoomPages() > 1;
+      },
+    );
+
     updateResortCarousel();
     updateAmenitiesCarousel();
     updateDiningCarousel();
     updateDaytourCarousel();
+    updateTeamRoomCarousel();
   }
 
   features.carousels = {
@@ -236,10 +365,12 @@
     goToDaytourSlide,
     goToDiningSlide,
     goToResortSlide,
+    goToTeamRoomPage,
     init,
     moveAmenitiesCarousel,
     moveDaytourCarousel,
     moveDiningCarousel,
     moveResortCarousel,
+    moveTeamRoomCarousel,
   };
 })();
