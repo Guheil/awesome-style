@@ -59,4 +59,5 @@
 .team-page-cta .team-page-heading,
 .team-page-stay-cta .stay-cta-title {
   max-width: min(90vw, 1120px);
+  line-height: 1;
 }
