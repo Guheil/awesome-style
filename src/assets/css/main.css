@@ -12,6 +12,11 @@
 @import url("./main-services-gallery.css");
 @import url("./main-blog.css");
 
+:root {
+  --page-hero-heading-size: clamp(46px, 5.4vw, 88px);
+  --page-main-heading-size: clamp(32px, 3.7vw, 54px);
+}
+
 /* Keep editorial headings wide enough to avoid narrow stacked line breaks. */
 .about-hero-title,
 .about-heading,
@@ -60,4 +65,59 @@
 .team-page-stay-cta .stay-cta-title {
   max-width: min(90vw, 1120px);
   line-height: 1;
+}
+
+.about-hero-title,
+.blog-hero-copy h1,
+.blog-detail-hero .blog-hero-copy h1,
+.cafe-hero-title,
+.contact-intro h1,
+.day-tour-hero-title,
+.events-page-hero-title,
+.restaurant-hero-title,
+.bar-page .restaurant-hero-title,
+.room-detail-hero-title,
+.services-hero-title,
+.spa-hero h1,
+.stay-cta-title,
+.team-page-hero-title,
+.team-page-stay-cta .stay-cta-title {
+  font-size: var(--page-hero-heading-size);
+}
+
+.about-heading,
+.amenities-heading,
+.blog-article-header h2,
+.breakfast-discover h2,
+.breakfast-location .restaurant-directions-grid > div:first-child h2,
+.cafe-highlights-heading,
+.contact-assistance h2,
+.day-tour-cta .day-tour-heading,
+.daytour-title,
+.dining-title,
+.dining-venue-title,
+.events-page-copy h2,
+.events-page-other h2,
+.events-page-testimonials h2,
+.events-page-faq h2,
+.events-page-cta-copy h2,
+.events-title,
+.events-heading,
+.restaurant-section-header h2,
+.restaurant-promotions h2,
+.restaurant-reviews h2,
+.restaurant-closing h2,
+.restaurant-faq h2,
+.restaurant-hours h2,
+.restaurant-feature h2,
+.restaurant-directions h2,
+.resort-carousel-title,
+.reviews-title,
+.rooms-amenities .rooms-section-heading,
+.rooms-card--featured h2,
+.room-detail-page .room-detail-title,
+.services-intro-copy h2,
+.services-section-title,
+.team-page-heading {
+  font-size: var(--page-main-heading-size);
 }

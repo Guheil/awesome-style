@@ -594,18 +594,20 @@
 
 .events-page-inclusions .events-page-card:nth-child(1) {
   --events-card-icon: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg' fill='none' stroke='%2337291d' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z'/%3E%3Cpath d='M17 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z'/%3E%3Cpath d='M3 21v-2a4 4 0 0 1 4-4h2'/%3E%3Cpath d='M21 21v-2a4 4 0 0 0-4-4h-2'/%3E%3Cpath d='M12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z'/%3E%3Cpath d='M8 21v-1a4 4 0 0 1 8 0v1'/%3E%3C/svg%3E");
+  --events-card-index: "III";
+  grid-column: 3;
+  grid-row: 1;
+  justify-content: center;
+  padding: clamp(28px, 3.3vw, 46px);
+}
+
+.events-page-inclusions .events-page-card:nth-child(2) {
+  --events-card-icon: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg' fill='none' stroke='%2337291d' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 15h3l5 4V5L7 9H4v6Z'/%3E%3Cpath d='M16 9a4 4 0 0 1 0 6'/%3E%3Cpath d='M18.5 6.5a8 8 0 0 1 0 11'/%3E%3C/svg%3E");
   --events-card-index: "I";
   grid-column: 1;
   grid-row: 1 / span 2;
   justify-content: flex-end;
   padding-bottom: clamp(40px, 5vw, 70px);
-}
-
-.events-page-inclusions .events-page-card:nth-child(2) {
-  --events-card-icon: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg' fill='none' stroke='%2337291d' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 15h3l5 4V5L7 9H4v6Z'/%3E%3Cpath d='M16 9a4 4 0 0 1 0 6'/%3E%3Cpath d='M18.5 6.5a8 8 0 0 1 0 11'/%3E%3C/svg%3E");
-  --events-card-index: "III";
-  grid-column: 3;
-  grid-row: 1;
 }
 
 .events-page-inclusions .events-page-card:nth-child(3) {
@@ -992,7 +994,8 @@
     min-height: 270px;
   }
 
-  .events-page-inclusions .events-page-card:first-child {
+  .events-page-inclusions .events-page-card:nth-child(2) {
+    order: -1;
     grid-column: 1 / -1;
     min-height: 340px;
   }
@@ -1149,8 +1152,8 @@
     padding: 28px;
   }
 
-  .events-page-inclusions .events-page-card:first-child {
-    grid-column: auto;
+  .events-page-inclusions .events-page-card:nth-child(2) {
+    order: -1;
     min-height: 330px;
   }
 
